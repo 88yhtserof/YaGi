@@ -12,6 +12,7 @@
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
 		146BB2E028CB6F960029F556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */; };
 		146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2E928CB80530029F556 /* MainTabBarController.swift */; };
+		146BB2ED28CB82A90029F556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 146BB2EC28CB82A90029F556 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				146BB2ED28CB82A90029F556 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +82,9 @@
 			dependencies = (
 			);
 			name = YaGi;
+			packageProductDependencies = (
+				146BB2EC28CB82A90029F556 /* SnapKit */,
+			);
 			productName = YaGi;
 			productReference = 146BB2D028CB6F930029F556 /* YaGi.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +113,9 @@
 				Base,
 			);
 			mainGroup = 146BB2C728CB6F930029F556;
+			packageReferences = (
+				146BB2EB28CB82A90029F556 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 146BB2D128CB6F930029F556 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -346,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		146BB2EB28CB82A90029F556 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		146BB2EC28CB82A90029F556 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 146BB2EB28CB82A90029F556 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 146BB2C828CB6F930029F556 /* Project object */;
 }
