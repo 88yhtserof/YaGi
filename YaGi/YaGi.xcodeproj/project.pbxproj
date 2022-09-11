@@ -13,6 +13,11 @@
 		146BB2E028CB6F960029F556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */; };
 		146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2E928CB80530029F556 /* MainTabBarController.swift */; };
 		146BB2ED28CB82A90029F556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 146BB2EC28CB82A90029F556 /* SnapKit */; };
+		1484BC3B28CDE7C700E9F241 /* MaruBuri-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */; };
+		1484BC3C28CDE7C900E9F241 /* MaruBuri-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */; };
+		1484BC3D28CDE7CC00E9F241 /* MaruBuri-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */; };
+		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
+		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +28,11 @@
 		146BB2DF28CB6F960029F556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		146BB2E128CB6F960029F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146BB2E928CB80530029F556 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Light.ttf"; sourceTree = "<group>"; };
+		1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Bold.ttf"; sourceTree = "<group>"; };
+		1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-SemiBold.ttf"; sourceTree = "<group>"; };
+		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
+		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 		146BB2D228CB6F930029F556 /* YaGi */ = {
 			isa = PBXGroup;
 			children = (
+				1484BC3428CDE59E00E9F241 /* Font */,
 				146BB2D328CB6F930029F556 /* AppDelegate.swift */,
 				146BB2D528CB6F930029F556 /* SceneDelegate.swift */,
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
@@ -64,6 +75,18 @@
 				146BB2E128CB6F960029F556 /* Info.plist */,
 			);
 			path = YaGi;
+			sourceTree = "<group>";
+		};
+		1484BC3428CDE59E00E9F241 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */,
+				1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */,
+				1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */,
+				1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */,
+				1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +154,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				146BB2E028CB6F960029F556 /* LaunchScreen.storyboard in Resources */,
+				1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */,
+				1484BC3B28CDE7C700E9F241 /* MaruBuri-Bold.ttf in Resources */,
 				146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */,
+				1484BC3D28CDE7CC00E9F241 /* MaruBuri-Regular.ttf in Resources */,
+				1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */,
+				1484BC3C28CDE7C900E9F241 /* MaruBuri-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
