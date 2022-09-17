@@ -11,8 +11,8 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     //MARK: - View
-    private lazy var contentsViewController: UIViewController = {
-        let viewController = ContentsViewController()
+    private lazy var contentsViewController: UINavigationController = {
+        let viewController = UINavigationController(rootViewController: ContentsViewController())
         
         let tabBarItem: UITabBarItem = {
             let item = UITabBarItem(
