@@ -13,6 +13,14 @@
 		146BB2E028CB6F960029F556 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */; };
 		146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2E928CB80530029F556 /* MainTabBarController.swift */; };
 		146BB2ED28CB82A90029F556 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 146BB2EC28CB82A90029F556 /* SnapKit */; };
+		1484BC3B28CDE7C700E9F241 /* MaruBuri-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */; };
+		1484BC3C28CDE7C900E9F241 /* MaruBuri-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */; };
+		1484BC3D28CDE7CC00E9F241 /* MaruBuri-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */; };
+		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
+		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
+		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
+		14F49D0B28D5BB980027A4B3 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */; };
+		14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +31,14 @@
 		146BB2DF28CB6F960029F556 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		146BB2E128CB6F960029F556 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146BB2E928CB80530029F556 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Light.ttf"; sourceTree = "<group>"; };
+		1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Bold.ttf"; sourceTree = "<group>"; };
+		1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-SemiBold.ttf"; sourceTree = "<group>"; };
+		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
+		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
+		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
+		14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
+		14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,14 +72,46 @@
 		146BB2D228CB6F930029F556 /* YaGi */ = {
 			isa = PBXGroup;
 			children = (
+				14F49D0928D5BB1F0027A4B3 /* Asset */,
+				1484BC4328CDEC9F00E9F241 /* Extension */,
+				1484BC3428CDE59E00E9F241 /* Font */,
 				146BB2D328CB6F930029F556 /* AppDelegate.swift */,
 				146BB2D528CB6F930029F556 /* SceneDelegate.swift */,
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
-				146BB2DC28CB6F960029F556 /* Assets.xcassets */,
 				146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */,
 				146BB2E128CB6F960029F556 /* Info.plist */,
 			);
 			path = YaGi;
+			sourceTree = "<group>";
+		};
+		1484BC3428CDE59E00E9F241 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				1484BC3828CDE7BF00E9F241 /* MaruBuri-Bold.ttf */,
+				1484BC3728CDE7BF00E9F241 /* MaruBuri-Light.ttf */,
+				1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */,
+				1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */,
+				1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		1484BC4328CDEC9F00E9F241 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1484BC4528CDED2700E9F241 /* ExUIFont.swift */,
+				14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		14F49D0928D5BB1F0027A4B3 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				146BB2DC28CB6F960029F556 /* Assets.xcassets */,
+				14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */,
+			);
+			path = Asset;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +179,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				146BB2E028CB6F960029F556 /* LaunchScreen.storyboard in Resources */,
+				1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */,
+				14F49D0B28D5BB980027A4B3 /* ColorAssets.xcassets in Resources */,
+				1484BC3B28CDE7C700E9F241 /* MaruBuri-Bold.ttf in Resources */,
 				146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */,
+				1484BC3D28CDE7CC00E9F241 /* MaruBuri-Regular.ttf in Resources */,
+				1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */,
+				1484BC3C28CDE7C900E9F241 /* MaruBuri-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +199,8 @@
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
+				14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */,
+				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
