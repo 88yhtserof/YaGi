@@ -37,7 +37,6 @@ class ContentsCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(title: String, date: String) {
-        //contentView.backgroundColor = .yagiWhihtDeep
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
         self.contentTitle.text = title
@@ -53,7 +52,7 @@ class ContentsCollectionViewCell: UICollectionViewCell {
         contentDate.snp.makeConstraints { make in
             make.leading.equalTo(contentTitle.snp.leading)
             make.trailing.equalTo(contentTitle.snp.trailing)
-            make.top.equalTo(contentTitle.snp.bottom).offset(5)
+            make.top.equalTo(contentTitle.snp.bottom).offset(3)
             make.bottom.equalToSuperview().inset(10)
         }
     }

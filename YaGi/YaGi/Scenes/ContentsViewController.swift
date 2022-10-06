@@ -124,7 +124,7 @@ private extension ContentsViewController {
     
     func createContentsSectionLayout() -> NSCollectionLayoutSection {
         //size
-        let sizeItem = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width - 30), heightDimension: .fractionalHeight(0.1))
+        let sizeItem = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width - 30), heightDimension: .absolute(100))
         let sizeGroup = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width - 30), heightDimension: .absolute(self.view.bounds.height))
         
         //item
