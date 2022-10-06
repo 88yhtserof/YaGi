@@ -34,11 +34,12 @@ class ContentsCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        configureCell()
     }
     
-    func configureCell() {
+    func configureCell(title: String, date: String) {
+        self.contentTitle.text = title
+        self.contentDate.text = title
+        
         [contentTitle, contentDate].forEach { self.contentView.addSubview($0) }
         
         contentTitle.snp.makeConstraints { make in
