@@ -58,6 +58,7 @@ class ContentsViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.collectionViewLayout = self.layout()
+        collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(ContentsCollectionViewCell.self, forCellWithReuseIdentifier: "ContentsCollectionViewCell")
         
@@ -91,7 +92,7 @@ private extension ContentsViewController {
         contentsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(titleButton.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(15)
-            make.bottom.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(100)
         }
     }
 }
@@ -123,8 +124,8 @@ private extension ContentsViewController {
     
     func createContentsSectionLayout() -> NSCollectionLayoutSection {
         //size
-        let sizeItem = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width), heightDimension: .absolute(200))
-        let sizeGroup = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width), heightDimension: .absolute(self.view.bounds.height))
+        let sizeItem = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width - 30), heightDimension: .fractionalHeight(0.1))
+        let sizeGroup = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width - 30), heightDimension: .absolute(self.view.bounds.height))
         
         //item
         let item = NSCollectionLayoutItem(layoutSize: sizeItem)
