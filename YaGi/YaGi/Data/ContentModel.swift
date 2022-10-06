@@ -20,7 +20,8 @@ extension ContentModel {
         content4,
         content5,
         content6,
-        content7
+        content7,
+        content8
     ]
     
     static let content1 = ContentModel(contentTitle: "1. 주문하신 용은 매진입니다", ContentDate: "2022.10.06 목")
@@ -30,4 +31,5 @@ extension ContentModel {
     static let content5 = ContentModel(contentTitle: "5. 그냥 사양합니다. ", ContentDate: "2022.10.10 월")
     static let content6 = ContentModel(contentTitle: "6. 이 달의 베스트 마법 주문", ContentDate: "2022.10.11 화")
     static let content7 = ContentModel(contentTitle: "7. 예약하신 용이 도착하였습니다", ContentDate: "2022.10.12 수")
+    static let content8 = ContentModel(contentTitle: "8. 대신 꿈 꾸어 드립니다. 비용은 수면 시간으로 받습니다.", ContentDate: "2022.10.13 목")
 }
