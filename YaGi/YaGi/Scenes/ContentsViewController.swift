@@ -8,6 +8,8 @@
 import UIKit
 
 class ContentsViewController: UIViewController {
+    //MARK: - Properties
+    private let contents: [ContentModel] = ContentModel.contents
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -49,6 +51,18 @@ class ContentsViewController: UIViewController {
         
         return button
     }()
+    
+    private lazy var contentsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.dataSource = self
+        collectionView.collectionViewLayout = self.layout()
+        
+        collectionView.register(ContentsCollectionViewCell.self, forCellWithReuseIdentifier: "ContentsCollectionViewCell")
+        
+       return collectionView
+    }()
 
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -73,5 +87,50 @@ private extension ContentsViewController {
             make.leading.equalToSuperview().inset(20)
             make.width.equalTo(300)
         }
+    }
+}
+
+//MARK: - CollectionView DataSource, Delegate
+extension ContentsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contents.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell else { return UICollectionViewCell() }
+
+        let content = self.contents[indexPath.row]
+        cell.configureCell(title: content.contentTitle, date: content.ContentDate)
+        
+        return cell
+    }
+}
+
+//MARK: - Collection Layout
+private extension ContentsViewController {
+    func layout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout(section: createContentsSectionLayout())
+        
+        return layout
+    }
+    
+    func createContentsSectionLayout() -> NSCollectionLayoutSection {
+        //size
+        let sizeItem = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width), heightDimension: .absolute(200))
+        let sizeGroup = NSCollectionLayoutSize(widthDimension: .absolute(self.view.bounds.width), heightDimension: .absolute(self.view.bounds.height))
+        
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: sizeItem)
+        item.contentInsets = .init(top: 10, leading: 0, bottom: 10, trailing: 0)
+        
+        //group
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: sizeGroup, subitems: [item])
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
+        
+        return section
     }
 }
