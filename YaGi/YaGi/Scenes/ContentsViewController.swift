@@ -80,12 +80,18 @@ private extension ContentsViewController {
     }
     
     func configureView() {
-        [titleButton].forEach{ self.view.addSubview($0) }
+        [titleButton, contentsCollectionView].forEach{ self.view.addSubview($0) }
         
         titleButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(80)
             make.leading.equalToSuperview().inset(20)
             make.width.equalTo(300)
+        }
+        
+        contentsCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(titleButton.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(15)
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 }
