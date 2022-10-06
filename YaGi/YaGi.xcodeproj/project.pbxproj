@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
 				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
+				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
+				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */,
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
