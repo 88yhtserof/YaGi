@@ -14,19 +14,19 @@ class ContentsCollectionViewCell: UICollectionViewCell {
         label.text = "1. 예약하신 용이 도착하였습니다"
         label.numberOfLines = 1
         label.textColor = .yagiGrayDeep
-        label.font = .maruburi(ofSize: 20, weight: .semiBold)
+        label.font = .maruburi(ofSize: 18, weight: .semiBold)
         label.textAlignment = .left
         
         return label
     }()
     
     private lazy var contentDate: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         
         label.text = "2022.10.06 목"
         label.numberOfLines = 1
         label.textColor = .yagiGray
-        label.font = .maruburi(ofSize: 15, weight: .regular)
+        label.font = .maruburi(ofSize: 13, weight: .regular)
         label.textAlignment = .left
         
         return label
@@ -37,8 +37,15 @@ class ContentsCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(title: String, date: String) {
-        contentView.layer.cornerRadius = 10
+        contentView.backgroundColor = .yagiWhite
+        contentView.layer.cornerRadius = 15
         contentView.clipsToBounds = true
+        
+        layer.shadowColor = UIColor.yagiWhihtDeep.cgColor
+        layer.shadowOpacity = 0.6
+        layer.shadowOffset = CGSize(width: 0, height: 10)
+        layer.shadowRadius = 3
+        
         self.contentTitle.text = title
         self.contentDate.text = date
         
@@ -53,7 +60,7 @@ class ContentsCollectionViewCell: UICollectionViewCell {
             make.leading.equalTo(contentTitle.snp.leading)
             make.trailing.equalTo(contentTitle.snp.trailing)
             make.top.equalTo(contentTitle.snp.bottom).offset(3)
-            make.bottom.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
 }
