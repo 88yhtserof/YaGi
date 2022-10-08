@@ -42,8 +42,10 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0)
         
         let action = UIAction { action  in
-            //Present Write View
-            print("Present Write View")
+            let writingViewController = WritingViewController()
+            writingViewController.modalPresentationStyle = .fullScreen
+            
+            self.present(writingViewController, animated: true)
         }
         
         button.configuration = configuration
