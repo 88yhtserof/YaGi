@@ -59,6 +59,7 @@ class ContentsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.collectionViewLayout = self.layout()
         collectionView.showsVerticalScrollIndicator = false
         
@@ -100,7 +101,8 @@ private extension ContentsViewController {
 }
 
 //MARK: - CollectionView DataSource, Delegate
-extension ContentsViewController: UICollectionViewDataSource {
+extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    //DataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contents.count
     }
@@ -113,6 +115,13 @@ extension ContentsViewController: UICollectionViewDataSource {
         cell.configureCell(title: content.contentTitle, date: content.ContentDate)
         
         return cell
+    }
+    
+    //Delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let contentDetailViewController = ContentDetailViewController()
+        
+        self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
 
