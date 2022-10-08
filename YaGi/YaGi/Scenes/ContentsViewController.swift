@@ -14,6 +14,12 @@ class ContentsViewController: UIViewController {
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem()
+        let action = UIAction {_ in 
+            let menuViewController = MenuViewController()
+            self.navigationController?.pushViewController(menuViewController, animated: true)
+        }
+        
+        item.primaryAction = action
         item.image = UIImage(systemName: "ellipsis")
         item.tintColor = .yagiGray
         
