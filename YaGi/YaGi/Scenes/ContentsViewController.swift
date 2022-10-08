@@ -14,6 +14,12 @@ class ContentsViewController: UIViewController {
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem()
+        let action = UIAction {_ in 
+            let menuViewController = MenuViewController()
+            self.navigationController?.pushViewController(menuViewController, animated: true)
+        }
+        
+        item.primaryAction = action
         item.image = UIImage(systemName: "ellipsis")
         item.tintColor = .yagiGray
         
@@ -42,8 +48,10 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0)
         
         let action = UIAction { action  in
-            //Present Write View
-            print("Present Write View")
+            let writingViewController = WritingViewController()
+            writingViewController.modalPresentationStyle = .fullScreen
+            
+            self.present(writingViewController, animated: true)
         }
         
         button.configuration = configuration
@@ -57,6 +65,7 @@ class ContentsViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.collectionViewLayout = self.layout()
         collectionView.showsVerticalScrollIndicator = false
         
@@ -98,7 +107,8 @@ private extension ContentsViewController {
 }
 
 //MARK: - CollectionView DataSource, Delegate
-extension ContentsViewController: UICollectionViewDataSource {
+extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    //DataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return contents.count
     }
@@ -111,6 +121,13 @@ extension ContentsViewController: UICollectionViewDataSource {
         cell.configureCell(title: content.contentTitle, date: content.ContentDate)
         
         return cell
+    }
+    
+    //Delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let contentDetailViewController = ContentDetailViewController()
+        
+        self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
 
