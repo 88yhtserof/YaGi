@@ -38,12 +38,15 @@ class ContentsCollectionViewCell: UICollectionViewCell {
     
     func configureCell(title: String, date: String) {
         contentView.backgroundColor = .yagiWhite
-        contentView.layer.cornerRadius = 15
+        contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
         
+        contentView.layer.borderWidth = 1
+        contentView.layer.borderColor = UIColor.yagiWhihtDeep.cgColor
+        
         layer.shadowColor = UIColor.yagiWhihtDeep.cgColor
-        layer.shadowOpacity = 0.6
-        layer.shadowOffset = CGSize(width: 0, height: 10)
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: 0, height: 5)
         layer.shadowRadius = 3
         
         self.contentTitle.text = title
