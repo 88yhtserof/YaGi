@@ -34,7 +34,7 @@ final class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .yagiWhite
         self.viewControllers = [contentsViewController]
         self.tabBar.tintColor = .yagiGray
     }
