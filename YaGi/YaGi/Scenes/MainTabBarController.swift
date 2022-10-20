@@ -25,6 +25,7 @@ final class MainTabBarController: UITabBarController {
             return item
         }()
         
+        viewController.navigationBar.tintColor = .yagiGray
         viewController.tabBarItem = tabBarItem
         
         return viewController

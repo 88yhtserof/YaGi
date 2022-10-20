@@ -87,6 +87,7 @@ class ContentsViewController: UIViewController {
 private extension ContentsViewController {
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = menuBarItem
+        self.navigationItem.title = ""
     }
     
     func configureView() {
