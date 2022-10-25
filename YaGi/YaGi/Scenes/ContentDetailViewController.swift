@@ -44,6 +44,15 @@ class ContentDetailViewController: UIViewController {
                             """)
         }
         
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 14
+        paragraphStyle.lineBreakStrategy = .hangulWordPriority
+        
+        let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
+        let attributedText = NSAttributedString(string:testText, attributes: attributes)
+        
+        textView.attributedText = attributedText
+        textView.isEditable = false
         textView.text = testText
         textView.isScrollEnabled = false
         textView.textColor = .yagiGrayDeep
