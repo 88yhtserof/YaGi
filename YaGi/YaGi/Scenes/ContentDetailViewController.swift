@@ -81,6 +81,7 @@ class ContentDetailViewController: UIViewController {
         
         item.primaryAction = action
         item.image = UIImage(systemName: "bookmark.fill")
+        item.tintColor = .yagiHighlight
         
         return item
     }()
