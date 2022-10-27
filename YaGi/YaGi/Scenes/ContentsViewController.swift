@@ -87,6 +87,7 @@ class ContentsViewController: UIViewController {
 private extension ContentsViewController {
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = menuBarItem
+        self.navigationItem.title = ""
     }
     
     func configureView() {
@@ -127,6 +128,7 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let contentDetailViewController = ContentDetailViewController()
         
+        contentDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
