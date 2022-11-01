@@ -13,6 +13,7 @@ class BottomMenuViewController: UIViewController {
         var view = UIView()
         
         view.backgroundColor = .yagiWhite
+        view.roundCorner(round: 20, [.topLeft, .topRight])
         
         return view
     }()
