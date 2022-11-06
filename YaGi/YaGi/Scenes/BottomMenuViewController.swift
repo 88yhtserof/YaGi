@@ -9,6 +9,7 @@ import UIKit
 
 class BottomMenuViewController: UIViewController {
     
+    //MARK: - Views
     private lazy var sheetView: UIView = {
         var view = UIView()
         
@@ -93,6 +94,7 @@ class BottomMenuViewController: UIViewController {
         return button
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,6 +103,7 @@ class BottomMenuViewController: UIViewController {
     }
 }
 
+//MARK: - Configure
 private extension BottomMenuViewController {
     func configureView() {
         
