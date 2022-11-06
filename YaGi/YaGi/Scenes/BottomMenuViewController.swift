@@ -123,11 +123,24 @@ private extension BottomMenuViewController {
     func configurePresent() {
         UIView.animate(withDuration: 1) { [weak self] in
             self?.sheetView.snp.remakeConstraints { make in
-                make.bottom.equalToSuperview()
-                make.leading.trailing.equalToSuperview()
+                make.leading.trailing.bottom.equalToSuperview()
                 make.height.equalTo(300)
             }
             self?.view.layoutIfNeeded()
         }
+    }
+    
+    
+    func configureDismiss() {
+        UIView.animate(withDuration: 1) { [weak self] in
+            self?.sheetView.snp.remakeConstraints { make in
+                make.leading.trailing.bottom.equalToSuperview()
+                make.height.equalTo(0)
+            }
+            self?.view.layoutIfNeeded()
+        } completion: { _ in
+            print("Dismiss BottomMenu")
+        }
+
     }
 }
