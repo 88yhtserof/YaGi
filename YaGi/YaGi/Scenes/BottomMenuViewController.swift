@@ -97,6 +97,7 @@ class BottomMenuViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
+        configurePresent()
     }
 }
 
@@ -108,12 +109,25 @@ private extension BottomMenuViewController {
         
         sheetView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(300)
+            make.height.equalTo(0)
         }
         
         buttonStack.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
             make.leading.trailing.equalToSuperview()
+        }
+        
+        self.view.layoutIfNeeded()
+    }
+    
+    func configurePresent() {
+        UIView.animate(withDuration: 1) { [weak self] in
+            self?.sheetView.snp.remakeConstraints { make in
+                make.bottom.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
+                make.height.equalTo(300)
+            }
+            self?.view.layoutIfNeeded()
         }
     }
 }
