@@ -181,7 +181,18 @@ private extension BottomMenuViewController {
             self?.view.layoutIfNeeded()
         } completion: { _ in
             print("Dismiss BottomMenu")
+            completion()
         }
+    }
+}
 
+//MARK: - Override
+extension BottomMenuViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        configureDismiss {
+            self.dismiss(animated: true)
+        }
     }
 }
