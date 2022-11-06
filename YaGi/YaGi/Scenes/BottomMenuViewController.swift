@@ -7,7 +7,22 @@
 
 import UIKit
 
+//MARK: - Enumertaion
+enum BottomMenuButtonNumber: Int {
+    case first = 1
+    case second = 2
+    case third = 3
+    case fourth = 4
+}
+
+//MARK: - Class
 class BottomMenuViewController: UIViewController {
+    //MARK: - Properties
+    var numberOfButtons: BottomMenuButtonNumber = .fourth
+    var firMenuButtonAction: (() -> Void) = {print("TouchUpInside first")}
+    var secMenuButtonAction: (() -> Void) = {print("TouchUpInside second")}
+    var thrMenuButtonAction: (() -> Void) = {print("TouchUpInside third")}
+    var fthMenuButtonAction: (() -> Void) = {print("TouchUpInside fourth")}
     
     //MARK: - Views
     private lazy var sheetView: UIView = {
@@ -27,7 +42,20 @@ class BottomMenuViewController: UIViewController {
         stackView.spacing = 20
         stackView.alignment = .center
         
-        [firMenuButton, secMenuButton, thrMenuButton, fthMenuButton].forEach {
+        var buttons: [UIButton] = []
+        
+        switch numberOfButtons {
+        case .first:
+            buttons.append(firMenuButton)
+        case .second:
+            buttons.append(contentsOf: [firMenuButton, secMenuButton])
+        case .third:
+            buttons.append(contentsOf: [firMenuButton, secMenuButton, thrMenuButton])
+        case .fourth:
+            buttons.append(contentsOf: [firMenuButton, secMenuButton, thrMenuButton, fthMenuButton])
+        }
+        
+        buttons.forEach {
             stackView.addArrangedSubview( $0 )
         }
         
@@ -45,6 +73,7 @@ class BottomMenuViewController: UIViewController {
         configuration.attributedTitle = attributedTitle
         
         button.configuration = configuration
+        button.addAction( UIAction { _ in self.firMenuButtonAction() } , for: .touchUpInside)
         
         return button
     }()
@@ -60,6 +89,7 @@ class BottomMenuViewController: UIViewController {
         configuration.attributedTitle = attributedTitle
         
         button.configuration = configuration
+        button.addAction(UIAction { _ in self.secMenuButtonAction() }, for: .touchUpInside)
         
         return button
     }()
@@ -75,6 +105,7 @@ class BottomMenuViewController: UIViewController {
         configuration.attributedTitle = attributedTitle
         
         button.configuration = configuration
+        button.addAction( UIAction{ _ in self.thrMenuButtonAction() }, for: .touchUpInside)
         
         return button
     }()
@@ -90,6 +121,7 @@ class BottomMenuViewController: UIViewController {
         configuration.attributedTitle = attributedTitle
         
         button.configuration = configuration
+        button.addAction( UIAction{ _ in self.fthMenuButtonAction() }, for: .touchUpInside)
         
         return button
     }()
