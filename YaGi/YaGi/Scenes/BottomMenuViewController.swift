@@ -143,6 +143,7 @@ class BottomMenuViewController: UIViewController {
 //MARK: - Configure
 private extension BottomMenuViewController {
     func configureView() {
+        view.backgroundColor = .yagiGrayDeep.withAlphaComponent(0.6)
         
         view.addSubview( sheetView )
         [buttonStack].forEach { sheetView.addSubview( $0 ) }
@@ -161,7 +162,7 @@ private extension BottomMenuViewController {
     }
     
     func configurePresent() {
-        UIView.animate(withDuration: 1) { [weak self] in
+        UIView.animate(withDuration: 0.5) { [weak self] in
             self?.sheetView.snp.remakeConstraints { make in
                 make.leading.trailing.bottom.equalToSuperview()
                 make.height.equalTo(300)
@@ -172,7 +173,7 @@ private extension BottomMenuViewController {
     
     
     func configureDismiss() {
-        UIView.animate(withDuration: 1) { [weak self] in
+        UIView.animate(withDuration: 0.5) { [weak self] in
             self?.sheetView.snp.remakeConstraints { make in
                 make.leading.trailing.bottom.equalToSuperview()
                 make.height.equalTo(0)
