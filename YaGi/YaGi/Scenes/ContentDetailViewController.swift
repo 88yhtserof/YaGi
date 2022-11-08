@@ -75,6 +75,27 @@ class ContentDetailViewController: UIViewController {
             bottomMenuViewController.secMenuButtonTitle = "공유하기"
             bottomMenuViewController.thrMenuButtonTitle = "삭제하기"
             
+            bottomMenuViewController.firMenuButtonAction = {
+                let contentWriteViewController = ContentWriteViewController()
+                contentWriteViewController.modalPresentationStyle = .fullScreen
+                
+                self.dismiss(animated: true) {
+                    self.present(contentWriteViewController, animated: true)
+                }
+            }
+            
+            bottomMenuViewController.secMenuButtonAction = {
+                self.dismiss(animated: true) {
+                    print("Present ActivityView")
+                }
+            }
+            
+            bottomMenuViewController.thrMenuButtonAction = {
+                self.dismiss(animated: true) {
+                    print("Present Alert")
+                }
+            }
+            
             self.present(bottomMenuViewController, animated: true)
         }
         
