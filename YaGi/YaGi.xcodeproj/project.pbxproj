@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */; };
 		140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BE4E728EEA5FF00052664 /* ContentModel.swift */; };
+		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
+		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		140BE4E728EEA5FF00052664 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
+		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			children = (
 				1484BC4528CDED2700E9F241 /* ExUIFont.swift */,
 				14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */,
+				141D5ADA290A553B00BFE3F7 /* ExUIView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
 				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
 				14E5D9A728F15A1900E349B4 /* MenuViewController.swift */,
+				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -230,12 +236,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
 				140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */,
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
+				141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
