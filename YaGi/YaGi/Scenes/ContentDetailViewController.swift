@@ -70,6 +70,11 @@ class ContentDetailViewController: UIViewController {
             bottomMenuViewController.modalPresentationStyle = .overFullScreen
             bottomMenuViewController.modalTransitionStyle = .crossDissolve
             
+            bottomMenuViewController.numberOfButtons = .third
+            bottomMenuViewController.firMenuButtonTitle = "수정하기"
+            bottomMenuViewController.secMenuButtonTitle = "공유하기"
+            bottomMenuViewController.thrMenuButtonTitle = "삭제하기"
+            
             self.present(bottomMenuViewController, animated: true)
         }
         
