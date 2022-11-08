@@ -19,10 +19,16 @@ enum BottomMenuButtonNumber: Int {
 class BottomMenuViewController: UIViewController {
     //MARK: - Properties
     var numberOfButtons: BottomMenuButtonNumber = .fourth
-    var firMenuButtonAction: (() -> Void) = {print("TouchUpInside first")}
-    var secMenuButtonAction: (() -> Void) = {print("TouchUpInside second")}
-    var thrMenuButtonAction: (() -> Void) = {print("TouchUpInside third")}
-    var fthMenuButtonAction: (() -> Void) = {print("TouchUpInside fourth")}
+    
+    var firMenuButtonTitle: String = "첫 번째 버튼"
+    var secMenuButtonTitle: String = "두 번째 버튼"
+    var thrMenuButtonTitle: String = "세 번째 버튼"
+    var fthMenuButtonTitle: String = "네 번째 버튼"
+    
+    var firMenuButtonAction: (() -> Void) = {}
+    var secMenuButtonAction: (() -> Void) = {}
+    var thrMenuButtonAction: (() -> Void) = {}
+    var fthMenuButtonAction: (() -> Void) = {}
     
     //MARK: - Views
     private lazy var sheetView: UIView = {
@@ -65,7 +71,7 @@ class BottomMenuViewController: UIViewController {
     private lazy var firMenuButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
-        var attributedTitle = AttributedString("첫 번째 버튼")
+        var attributedTitle = AttributedString(firMenuButtonTitle)
         
         attributedTitle.font = .maruburi(ofSize: 20, weight: .semiBold)
         attributedTitle.foregroundColor = UIColor.yagiGrayDeep
@@ -81,7 +87,7 @@ class BottomMenuViewController: UIViewController {
     private lazy var secMenuButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
-        var attributedTitle = AttributedString("두 번째 버튼")
+        var attributedTitle = AttributedString(secMenuButtonTitle)
         
         attributedTitle.font = .maruburi(ofSize: 20, weight: .semiBold)
         attributedTitle.foregroundColor = UIColor.yagiGrayDeep
@@ -97,7 +103,7 @@ class BottomMenuViewController: UIViewController {
     private lazy var thrMenuButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
-        var attributedTitle = AttributedString("세 번째 버튼")
+        var attributedTitle = AttributedString(thrMenuButtonTitle)
         
         attributedTitle.font = .maruburi(ofSize: 20, weight: .semiBold)
         attributedTitle.foregroundColor = UIColor.yagiGrayDeep
@@ -113,7 +119,7 @@ class BottomMenuViewController: UIViewController {
     private lazy var fthMenuButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
-        var attributedTitle = AttributedString("네 번째 버튼")
+        var attributedTitle = AttributedString(fthMenuButtonTitle)
         
         attributedTitle.font = .maruburi(ofSize: 20, weight: .semiBold)
         attributedTitle.foregroundColor = UIColor.yagiGrayDeep
