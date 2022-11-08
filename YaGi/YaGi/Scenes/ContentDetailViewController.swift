@@ -65,12 +65,6 @@ class ContentDetailViewController: UIViewController {
         var item = UIBarButtonItem()
         let action = UIAction { _ in
             print("Present Menu Bottom Sheet")
-            
-            let bottomMenuViewController = BottomMenuViewController()
-            bottomMenuViewController.modalPresentationStyle = .overFullScreen
-            bottomMenuViewController.modalTransitionStyle = .crossDissolve
-            
-            self.present(bottomMenuViewController, animated: true)
         }
         
         item.primaryAction = action
