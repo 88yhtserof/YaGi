@@ -156,17 +156,17 @@ private extension ContentDetailViewController {
         }
         
         viewController.secMenuButtonAction = {
-            let contentTitle: String = self.contentTitle.text ?? ""
-            let contentText: String = self.contentTextView.text ?? ""
-            let activityItems = [contentTitle, contentText]
+            let title: String = self.contentTitle.text ?? ""
+            let text: String = self.contentTextView.text ?? ""
+            let content: String = title.appending("\n\n" + text)
+            let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
             
             self.dismiss(animated: true) {
                 print("Present ActivityView")
                 let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                
                 activityViewController.completionWithItemsHandler = {(activity, isSuccess, returnedItems, error) in
                     if isSuccess {
-                        print("True")
+                        print("Success")
                     } else {
                         print("Fail")
                     }

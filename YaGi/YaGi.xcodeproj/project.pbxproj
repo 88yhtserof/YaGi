@@ -11,6 +11,7 @@
 		140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BE4E728EEA5FF00052664 /* ContentModel.swift */; };
 		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
 		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
+		14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447427F293F369500823C72 /* ShareActivityItemSource.swift */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		140BE4E728EEA5FF00052664 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
 		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
+		1447427F293F369500823C72 /* ShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityItemSource.swift; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				14E5D9A728F15A1900E349B4 /* MenuViewController.swift */,
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
 				14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */,
+				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */,
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
 				141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */,
+				14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
