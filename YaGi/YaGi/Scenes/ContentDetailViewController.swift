@@ -147,7 +147,7 @@ private extension ContentDetailViewController {
         viewController.thrMenuButtonTitle = "삭제하기"
         
         viewController.firMenuButtonAction = {
-            let contentWriteViewController = ContentWriteViewController()
+            let contentWriteViewController = WritingViewController()
             contentWriteViewController.modalPresentationStyle = .fullScreen
             
             self.dismiss(animated: true) {
