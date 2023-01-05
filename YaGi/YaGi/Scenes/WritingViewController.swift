@@ -18,6 +18,12 @@ class WritingViewController: UIViewController {
         return scrollView
     }()
     
+    private lazy var contentView: UIView = {
+       let view = UIView()
+        
+        return view
+    }()
+    
     private lazy var cancelButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
@@ -131,6 +137,7 @@ private extension WritingViewController {
         self.view.backgroundColor = .yagiWhite
         
         view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
         
         [
             cancelButton,
@@ -138,14 +145,18 @@ private extension WritingViewController {
             contentTitleTextView,
             writingView
         ]
-            .forEach { scrollView.addSubview($0) }
+            .forEach { contentView.addSubview($0) }
         
         let inset: Int = 25
         let offset: Int = 20
         
         scrollView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(inset)
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
         }
         
         cancelButton.snp.makeConstraints { make in
@@ -155,19 +166,18 @@ private extension WritingViewController {
         
         datePicker.snp.makeConstraints { make in
             make.top.equalTo(cancelButton.snp.bottom).offset(offset)
-            make.leading.equalToSuperview()
+            make.leading.equalToSuperview().inset(inset)
         }
         
         contentTitleTextView.snp.makeConstraints { make in
             make.top.equalTo(datePicker.snp.bottom).offset(offset)
-            make.horizontalEdges.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(inset)
         }
         
         writingView.snp.makeConstraints { make in
             make.top.equalTo(contentTitleTextView.snp.bottom).offset(offset)
             make.bottom.equalToSuperview().inset(inset)
-            make.horizontalEdges.equalToSuperview()
-            make.width.equalTo(scrollView.snp.width)
+            make.horizontalEdges.equalToSuperview().inset(inset)
         }
     }
 }
