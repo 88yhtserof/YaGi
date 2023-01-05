@@ -11,6 +11,7 @@
 		140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140BE4E728EEA5FF00052664 /* ContentModel.swift */; };
 		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
 		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
+		14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447427F293F369500823C72 /* ShareActivityItemSource.swift */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
 		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
+		14B4DB66291A1FFE00A033DE /* ContentWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */; };
 		14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A328F155D200E349B4 /* WritingViewController.swift */; };
 		14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */; };
 		14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A728F15A1900E349B4 /* MenuViewController.swift */; };
@@ -36,6 +38,7 @@
 		140BE4E728EEA5FF00052664 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
 		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
+		1447427F293F369500823C72 /* ShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityItemSource.swift; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
 		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
+		14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWriteViewController.swift; sourceTree = "<group>"; };
 		14E5D9A328F155D200E349B4 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		14E5D9A728F15A1900E349B4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
 				14E5D9A728F15A1900E349B4 /* MenuViewController.swift */,
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
+				14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */,
+				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -238,12 +244,14 @@
 			files = (
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
+				14B4DB66291A1FFE00A033DE /* ContentWriteViewController.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
 				140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */,
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
 				141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */,
+				14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
