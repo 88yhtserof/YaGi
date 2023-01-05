@@ -47,6 +47,28 @@ class WritingViewController: UIViewController {
         
     }()
     
+    private lazy var doneBarItem: UIBarButtonItem = {
+        let barItem = UIBarButtonItem(systemItem: .done)
+        
+        barItem.tintColor = .yagiHighlight
+        let action = UIAction { _ in
+            self.view.endEditing(true)
+        }
+        barItem.primaryAction = action
+        
+        return barItem
+    }()
+    
+    private lazy var keyboardToolBar: UIToolbar = {
+        let toolBar = UIToolbar()
+        
+        toolBar.sizeToFit()
+        toolBar.isTranslucent = true
+        toolBar.setItems([doneBarItem], animated: true)
+        
+        return toolBar
+    }()
+    
     private lazy var contentTitleTextView: UITextView = {
         let textView = UITextView()
         let text = "제목을 입력하세요"
@@ -63,6 +85,7 @@ class WritingViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.textColor = .placeholderText
         textView.font = .maruburi(ofSize: 25, weight: .bold)
+        textView.inputAccessoryView = keyboardToolBar
         
         textView.delegate = self
         
@@ -87,6 +110,7 @@ class WritingViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.textColor = .placeholderText
         textView.font = .maruburi(ofSize: 20, weight: .regular)
+        textView.inputAccessoryView = keyboardToolBar
         
         textView.delegate = self
         
