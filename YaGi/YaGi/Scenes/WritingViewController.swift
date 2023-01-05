@@ -25,6 +25,15 @@ class WritingViewController: UIViewController {
         return button
     }()
     
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.tintColor = .yagiHighlight
+        
+        return datePicker
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,12 +48,19 @@ private extension WritingViewController {
         self.view.backgroundColor = .yagiWhite
         
         [
-            cancelButton
-        ].forEach { view.addSubview($0) }
+            cancelButton,
+            datePicker
+        ]
+            .forEach { view.addSubview($0) }
         
         cancelButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalToSuperview()
+        }
+        
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(cancelButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().inset(25)
         }
     }
 }
