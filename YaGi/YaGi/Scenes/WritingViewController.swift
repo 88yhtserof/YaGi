@@ -47,29 +47,48 @@ class WritingViewController: UIViewController {
         
     }()
     
-    private lazy var writingView: UITextView = {
+    private lazy var contentTitleTextView: UITextView = {
         let textView = UITextView()
-        
-        var testText = ""
-        for i in 1...10 {
-            testText.append(contentsOf: """
-                            상강은 한로(寒露)와 입동(立冬) 사이에 들며, 태양의 황경이 210도에 이를 때로 양력으로 10월 23일 무렵이 된다. 이 시기는 가을의 쾌청한 날씨가 계속되는 대신에 밤의 기온이 매우 낮아지는 때이다. 따라서 수증기가 지표에서 엉겨 서리가 내리며, 온도가 더 낮아지면 첫 얼음이 얼기도 한다.
-                            """)
-        }
+        let text = "제목을 입력하세요"
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 14
         paragraphStyle.lineBreakStrategy = .hangulWordPriority
         
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
-        let attributedText = NSAttributedString(string:testText, attributes: attributes)
+        let attributedText = NSAttributedString(string:text, attributes: attributes)
         
         textView.attributedText = attributedText
         textView.isEditable = true
-        textView.text = testText
         textView.isScrollEnabled = false
-        textView.textColor = .yagiGrayDeep
+        textView.textColor = .placeholderText
+        textView.font = .maruburi(ofSize: 25, weight: .bold)
+        
+        textView.delegate = self
+        
+        return textView
+    }()
+    
+    private lazy var writingView: UITextView = {
+        let textView = UITextView()
+        
+        var text = "내용을 입력하세요"
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 14
+        paragraphStyle.lineBreakStrategy = .hangulWordPriority
+        
+        let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
+        let attributedText = NSAttributedString(string:text, attributes: attributes)
+        
+        textView.attributedText = attributedText
+        textView.isEditable = true
+        textView.text = text
+        textView.isScrollEnabled = false
+        textView.textColor = .placeholderText
         textView.font = .maruburi(ofSize: 20, weight: .regular)
+        
+        textView.delegate = self
         
         return textView
     }()
@@ -92,6 +111,7 @@ private extension WritingViewController {
         [
             cancelButton,
             datePicker,
+            contentTitleTextView,
             writingView
         ]
             .forEach { scrollView.addSubview($0) }
@@ -114,8 +134,13 @@ private extension WritingViewController {
             make.leading.equalToSuperview()
         }
         
-        writingView.snp.makeConstraints { make in
+        contentTitleTextView.snp.makeConstraints { make in
             make.top.equalTo(datePicker.snp.bottom).offset(offset)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        writingView.snp.makeConstraints { make in
+            make.top.equalTo(contentTitleTextView.snp.bottom).offset(offset)
             make.bottom.equalToSuperview().inset(inset)
             make.horizontalEdges.equalToSuperview()
             make.width.equalTo(scrollView.snp.width)
@@ -124,3 +149,12 @@ private extension WritingViewController {
 }
 
 extension WritingViewController: UIScrollViewDelegate {}
+
+extension WritingViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        guard textView.textColor == UIColor.placeholderText else{ return }
+        
+        textView.text = ""
+        textView.textColor = .yagiGrayDeep
+    }
+}
