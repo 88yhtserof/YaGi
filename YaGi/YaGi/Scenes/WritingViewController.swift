@@ -181,6 +181,13 @@ extension WritingViewController: UITextViewDelegate {
         textView.text = ""
         textView.textColor = .yagiGrayDeep
     }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard textView.text.isEmpty else { return }
+        
+        textView.text = textView == self.contentTitleTextView ? "제목을 입력하세요" : "내용을 입력하세요"
+        textView.textColor = .placeholderText
+    }
 }
 
 //MARK: - Adjust the view displaying the text
