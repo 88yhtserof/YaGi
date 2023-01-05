@@ -52,7 +52,7 @@ class WritingViewController: UIViewController {
         let text = "제목을 입력하세요"
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 14
+        paragraphStyle.lineSpacing = 10
         paragraphStyle.lineBreakStrategy = .hangulWordPriority
         
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
@@ -75,7 +75,7 @@ class WritingViewController: UIViewController {
         var text = "내용을 입력하세요"
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 14
+        paragraphStyle.lineSpacing = 10
         paragraphStyle.lineBreakStrategy = .hangulWordPriority
         
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
