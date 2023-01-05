@@ -31,7 +31,11 @@ class WritingViewController: UIViewController {
         datePicker.preferredDatePickerStyle = .compact
         datePicker.tintColor = .yagiHighlight
         
+        let languge = Locale.preferredLanguages.first ?? "en-US"
+        datePicker.locale = Locale(identifier: languge)
+        
         return datePicker
+        
     }()
     
     override func viewDidLoad() {
