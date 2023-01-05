@@ -126,7 +126,6 @@ private extension ContentDetailViewController {
             make.width.equalTo(300)
         }
         
-        // TODO: - ContentView를 사용하지 않아도 잘 작동하는 것 같다.
         contentView.snp.makeConstraints { make in
             make.top.equalTo(contentTitle.snp.bottom).offset(40)
             make.bottom.equalToSuperview().inset(40)
