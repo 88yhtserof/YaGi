@@ -10,6 +10,18 @@ import SnapKit
 
 class WritingViewController: UIViewController {
     
+    var content: ContentModel?
+    var contentTitle: String?
+    var contentText: String?
+    var contentDate: String = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd E"
+        let languge = Locale.preferredLanguages.first ?? "en-US"
+        dateFormatter.locale = Locale(identifier: languge)
+        
+        return dateFormatter.string(from: Date())
+    }()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -214,10 +226,42 @@ extension WritingViewController: UITextViewDelegate {
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard textView.text.isEmpty else { return }
+        if textView.text.isEmpty {
+            textView.text = textView == self.contentTitleTextView ? "제목을 입력하세요" : "내용을 입력하세요"
+            textView.textColor = .placeholderText
+            self.saveButton.isEnabled = false
+            
+            return
+        }
         
-        textView.text = textView == self.contentTitleTextView ? "제목을 입력하세요" : "내용을 입력하세요"
-        textView.textColor = .placeholderText
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            self.saveButton.isEnabled = false
+            return
+        }
+        
+        switch textView {
+        case contentTitleTextView:
+            if textView.text != "제목을 입력하세요" { self.contentTitle = textView.text }
+            if writingView.text == "내용을 입력하세요" { return }
+        default:
+            if textView.text != "내용을 입력하세요" { self.contentText = textView.text }
+            if contentTitleTextView.text == "제목을 입력하세요" { return }
+        }
+        
+        guard let title = self.contentTitle,
+              let text = self.contentText
+        else { return }
+        
+        content = ContentModel(
+            contentTitle: title,
+            ContentDate: self.contentDate,
+            contentText: text
+        )
+        
+        self.saveButton.isEnabled = true
     }
 }
 
