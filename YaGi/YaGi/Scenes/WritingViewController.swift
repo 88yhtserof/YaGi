@@ -95,7 +95,7 @@ class WritingViewController: UIViewController {
     }()
     
     private lazy var keyboardToolBar: UIToolbar = {
-        let toolBar = UIToolbar()
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
         
         toolBar.sizeToFit()
         toolBar.isTranslucent = true
