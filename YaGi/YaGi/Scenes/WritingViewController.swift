@@ -40,6 +40,23 @@ class WritingViewController: UIViewController {
         return button
     }()
     
+    private lazy var saveButton: UIButton = {
+        var button = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "checkmark")
+        configuration.baseForegroundColor = .yagiHighlight
+        
+        let action = UIAction { _ in
+            self.dismiss(animated: true)
+        }
+        
+        button.configuration = configuration
+        button.addAction(action, for: .touchUpInside)
+        button.isEnabled = false
+        
+        return button
+    }()
+    
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -141,6 +158,7 @@ private extension WritingViewController {
         
         [
             cancelButton,
+            saveButton,
             datePicker,
             contentTitleTextView,
             writingView
@@ -160,8 +178,11 @@ private extension WritingViewController {
         }
         
         cancelButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(inset)
-            make.centerX.equalToSuperview()
+            make.top.leading.equalToSuperview().inset(offset)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(inset)
         }
         
         datePicker.snp.makeConstraints { make in
