@@ -24,7 +24,6 @@
 		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
 		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
-		14B4DB66291A1FFE00A033DE /* ContentWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */; };
 		14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A328F155D200E349B4 /* WritingViewController.swift */; };
 		14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */; };
 		14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A728F15A1900E349B4 /* MenuViewController.swift */; };
@@ -52,7 +51,6 @@
 		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
 		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
-		14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentWriteViewController.swift; sourceTree = "<group>"; };
 		14E5D9A328F155D200E349B4 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		14E5D9A728F15A1900E349B4 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
 				14E5D9A728F15A1900E349B4 /* MenuViewController.swift */,
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
-				14B4DB65291A1FFE00A033DE /* ContentWriteViewController.swift */,
 				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 			);
 			path = Scenes;
@@ -244,7 +241,6 @@
 			files = (
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
-				14B4DB66291A1FFE00A033DE /* ContentWriteViewController.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
 				140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
@@ -403,6 +399,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,6 +428,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
