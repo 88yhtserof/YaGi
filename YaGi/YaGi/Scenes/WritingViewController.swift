@@ -10,6 +10,7 @@ import SnapKit
 
 class WritingViewController: UIViewController {
     
+    //MARK: - Properties
     var content: ContentModel?
     var contentTitle: String?
     var contentText: String?
@@ -22,6 +23,7 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
+    //MARK: - View
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -152,14 +154,18 @@ class WritingViewController: UIViewController {
         return textView
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
         registerKeyboardNotifications()
     }
+    
+    //MARK: - Function
 }
 
+//MARK: - Configure
 private extension WritingViewController {
     
     func configureView() {
@@ -215,8 +221,10 @@ private extension WritingViewController {
     }
 }
 
+//MARK: - ScrollViewDelegate
 extension WritingViewController: UIScrollViewDelegate {}
 
+//MARK: - TextViewDelegate
 extension WritingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard textView.textColor == UIColor.placeholderText else{ return }
