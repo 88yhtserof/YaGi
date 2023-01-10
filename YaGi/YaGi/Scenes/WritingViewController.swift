@@ -11,7 +11,8 @@ import SnapKit
 class WritingViewController: UIViewController {
     
     //MARK: - Properties
-    var content: ContentModel?
+    var isEditMode: Bool = false
+    let userDefault = UserDefaults.standard
     var contentTitle: String?
     var contentText: String?
     var contentDate: String = {
@@ -61,6 +62,13 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
+            guard let title = self.contentTitle,
+                  let text = self.contentText
+            else { return }
+            
+            let content = self.createContent(title: title, text: text)
+            self.saveContent(content)
+            
             self.dismiss(animated: true)
         }
         
@@ -163,6 +171,35 @@ class WritingViewController: UIViewController {
     }
     
     //MARK: - Function
+    func createContent(title: String, text: String) -> ContentModel {
+        
+        let content = ContentModel(
+            contentTitle: title,
+            ContentDate: self.contentDate,
+            contentText: text
+        )
+        
+        return content
+    }
+    
+    func saveContent(_ content: ContentModel) {
+        guard var dataDictionary = userDefault.dictionary(forKey: "YaGi_UserData"),
+              var contentList = dataDictionary["Contents"] as? ContentsModel
+        else { return }
+        
+        switch isEditMode {
+        case false:
+            if contentList.contents == nil {
+                contentList.contents = Array<ContentModel>()
+            }
+            contentList.contents?.append(content)
+        case true:
+            print("Insert a edited content into contentList")
+        }
+        
+        dataDictionary.updateValue(contentList, forKey: "Contents")
+        userDefault.set(dataDictionary, forKey: "YaGi_UserData")
+    }
 }
 
 //MARK: - Configure
@@ -258,16 +295,6 @@ extension WritingViewController: UITextViewDelegate {
             if textView.text != "내용을 입력하세요" { self.contentText = textView.text }
             if contentTitleTextView.text == "제목을 입력하세요" { return }
         }
-        
-        guard let title = self.contentTitle,
-              let text = self.contentText
-        else { return }
-        
-        content = ContentModel(
-            contentTitle: title,
-            ContentDate: self.contentDate,
-            contentText: text
-        )
         
         self.saveButton.isEnabled = true
     }

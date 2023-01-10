@@ -9,5 +9,5 @@ import Foundation
 
 struct ContentsModel {
     let title: String
-    let contents: [ContentModel]
+    var contents: [ContentModel]?
 }
