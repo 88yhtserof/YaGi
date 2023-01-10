@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class StartViewController: UIViewController {
-    
+    //MARK: - View
     private lazy var appTitleLabel: UILabel =  {
         let label = UILabel()
         
@@ -67,6 +67,7 @@ class StartViewController: UIViewController {
         return button
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,6 +75,7 @@ class StartViewController: UIViewController {
     }
 }
 
+//MARK: - Configure
 private extension StartViewController {
     func configureView(){
         self.view.backgroundColor = .yagiWhite
@@ -108,6 +110,7 @@ private extension StartViewController {
     }
 }
 
+//MARK: - Adjust Keyboard
 extension StartViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
