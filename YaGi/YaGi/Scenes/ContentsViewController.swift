@@ -172,7 +172,9 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     //Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let contentDetailViewController = ContentDetailViewController()
+        guard let contents = self.book.contents else { return }
+        let index = indexPath.row
+        let contentDetailViewController = ContentDetailViewController(book: self.book, content: contents[index], contentIndex: index)
         
         contentDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
