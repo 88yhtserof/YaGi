@@ -11,8 +11,8 @@ class ContentDetailViewController: UIViewController {
     
     //MARK: - Properties
     var book: BookModel
-    let content: ContentModel
-    let contentIndex: Int
+    var content: ContentModel
+    var contentIndex: Int
     
     init(book: BookModel, content: ContentModel, contentIndex: Int) {
         self.book = book
@@ -112,10 +112,26 @@ class ContentDetailViewController: UIViewController {
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
 //MARK: - Configure
 private extension ContentDetailViewController {
+    func configureData(){
+        guard let books = UserDefaultsManager.books,
+              let book = books.first,
+              let contents = book.contents else { return }
+        let content = contents[self.contentIndex]
+        
+        self.contentTitle.text = content.contentTitle
+        self.contentTextView.text = content.contentText
+    }
+    
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItems = [menuBarItem, bookmarkBarItem]
     }

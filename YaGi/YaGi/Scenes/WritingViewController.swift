@@ -226,7 +226,10 @@ class WritingViewController: UIViewController {
             }
             book.contents?.append(content)
         case true:
-            print("Insert a edited content into book")
+            guard var contents = book.contents,
+                  let index = contentIndex else { return }
+            contents[index] = content
+            book.contents = contents
         }
         
         books[indexOfCurrentBook] = book
