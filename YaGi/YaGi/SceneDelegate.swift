@@ -15,13 +15,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        
-        let userDefault = UserDefaults.standard
         var rootViewController: UIViewController
         
         // TODO: - ContentModel을 ContentsModel로 변경
-        if let data = userDefault.dictionary(forKey: "YaGi_UserData"),
-           let books = data["Books"] as? [BookModel] {
+        if let books = UserDefaultsManager.books {
             // TODO: - contentList init으로 할당
             rootViewController = MainTabBarController()
         } else {
