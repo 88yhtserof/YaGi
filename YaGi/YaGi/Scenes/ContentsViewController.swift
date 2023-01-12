@@ -12,7 +12,6 @@ class ContentsViewController: UIViewController {
     private let indexOfCurrentBook: Int = 0
     private var book: BookModel = BookModel(title: String())
     private var contents: [ContentModel] = []
-    private var bookTitle: String = String()
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -37,7 +36,7 @@ class ContentsViewController: UIViewController {
         paragraphTitle.lineBreakStrategy = .hangulWordPriority
         
         let attributes = [NSAttributedString.Key.paragraphStyle : paragraphTitle]
-        let attributeTitle = NSAttributedString(string: self.bookTitle, attributes: attributes)
+        let attributeTitle = NSAttributedString(string: "제목", attributes: attributes)
         
         label.attributedText = attributeTitle
         label.font = .maruburi(ofSize: 35, weight: .bold)
@@ -98,13 +97,13 @@ class ContentsViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
+        configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureData()
-        configureView()
     }
 }
 
@@ -113,10 +112,12 @@ private extension ContentsViewController {
     func configureData(){
         guard let book = UserDefaultsManager.books?[indexOfCurrentBook] as? BookModel else { return }
         self.book = book
-        self.bookTitle = book.title
+        self.titleLabel.text = book.title
         
         guard let contents = book.contents else { return }
         self.contents = contents
+        
+        self.contentsCollectionView.reloadData()
     }
     
     func configureNavigationBar() {
