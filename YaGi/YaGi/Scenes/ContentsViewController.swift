@@ -12,6 +12,7 @@ class ContentsViewController: UIViewController {
     private let indexOfCurrentBook: Int = 0
     private var book: BookModel = BookModel(title: String())
     private var contents: [ContentModel] = []
+    private var bookTitle: String = String()
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -32,7 +33,7 @@ class ContentsViewController: UIViewController {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
         
-        var attributedTitle = AttributedString("달러구트 꿈 백화점 1 해리를 찾아라")
+        var attributedTitle = AttributedString(self.bookTitle)
         attributedTitle.font = .maruburi(ofSize: 25, weight: .bold)
         attributedTitle.foregroundColor = UIColor.yagiGrayDeep
         
@@ -81,13 +82,13 @@ class ContentsViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
-        configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         configureData()
+        configureView()
     }
 }
 
@@ -96,6 +97,7 @@ private extension ContentsViewController {
     func configureData(){
         guard let book = UserDefaultsManager.books?[indexOfCurrentBook] as? BookModel else { return }
         self.book = book
+        self.bookTitle = book.title
         
         guard let contents = book.contents else { return }
         self.contents = contents
