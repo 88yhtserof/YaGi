@@ -8,6 +8,6 @@
 import Foundation
 
 struct UserDefaultsManager {
-    @UserDefaultWrapper(key: "YaGi_UserData", defaultValue: nil)
+    @UserDefaultWrapper(dictionaryKey: "Books", defaultValue: nil)
     static var books: [BookModel]?
 }
