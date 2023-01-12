@@ -183,10 +183,10 @@ class WritingViewController: UIViewController {
     }
     
     func saveContent(_ content: ContentModel) {
-        guard var dataDictionary = userDefault.dictionary(forKey: "YaGi_UserData"),
-              var books = dataDictionary["Books"] as? [BookModel],
-              var book = books.first
-        else { return }
+        let indexOfCurrentBook: Int = 0
+        
+        guard var books = UserDefaultsManager.books else { return }
+        var book = books[indexOfCurrentBook] //현 시즌에서는 책은 한 권만 존재한다.
         
         switch isEditMode {
         case false:
@@ -198,9 +198,8 @@ class WritingViewController: UIViewController {
             print("Insert a edited content into book")
         }
         
-        books[0] = book
-        dataDictionary.updateValue(books, forKey: "Books")
-        userDefault.set(dataDictionary, forKey: "YaGi_UserData")
+        books[indexOfCurrentBook] = book
+        UserDefaultsManager.books = books
     }
 }
 
