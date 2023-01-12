@@ -88,8 +88,18 @@ class WritingViewController: UIViewController {
         let languge = Locale.preferredLanguages.first ?? "en-US"
         datePicker.locale = Locale(identifier: languge)
         
-        return datePicker
+        let action = UIAction { _ in
+            let date = datePicker.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy.MM.dd E"
+            let languge = Locale.preferredLanguages.first ?? "en-US"
+            dateFormatter.locale = Locale(identifier: languge)
+            
+            self.contentDate = dateFormatter.string(from: date)
+        }
+        datePicker.addAction(action, for: .valueChanged)
         
+        return datePicker
     }()
     
     private lazy var doneBarItem: UIBarButtonItem = {
