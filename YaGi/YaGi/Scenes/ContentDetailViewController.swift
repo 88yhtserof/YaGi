@@ -10,7 +10,7 @@ import UIKit
 class ContentDetailViewController: UIViewController {
     
     //MARK: - Properties
-    let book: BookModel
+    var book: BookModel
     let content: ContentModel
     let contentIndex: Int
     
@@ -189,7 +189,19 @@ private extension ContentDetailViewController {
         
         viewController.thrMenuButtonAction = {
             self.dismiss(animated: true) {
-                print("Present Alert")
+                let action = UIAlertAction(title: "삭제", style: .destructive) {_ in
+                    guard var contents = self.book.contents else { return }
+                    contents.remove(at: self.contentIndex)
+                    self.book.contents = contents
+                    UserDefaultsManager.books = [self.book]
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+                let alert = UIAlertController(title: "삭제하시겠습니까?", message: "영구 삭제되어 복구할 수 없습니다.", preferredStyle: .alert)
+                alert.addAction(action)
+                
+                self.present(alert, animated: true)
             }
         }
         
