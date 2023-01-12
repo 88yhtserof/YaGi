@@ -184,20 +184,22 @@ class WritingViewController: UIViewController {
     
     func saveContent(_ content: ContentModel) {
         guard var dataDictionary = userDefault.dictionary(forKey: "YaGi_UserData"),
-              var contentList = dataDictionary["Contents"] as? ContentsModel
+              var books = dataDictionary["Books"] as? [BookModel],
+              var book = books.first
         else { return }
         
         switch isEditMode {
         case false:
-            if contentList.contents == nil {
-                contentList.contents = Array<ContentModel>()
+            if book.contents == nil {
+                book.contents = Array<ContentModel>()
             }
-            contentList.contents?.append(content)
+            book.contents?.append(content)
         case true:
-            print("Insert a edited content into contentList")
+            print("Insert a edited content into book")
         }
         
-        dataDictionary.updateValue(contentList, forKey: "Contents")
+        books[0] = book
+        dataDictionary.updateValue(books, forKey: "Books")
         userDefault.set(dataDictionary, forKey: "YaGi_UserData")
     }
 }
