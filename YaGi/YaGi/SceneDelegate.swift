@@ -17,9 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         var rootViewController: UIViewController
         
-        // TODO: - ContentModel을 ContentsModel로 변경
-        if let books = UserDefaultsManager.books {
-            // TODO: - contentList init으로 할당
+        if UserDefaultsManager.books != nil {
             rootViewController = MainTabBarController()
         } else {
             rootViewController = StartViewController()

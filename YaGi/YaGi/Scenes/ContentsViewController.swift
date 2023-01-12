@@ -9,7 +9,9 @@ import UIKit
 
 class ContentsViewController: UIViewController {
     //MARK: - Properties
-    private let contents: [ContentModel] = ContentModel.contents
+    private let indexOfCurrentBook: Int = 0
+    private var book: BookModel = BookModel(title: String())
+    private var contents: [ContentModel] = []
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -81,10 +83,24 @@ class ContentsViewController: UIViewController {
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
 //MARK: -  Configure
 private extension ContentsViewController {
+    func configureData(){
+        guard let book = UserDefaultsManager.books?[indexOfCurrentBook] as? BookModel else { return }
+        self.book = book
+        
+        guard let contents = book.contents else { return }
+        self.contents = contents
+    }
+    
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = menuBarItem
         self.navigationItem.title = ""
@@ -116,9 +132,10 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
+        else { return UICollectionViewCell() }
 
-        let content = self.contents[indexPath.row]
+        let content = contents[indexPath.row]
         cell.configureCell(title: content.contentTitle, date: content.ContentDate)
         
         return cell
