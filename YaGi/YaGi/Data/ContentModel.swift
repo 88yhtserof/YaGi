@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ContentModel {
+struct ContentModel: Codable {
     let contentTitle: String
     let ContentDate: String
     let contentText: String
