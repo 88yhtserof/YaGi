@@ -9,8 +9,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    public static let shared = SceneDelegate()
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // TODO: - ContentModel을 ContentsModel로 변경
         if let data = userDefault.dictionary(forKey: "YaGi_UserData"),
-           let contentList = data["Contents"] as? ContentModel {
+           let books = data["Books"] as? [BookModel] {
             // TODO: - contentList init으로 할당
             rootViewController = MainTabBarController()
         } else {
@@ -31,6 +31,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
         
+    }
+    
+    func updateRootViewController(_ rootViewController: UIViewController){
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        self.window = UIWindow(windowScene: windowScene)
+        
+        guard let window = self.window else { return }
+        window.rootViewController = rootViewController
+        window.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
