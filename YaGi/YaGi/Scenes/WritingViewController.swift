@@ -11,10 +11,14 @@ import SnapKit
 class WritingViewController: UIViewController {
     
     //MARK: - Properties
+    var book: BookModel?
+    let content: ContentModel?
+    let contentIndex: Int?
+    
     var isEditMode: Bool = false
     let userDefault = UserDefaults.standard
-    var contentTitle: String?
-    var contentText: String?
+    var contentTitle: String = "제목을 입력하세요"
+    var contentText: String = "내용을 입력하세요"
     var contentDate: String = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd E"
@@ -23,6 +27,19 @@ class WritingViewController: UIViewController {
         
         return dateFormatter.string(from: Date())
     }()
+    
+    init(book: BookModel?, content: ContentModel?, contentIndex: Int?, isEditMode: Bool) {
+        self.book = book
+        self.content = content
+        self.contentIndex = contentIndex
+        self.isEditMode = isEditMode
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - View
     private lazy var scrollView: UIScrollView = {
@@ -62,11 +79,7 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            guard let title = self.contentTitle,
-                  let text = self.contentText
-            else { return }
-            
-            let content = self.createContent(title: title, text: text)
+            let content = self.createContent(title: self.contentTitle, text: self.contentText)
             self.saveContent(content)
             
             self.dismiss(animated: true)
@@ -126,7 +139,7 @@ class WritingViewController: UIViewController {
     
     private lazy var contentTitleTextView: UITextView = {
         let textView = UITextView()
-        let text = "제목을 입력하세요"
+        let text = self.contentTitle
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
@@ -150,7 +163,7 @@ class WritingViewController: UIViewController {
     private lazy var writingView: UITextView = {
         let textView = UITextView()
         
-        var text = "내용을 입력하세요"
+        var text = self.contentText
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
@@ -178,6 +191,14 @@ class WritingViewController: UIViewController {
         
         configureView()
         registerKeyboardNotifications()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if isEditMode {
+            configureData()
+        }
     }
     
     //MARK: - Function
@@ -215,6 +236,21 @@ class WritingViewController: UIViewController {
 
 //MARK: - Configure
 private extension WritingViewController {
+    
+    func configureData(){
+        guard let content = self.content else { return }
+        self.contentTitleTextView.text = content.contentTitle
+        self.writingView.text = content.contentText
+        
+        let dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy.MM.dd E"
+            let languge = Locale.preferredLanguages.first ?? "en-US"
+            dateFormatter.locale = Locale(identifier: languge)
+            return dateFormatter
+        }()
+        self.datePicker.setDate(dateFormatter.date(from: content.ContentDate) ?? Date(), animated: true)
+    }
     
     func configureView() {
         self.view.backgroundColor = .yagiWhite
