@@ -49,6 +49,16 @@ class StartViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.tintColor = .yagiHighlight
         textField.clearButtonMode = .whileEditing
+
+        let action = UIAction { _ in
+            guard let text = textField.text else { return }
+            if text.isEmpty {
+                self.doneButton.isEnabled = false
+                return
+            }
+            self.doneButton.isEnabled = true
+        }
+        textField.addAction(action, for: .editingChanged)
         
         return textField
     }()
@@ -61,7 +71,16 @@ class StartViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 30, bottom: 30, trailing: 30)
         
+        let action = UIAction {  _ in
+            guard let title = self.titleTextField.text else { return }
+            UserDefaultsManager.books = [ BookModel(title: title) ]
+            
+            let mainTapBarController = MainTabBarController()
+            SceneDelegate.shared.updateRootViewController(mainTapBarController)
+        }
+        
         button.configuration = configuration
+        button.addAction(action, for: .touchUpInside)
         button.isEnabled = false
         
         return button
