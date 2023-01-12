@@ -240,7 +240,9 @@ private extension WritingViewController {
     func configureData(){
         guard let content = self.content else { return }
         self.contentTitleTextView.text = content.contentTitle
+        self.contentTitleTextView.textColor = .yagiGrayDeep
         self.writingView.text = content.contentText
+        self.writingView.textColor = .yagiGrayDeep
         
         let dateFormatter: DateFormatter = {
             let dateFormatter = DateFormatter()
