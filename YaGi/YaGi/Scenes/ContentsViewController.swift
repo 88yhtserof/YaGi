@@ -9,7 +9,9 @@ import UIKit
 
 class ContentsViewController: UIViewController {
     //MARK: - Properties
-    private let contents: [ContentModel] = ContentModel.contents
+    private let indexOfCurrentBook: Int = 0
+    private var book: BookModel = BookModel(title: String())
+    private var contents: [ContentModel] = []
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -26,29 +28,45 @@ class ContentsViewController: UIViewController {
         return item
     }()
     
+    private lazy var titleLabel: UILabel = {
+        var label = UILabel()
+        
+        let paragraphTitle = NSMutableParagraphStyle()
+        paragraphTitle.lineSpacing = 10
+        paragraphTitle.lineBreakStrategy = .hangulWordPriority
+        
+        let attributes = [NSAttributedString.Key.paragraphStyle : paragraphTitle]
+        let attributeTitle = NSAttributedString(string: "제목", attributes: attributes)
+        
+        label.attributedText = attributeTitle
+        label.font = .maruburi(ofSize: 35, weight: .bold)
+        label.textColor = UIColor.yagiGrayDeep
+        label.numberOfLines = 2
+        label.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        
+        return label
+    }()
+    
     private lazy var titleButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
-        
-        var attributedTitle = AttributedString("달러구트 꿈 백화점 1 해리를 찾아라")
-        attributedTitle.font = .maruburi(ofSize: 25, weight: .bold)
-        attributedTitle.foregroundColor = UIColor.yagiGrayDeep
-        
-        let paragraphTitle = NSMutableParagraphStyle()
-        paragraphTitle.lineSpacing = 0.3 * (attributedTitle.font?.lineHeight ?? 1)
-        paragraphTitle.lineBreakStrategy = .hangulWordPriority
-        
-        attributedTitle.paragraphStyle = paragraphTitle
-        
+
+        var attributedTitle = AttributedString("이야기 추가하기")
+        attributedTitle.font = .maruburi(ofSize: 15, weight: .regular)
+        attributedTitle.foregroundColor = UIColor.yagiHighlight
+
         configuration.attributedTitle = attributedTitle
-        configuration.image = UIImage(systemName: "plus")
-        configuration.imagePadding = 10
+        configuration.image = UIImage(systemName: "text.badge.plus")
+        configuration.imagePadding = 3
         configuration.imagePlacement = .trailing
-        configuration.imageColorTransformer = .init({_ in return UIKit.UIColor.yagiGrayLight})
-        configuration.contentInsets = NSDirectionalEdgeInsets(top: 50, leading: 0, bottom: 50, trailing: 0)
+        configuration.buttonSize = .mini
+        configuration.imageColorTransformer = .init({_ in return UIKit.UIColor.yagiHighlight})
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 50)
         
         let action = UIAction { action  in
-            let writingViewController = WritingViewController()
+            let writingViewController = WritingViewController(book: nil, content: nil, contentIndex: nil, isEditMode: false)
             writingViewController.modalPresentationStyle = .fullScreen
             
             self.present(writingViewController, animated: true)
@@ -81,26 +99,53 @@ class ContentsViewController: UIViewController {
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
 //MARK: -  Configure
 private extension ContentsViewController {
+    func configureData(){
+        guard let book = UserDefaultsManager.books?[indexOfCurrentBook] as? BookModel else { return }
+        self.book = book
+        self.titleLabel.text = book.title
+        
+        guard let contents = book.contents else { return }
+        self.contents = contents
+        
+        self.contentsCollectionView.reloadData()
+    }
+    
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItem = menuBarItem
         self.navigationItem.title = ""
     }
     
     func configureView() {
-        [titleButton, contentsCollectionView].forEach{ self.view.addSubview($0) }
+        [
+            titleLabel,
+            titleButton,
+            contentsCollectionView
+        ]
+            .forEach{ self.view.addSubview($0) }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.leading.equalToSuperview().inset(25)
+            make.trailing.equalToSuperview().inset(50)
+        }
         
         titleButton.snp.makeConstraints{ make in
-            make.top.equalToSuperview().inset(80)
-            make.leading.equalToSuperview().inset(20)
-            make.width.equalTo(300)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().inset(25)
         }
         
         contentsCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleButton.snp.bottom)
+            make.top.equalTo(titleButton.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(15)
             make.bottom.equalToSuperview().inset(100)
         }
@@ -116,9 +161,10 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
+        else { return UICollectionViewCell() }
 
-        let content = self.contents[indexPath.row]
+        let content = contents[indexPath.row]
         cell.configureCell(title: content.contentTitle, date: content.ContentDate)
         
         return cell
@@ -126,7 +172,9 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     //Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let contentDetailViewController = ContentDetailViewController()
+        guard let contents = self.book.contents else { return }
+        let index = indexPath.row
+        let contentDetailViewController = ContentDetailViewController(book: self.book, content: contents[index], contentIndex: index)
         
         contentDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)

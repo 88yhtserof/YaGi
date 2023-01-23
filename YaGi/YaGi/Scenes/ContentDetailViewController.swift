@@ -10,6 +10,23 @@ import UIKit
 class ContentDetailViewController: UIViewController {
     
     //MARK: - Properties
+    var book: BookModel
+    var content: ContentModel
+    var contentIndex: Int
+    
+    init(book: BookModel, content: ContentModel, contentIndex: Int) {
+        self.book = book
+        self.content = content
+        self.contentIndex = contentIndex
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - View
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         
@@ -21,7 +38,7 @@ class ContentDetailViewController: UIViewController {
     private lazy var contentTitle: UILabel = {
         var label = UILabel()
         
-        label.text = "대신 꿈 꾸어 드립니다."
+        label.text = self.content.contentTitle
         label.font = .maruburi(ofSize: 25, weight: .bold)
         label.textColor = .yagiGrayDeep
         
@@ -37,23 +54,17 @@ class ContentDetailViewController: UIViewController {
     private lazy var contentTextView: UITextView = {
         var textView = UITextView()
         
-        var testText = ""
-        for i in 1...10 {
-            testText.append(contentsOf: """
-                            상강은 한로(寒露)와 입동(立冬) 사이에 들며, 태양의 황경이 210도에 이를 때로 양력으로 10월 23일 무렵이 된다. 이 시기는 가을의 쾌청한 날씨가 계속되는 대신에 밤의 기온이 매우 낮아지는 때이다. 따라서 수증기가 지표에서 엉겨 서리가 내리며, 온도가 더 낮아지면 첫 얼음이 얼기도 한다.
-                            """)
-        }
+        var text = self.content.contentText
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
         paragraphStyle.lineBreakStrategy = .hangulWordPriority
         
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
-        let attributedText = NSAttributedString(string:testText, attributes: attributes)
+        let attributedText = NSAttributedString(string:text, attributes: attributes)
         
         textView.attributedText = attributedText
         textView.isEditable = false
-        textView.text = testText
         textView.isScrollEnabled = false
         textView.textColor = .yagiGrayDeep
         textView.font = .maruburi(ofSize: 20, weight: .regular)
@@ -101,10 +112,26 @@ class ContentDetailViewController: UIViewController {
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
 //MARK: - Configure
 private extension ContentDetailViewController {
+    func configureData(){
+        guard let books = UserDefaultsManager.books,
+              let book = books.first,
+              let contents = book.contents else { return }
+        let content = contents[self.contentIndex]
+        
+        self.contentTitle.text = content.contentTitle
+        self.contentTextView.text = content.contentText
+    }
+    
     func configureNavigationBar() {
         self.navigationItem.rightBarButtonItems = [menuBarItem, bookmarkBarItem]
     }
@@ -147,7 +174,7 @@ private extension ContentDetailViewController {
         viewController.thrMenuButtonTitle = "삭제하기"
         
         viewController.firMenuButtonAction = {
-            let contentWriteViewController = WritingViewController()
+            let contentWriteViewController = WritingViewController(book: self.book, content: self.content, contentIndex: self.contentIndex, isEditMode: true)
             contentWriteViewController.modalPresentationStyle = .fullScreen
             
             self.dismiss(animated: true) {
@@ -178,7 +205,27 @@ private extension ContentDetailViewController {
         
         viewController.thrMenuButtonAction = {
             self.dismiss(animated: true) {
-                print("Present Alert")
+                let removeAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+                    guard var contents = self.book.contents else { return }
+                    contents.remove(at: self.contentIndex)
+                    self.book.contents = contents
+                    UserDefaultsManager.books = [self.book]
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
+                    self.dismiss(animated: true)
+                }
+                
+                let alert = UIAlertController(title: "삭제하시겠습니까?", message: "영구 삭제되어 복구할 수 없습니다.", preferredStyle: .alert)
+                
+                [
+                    removeAction,
+                    cancelAction
+                ]
+                    .forEach { alert.addAction($0) }
+                
+                self.present(alert, animated: true)
             }
         }
         

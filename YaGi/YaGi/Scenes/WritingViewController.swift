@@ -10,9 +10,15 @@ import SnapKit
 
 class WritingViewController: UIViewController {
     
-    var content: ContentModel?
-    var contentTitle: String?
-    var contentText: String?
+    //MARK: - Properties
+    var book: BookModel?
+    let content: ContentModel?
+    let contentIndex: Int?
+    
+    var isEditMode: Bool = false
+    let userDefault = UserDefaults.standard
+    var contentTitle: String = "제목을 입력하세요"
+    var contentText: String = "내용을 입력하세요"
     var contentDate: String = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd E"
@@ -22,6 +28,20 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
+    init(book: BookModel?, content: ContentModel?, contentIndex: Int?, isEditMode: Bool) {
+        self.book = book
+        self.content = content
+        self.contentIndex = contentIndex
+        self.isEditMode = isEditMode
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - View
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -59,6 +79,9 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
+            let content = self.createContent(title: self.contentTitle, text: self.contentText)
+            self.saveContent(content)
+            
             self.dismiss(animated: true)
         }
         
@@ -78,8 +101,18 @@ class WritingViewController: UIViewController {
         let languge = Locale.preferredLanguages.first ?? "en-US"
         datePicker.locale = Locale(identifier: languge)
         
-        return datePicker
+        let action = UIAction { _ in
+            let date = datePicker.date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy.MM.dd E"
+            let languge = Locale.preferredLanguages.first ?? "en-US"
+            dateFormatter.locale = Locale(identifier: languge)
+            
+            self.contentDate = dateFormatter.string(from: date)
+        }
+        datePicker.addAction(action, for: .valueChanged)
         
+        return datePicker
     }()
     
     private lazy var doneBarItem: UIBarButtonItem = {
@@ -106,7 +139,7 @@ class WritingViewController: UIViewController {
     
     private lazy var contentTitleTextView: UITextView = {
         let textView = UITextView()
-        let text = "제목을 입력하세요"
+        let text = self.contentTitle
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
@@ -130,7 +163,7 @@ class WritingViewController: UIViewController {
     private lazy var writingView: UITextView = {
         let textView = UITextView()
         
-        var text = "내용을 입력하세요"
+        var text = self.contentText
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
@@ -152,15 +185,77 @@ class WritingViewController: UIViewController {
         return textView
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureView()
         registerKeyboardNotifications()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if isEditMode {
+            configureData()
+        }
+    }
+    
+    //MARK: - Function
+    func createContent(title: String, text: String) -> ContentModel {
+        
+        let content = ContentModel(
+            contentTitle: title,
+            ContentDate: self.contentDate,
+            contentText: text
+        )
+        
+        return content
+    }
+    
+    func saveContent(_ content: ContentModel) {
+        let indexOfCurrentBook: Int = 0
+        
+        guard var books = UserDefaultsManager.books else { return }
+        var book = books[indexOfCurrentBook] //현 시즌에서는 책은 한 권만 존재한다.
+        
+        switch isEditMode {
+        case false:
+            if book.contents == nil {
+                book.contents = Array<ContentModel>()
+            }
+            book.contents?.append(content)
+        case true:
+            guard var contents = book.contents,
+                  let index = contentIndex else { return }
+            contents[index] = content
+            book.contents = contents
+        }
+        
+        books[indexOfCurrentBook] = book
+        UserDefaultsManager.books = books
+    }
 }
 
+//MARK: - Configure
 private extension WritingViewController {
+    
+    func configureData(){
+        guard let content = self.content else { return }
+        self.contentTitleTextView.text = content.contentTitle
+        self.contentTitleTextView.textColor = .yagiGrayDeep
+        self.writingView.text = content.contentText
+        self.writingView.textColor = .yagiGrayDeep
+        
+        let dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy.MM.dd E"
+            let languge = Locale.preferredLanguages.first ?? "en-US"
+            dateFormatter.locale = Locale(identifier: languge)
+            return dateFormatter
+        }()
+        self.datePicker.setDate(dateFormatter.date(from: content.ContentDate) ?? Date(), animated: true)
+    }
     
     func configureView() {
         self.view.backgroundColor = .yagiWhite
@@ -215,8 +310,10 @@ private extension WritingViewController {
     }
 }
 
+//MARK: - ScrollViewDelegate
 extension WritingViewController: UIScrollViewDelegate {}
 
+//MARK: - TextViewDelegate
 extension WritingViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         guard textView.textColor == UIColor.placeholderText else{ return }
@@ -250,16 +347,6 @@ extension WritingViewController: UITextViewDelegate {
             if textView.text != "내용을 입력하세요" { self.contentText = textView.text }
             if contentTitleTextView.text == "제목을 입력하세요" { return }
         }
-        
-        guard let title = self.contentTitle,
-              let text = self.contentText
-        else { return }
-        
-        content = ContentModel(
-            contentTitle: title,
-            ContentDate: self.contentDate,
-            contentText: text
-        )
         
         self.saveButton.isEnabled = true
     }
