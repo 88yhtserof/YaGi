@@ -205,7 +205,7 @@ private extension ContentDetailViewController {
         
         viewController.thrMenuButtonAction = {
             self.dismiss(animated: true) {
-                let action = UIAlertAction(title: "삭제", style: .destructive) {_ in
+                let removeAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
                     guard var contents = self.book.contents else { return }
                     contents.remove(at: self.contentIndex)
                     self.book.contents = contents
@@ -213,9 +213,17 @@ private extension ContentDetailViewController {
                     
                     self.navigationController?.popViewController(animated: true)
                 }
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
+                    self.dismiss(animated: true)
+                }
                 
                 let alert = UIAlertController(title: "삭제하시겠습니까?", message: "영구 삭제되어 복구할 수 없습니다.", preferredStyle: .alert)
-                alert.addAction(action)
+                
+                [
+                    removeAction,
+                    cancelAction
+                ]
+                    .forEach { alert.addAction($0) }
                 
                 self.present(alert, animated: true)
             }
