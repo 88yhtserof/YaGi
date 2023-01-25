@@ -28,7 +28,7 @@
 		148F5E8E296A800400A69B9C /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F5E8D296A800400A69B9C /* BookModel.swift */; };
 		14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */; };
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
-		14BACB56297F8D9F0021BE5E /* BookmarkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB55297F8D9F0021BE5E /* BookmarkTableViewController.swift */; };
+		14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */; };
 		14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */; };
 		14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A328F155D200E349B4 /* WritingViewController.swift */; };
 		14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */; };
@@ -61,7 +61,7 @@
 		148F5E8D296A800400A69B9C /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultsManager.swift; sourceTree = "<group>"; };
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
-		14BACB55297F8D9F0021BE5E /* BookmarkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewController.swift; sourceTree = "<group>"; };
+		14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		14E5D9A328F155D200E349B4 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
 				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 				144F122D296D335700C34892 /* StartViewController.swift */,
-				14BACB55297F8D9F0021BE5E /* BookmarkTableViewController.swift */,
+				14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */,
 				14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */,
 			);
 			path = Scenes;
@@ -265,7 +265,7 @@
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				144F122E296D335700C34892 /* StartViewController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* MenuViewController.swift in Sources */,
-				14BACB56297F8D9F0021BE5E /* BookmarkTableViewController.swift in Sources */,
+				14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */,
 				148F5E8E296A800400A69B9C /* BookModel.swift in Sources */,
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
 				141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */,

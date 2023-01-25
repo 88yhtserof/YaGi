@@ -34,7 +34,7 @@ final class MainTabBarController: UITabBarController {
     }()
     
     private lazy var bookmarkViewController: UINavigationController = {
-        let viewController = UINavigationController(rootViewController: BookmarkTableViewController())
+        let viewController = UINavigationController(rootViewController: BookmarkViewController())
         
         let tabBarItem: UITabBarItem = {
             let item = UITabBarItem(
