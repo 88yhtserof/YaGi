@@ -46,6 +46,9 @@ final class MainTabBarController: UITabBarController {
             return item
         }()
         
+        viewController.navigationBar.tintColor = .yagiGray
+        viewController.navigationBar.barTintColor = .yagiWhite
+        viewController.navigationBar.shadowImage = UIImage()
         viewController.tabBarItem = tabBarItem
         
         return viewController
@@ -58,5 +61,8 @@ final class MainTabBarController: UITabBarController {
         self.view.backgroundColor = .yagiWhite
         self.viewControllers = [ contentsViewController, bookmarkViewController ]
         self.tabBar.tintColor = .yagiGray
+        self.tabBar.shadowImage = UIImage()
+        self.tabBar.backgroundColor = .yagiWhite
+        self.tabBar.isTranslucent = false
     }
 }
