@@ -14,8 +14,14 @@ class BookmarkTableViewCell: UITableViewCell {
         var configuration = UIButton.Configuration.plain()
         configuration.image = UIImage(systemName: "bookmark.fill")
         configuration.baseForegroundColor = .yagiHighlight
+        configuration.automaticallyUpdateForSelection = true
+        
+        let action = UIAction { _ in
+            print("Unbookmark A Selected Content")
+        }
         
         var bookmarkedButton = UIButton(configuration: configuration)
+        bookmarkedButton.addAction(action, for: .touchUpInside)
         
         return bookmarkedButton
     }()
