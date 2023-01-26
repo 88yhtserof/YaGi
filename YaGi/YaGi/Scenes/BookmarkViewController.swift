@@ -68,6 +68,10 @@ extension BookmarkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkTableViewCell", for: indexPath) as? BookmarkTableViewCell else { return UITableViewCell() }
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .yagiWhihtDeep
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
 }
