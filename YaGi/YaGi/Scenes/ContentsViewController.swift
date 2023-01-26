@@ -147,7 +147,7 @@ private extension ContentsViewController {
         contentsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(titleButton.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(15)
-            make.bottom.equalToSuperview().inset(100)
+            make.bottom.equalToSuperview()
         }
     }
 }
