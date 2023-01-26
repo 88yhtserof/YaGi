@@ -33,12 +33,36 @@ final class MainTabBarController: UITabBarController {
         return viewController
     }()
     
+    private lazy var bookmarkViewController: UINavigationController = {
+        let viewController = UINavigationController(rootViewController: BookmarkViewController())
+        
+        let tabBarItem: UITabBarItem = {
+            let item = UITabBarItem(
+                title: "책갈피",
+                image: UIImage(systemName: "bookmark"),
+                selectedImage: UIImage(systemName: "bookmark.fill")
+            )
+            
+            return item
+        }()
+        
+        viewController.navigationBar.tintColor = .yagiGray
+        viewController.navigationBar.barTintColor = .yagiWhite
+        viewController.navigationBar.shadowImage = UIImage()
+        viewController.tabBarItem = tabBarItem
+        
+        return viewController
+    }()
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .yagiWhite
-        self.viewControllers = [contentsViewController]
+        self.viewControllers = [ contentsViewController, bookmarkViewController ]
         self.tabBar.tintColor = .yagiGray
+        self.tabBar.shadowImage = UIImage()
+        self.tabBar.backgroundColor = .yagiWhite
+        self.tabBar.isTranslucent = false
     }
 }
