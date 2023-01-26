@@ -9,6 +9,18 @@ import UIKit
 
 class BookmarkViewController: UIViewController {
     
+    private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
+        var item = UIBarButtonItem()
+        let action = UIAction { _ in
+            print("Present Alert")
+        }
+        
+        item.primaryAction = action
+        item.title = "전체 해제"
+        
+        return item
+    }()
+    
     private lazy var bookmarkTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         
@@ -23,11 +35,16 @@ class BookmarkViewController: UIViewController {
         
         self.bookmarkTableView.register(BookmarkTableViewCell.self, forCellReuseIdentifier: "BookmarkTableViewCell")
         
+        configureNavigationBar()
         configureView()
     }
 }
 
 private extension BookmarkViewController {
+    func configureNavigationBar(){
+        self.navigationItem.rightBarButtonItem = unbookmarkAllBarButton
+    }
+    
     func configureView(){
         [
             bookmarkTableView
