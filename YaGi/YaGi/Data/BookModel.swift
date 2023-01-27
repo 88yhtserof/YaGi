@@ -10,4 +10,5 @@ import Foundation
 struct BookModel: Codable {
     let title: String
     var contents: [ContentModel]?
+    var bookmarkedContents: [ContentModel]?
 }
