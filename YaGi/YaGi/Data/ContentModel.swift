@@ -11,5 +11,5 @@ struct ContentModel: Codable {
     let contentTitle: String
     let ContentDate: String
     let contentText: String
-    var bookmark: Bool = false
+    var bookmark: Bool
 }
