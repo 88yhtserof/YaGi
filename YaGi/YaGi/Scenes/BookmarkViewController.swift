@@ -9,6 +9,8 @@ import UIKit
 
 class BookmarkViewController: UIViewController {
     
+    var bookmarkedContents: [ContentModel]?
+    
     private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
         var item = UIBarButtonItem()
         let action = UIAction { _ in
@@ -38,9 +40,25 @@ class BookmarkViewController: UIViewController {
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
 private extension BookmarkViewController {
+    func configureData(){
+        guard let books = UserDefaultsManager.books,
+              let book = books.first,
+              let bookmarkedContents = book.bookmarkedContents
+        else { return }
+        
+        self.bookmarkedContents = bookmarkedContents
+        bookmarkTableView.reloadData()
+    }
+    
     func configureNavigationBar(){
         self.navigationItem.rightBarButtonItem = unbookmarkAllBarButton
     }
@@ -62,15 +80,22 @@ private extension BookmarkViewController {
 //MARK: - TableView DataSource
 extension BookmarkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard let numberOfRow = bookmarkedContents?.count else { return 0 }
+        return numberOfRow
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkTableViewCell", for: indexPath) as? BookmarkTableViewCell else { return UITableViewCell() }
+        
+        guard let bookmarkedContents = self.bookmarkedContents,
+              let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkTableViewCell", for: indexPath) as? BookmarkTableViewCell
+        else { return UITableViewCell() }
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = .yagiWhihtDeep
         cell.selectedBackgroundView = backgroundView
+        
+        let content = bookmarkedContents[indexPath.row]
+        cell.configureData(content)
         
         return cell
     }
