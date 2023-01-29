@@ -148,9 +148,15 @@ class ContentDetailViewController: UIViewController {
 //MARK: - Configure
 private extension ContentDetailViewController {
     func configureData(){
-        self.bookmarkBarItem.tintColor = self.content.bookmark ? .yagiHighlight : .yagiHighlightLight
-        self.contentTitle.text = self.content.contentTitle
-        self.contentTextView.text = self.content.contentText
+        //글 수정 후 dismiss할 때 데이터 연결을 위한 코드
+        guard let books = UserDefaultsManager.books,
+              let contents = books[0].contents
+        else { return }
+        let content = contents[self.content.contentIndex]
+        
+        self.bookmarkBarItem.tintColor = content.bookmark ? .yagiHighlight : .yagiHighlightLight
+        self.contentTitle.text = content.contentTitle
+        self.contentTextView.text = content.contentText
     }
     
     func configureNavigationBar() {
