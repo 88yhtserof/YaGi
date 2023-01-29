@@ -239,6 +239,12 @@ class WritingViewController: UIViewController {
             guard var contents = book.contents else { return }
             contents[self.contentIndex] = content
             book.contents = contents
+            
+            guard var bookmarkedContents = book.bookmarkedContents,
+                  let bookmarkedIndex = bookmarkedContents.firstIndex(where: { $0.contentIndex ==  self.contentIndex })
+            else { return }
+            bookmarkedContents[bookmarkedIndex] = content
+            book.bookmarkedContents = bookmarkedContents
         }
         
         books[indexOfCurrentBook] = book
