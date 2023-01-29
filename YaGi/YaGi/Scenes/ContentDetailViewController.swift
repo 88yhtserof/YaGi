@@ -107,7 +107,9 @@ class ContentDetailViewController: UIViewController {
                 bookmarkedContents.append(self.content)
             case unbookmarkedState:
                 self.content.bookmark = false
-                bookmarkedContents.remove(at: self.content.contentIndex)
+                if let bookmarkedIndex = bookmarkedContents.firstIndex (where: {$0.contentIndex == self.content.contentIndex}) {
+                    bookmarkedContents.remove(at: bookmarkedIndex)
+                }
             case .none:
                 break
             case .some(_):
