@@ -64,6 +64,7 @@ private extension BookmarkViewController {
     
     func configureNavigationBar(){
         self.navigationItem.rightBarButtonItem = unbookmarkAllBarButton
+        self.navigationItem.title = ""
     }
     
     func configureView(){
