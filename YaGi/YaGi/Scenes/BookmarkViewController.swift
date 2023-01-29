@@ -15,7 +15,43 @@ class BookmarkViewController: UIViewController {
     private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
         var item = UIBarButtonItem()
         let action = UIAction { _ in
-            print("Present Alert")
+            let alertController = UIAlertController(
+                title: "전체 해제하시겠습니다?",
+                message: "글 상세 화면에서 다시 책갈피를 꽂을 수 있습니다.",
+                preferredStyle: .alert
+            )
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+            let clearAction = UIAlertAction(title: "해제", style: .destructive) { _ in
+                guard var book = self.book,
+                      var contents = book.contents,
+                      var bookmarkedContents = self.bookmarkedContents
+                else { return }
+                
+                let unbookmarkedContents = contents.map {
+                    if $0.bookmark {
+                        var content = $0
+                        content.bookmark = false
+                        return content
+                    }
+                    return $0
+                }
+                
+                bookmarkedContents.removeAll()
+                book.contents = unbookmarkedContents
+                book.bookmarkedContents = bookmarkedContents
+                
+                UserDefaultsManager.books = [book]
+                self.bookmarkedContents = bookmarkedContents
+                self.bookmarkTableView.reloadData()
+            }
+            
+            [
+                cancelAction,
+                clearAction
+            ]
+                .forEach{ alertController.addAction($0) }
+            
+            self.present(alertController, animated: true)
         }
         
         item.primaryAction = action
