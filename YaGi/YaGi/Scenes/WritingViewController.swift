@@ -11,9 +11,10 @@ import SnapKit
 class WritingViewController: UIViewController {
     
     //MARK: - Properties
-    var book: BookModel?
+    var book: BookModel
     let content: ContentModel?
-    let contentIndex: Int?
+    var contentIndex: Int = 0
+    var isBookmark = false
     
     var isEditMode: Bool = false
     let userDefault = UserDefaults.standard
@@ -28,10 +29,9 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
-    init(book: BookModel?, content: ContentModel?, contentIndex: Int?, isEditMode: Bool) {
+    init(book: BookModel, content: ContentModel?, isEditMode: Bool) {
         self.book = book
-        self.content = content
-        self.contentIndex = contentIndex
+        self.content = content  //수정 시에만 할당되는 매개변수
         self.isEditMode = isEditMode
         
         super.init(nibName: nil, bundle: nil)
@@ -79,7 +79,11 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            let content = self.createContent(title: self.contentTitle, text: self.contentText)
+            let content = self.createContent(
+                title: self.contentTitle,
+                text: self.contentText,
+                isBookmark: self.isBookmark
+            )
             self.saveContent(content)
             
             self.dismiss(animated: true)
@@ -198,16 +202,22 @@ class WritingViewController: UIViewController {
         
         if isEditMode {
             configureData()
+        } else {
+            if let numberOfContents = self.book.contents?.count {
+                self.contentIndex = numberOfContents
+            }
         }
     }
     
     //MARK: - Function
-    func createContent(title: String, text: String) -> ContentModel {
+    func createContent(title: String, text: String, isBookmark: Bool) -> ContentModel {
         
         let content = ContentModel(
+            contentIndex: self.contentIndex,
             contentTitle: title,
             ContentDate: self.contentDate,
-            contentText: text
+            contentText: text,
+            bookmark: isBookmark
         )
         
         return content
@@ -226,9 +236,8 @@ class WritingViewController: UIViewController {
             }
             book.contents?.append(content)
         case true:
-            guard var contents = book.contents,
-                  let index = contentIndex else { return }
-            contents[index] = content
+            guard var contents = book.contents else { return }
+            contents[self.contentIndex] = content
             book.contents = contents
         }
         
@@ -246,6 +255,8 @@ private extension WritingViewController {
         self.contentTitleTextView.textColor = .yagiGrayDeep
         self.writingView.text = content.contentText
         self.writingView.textColor = .yagiGrayDeep
+        self.isBookmark = content.bookmark
+        self.contentIndex = content.contentIndex
         
         let dateFormatter: DateFormatter = {
             let dateFormatter = DateFormatter()
