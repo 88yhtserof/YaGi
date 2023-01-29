@@ -239,6 +239,7 @@ class WritingViewController: UIViewController {
             guard var contents = book.contents else { return }
             contents[self.contentIndex] = content
             book.contents = contents
+            print(book)
         }
         
         books[indexOfCurrentBook] = book
@@ -251,6 +252,10 @@ private extension WritingViewController {
     
     func configureData(){
         guard let content = self.content else { return }
+        self.contentTitle = content.contentTitle
+        self.contentText = content.contentText
+        self.contentDate = content.ContentDate
+        
         self.contentTitleTextView.text = content.contentTitle
         self.contentTitleTextView.textColor = .yagiGrayDeep
         self.writingView.text = content.contentText
