@@ -239,7 +239,6 @@ class WritingViewController: UIViewController {
             guard var contents = book.contents else { return }
             contents[self.contentIndex] = content
             book.contents = contents
-            print(book)
         }
         
         books[indexOfCurrentBook] = book
