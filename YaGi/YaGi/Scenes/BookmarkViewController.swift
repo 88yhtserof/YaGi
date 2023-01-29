@@ -9,6 +9,7 @@ import UIKit
 
 class BookmarkViewController: UIViewController {
     
+    var book: BookModel?
     var bookmarkedContents: [ContentModel]?
     
     private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
@@ -27,6 +28,7 @@ class BookmarkViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = 130
         
         return tableView
@@ -55,6 +57,7 @@ private extension BookmarkViewController {
               let bookmarkedContents = book.bookmarkedContents
         else { return }
         
+        self.book = book
         self.bookmarkedContents = bookmarkedContents
         bookmarkTableView.reloadData()
     }
@@ -98,5 +101,17 @@ extension BookmarkViewController: UITableViewDataSource {
         cell.configureData(content)
         
         return cell
+    }
+}
+
+//MARK: - TableView Delegate
+extension BookmarkViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let book = self.book,
+              let bookmarkedContent = self.bookmarkedContents?[indexPath.row]
+        else { return }
+        
+        let contentDetailViewController = ContentDetailViewController(book: book, content: bookmarkedContent)
+        self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
