@@ -104,7 +104,7 @@ class ContentDetailViewController: UIViewController {
             switch item.tintColor {
             case bookmarkedState:
                 self.content.bookmark = true
-                bookmarkedContents.insert(self.content, at: self.content.contentIndex)
+                bookmarkedContents.append(self.content)
             case unbookmarkedState:
                 self.content.bookmark = false
                 bookmarkedContents.remove(at: self.content.contentIndex)
