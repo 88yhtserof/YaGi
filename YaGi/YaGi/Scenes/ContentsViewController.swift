@@ -66,7 +66,7 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 50)
         
         let action = UIAction { action  in
-            let writingViewController = WritingViewController(book: nil, content: nil, contentIndex: nil, isEditMode: false)
+            let writingViewController = WritingViewController(book: self.book, content: nil, isEditMode: false)
             writingViewController.modalPresentationStyle = .fullScreen
             
             self.present(writingViewController, animated: true)
@@ -174,7 +174,7 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let contents = self.book.contents else { return }
         let index = indexPath.row
-        let contentDetailViewController = ContentDetailViewController(book: self.book, content: contents[index], contentIndex: index)
+        let contentDetailViewController = ContentDetailViewController(book: self.book, content: contents[index])
         
         contentDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)

@@ -12,12 +12,10 @@ class ContentDetailViewController: UIViewController {
     //MARK: - Properties
     var book: BookModel
     var content: ContentModel
-    var contentIndex: Int
     
-    init(book: BookModel, content: ContentModel, contentIndex: Int) {
+    init(book: BookModel, content: ContentModel) {
         self.book = book
         self.content = content
-        self.contentIndex = contentIndex
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -95,12 +93,39 @@ class ContentDetailViewController: UIViewController {
     private lazy var bookmarkBarItem: UIBarButtonItem = {
         var item = UIBarButtonItem()
         let action = UIAction { _ in
-            print("Bookmark Content")
+            let bookmarkedState = UIColor.yagiHighlight
+            let unbookmarkedState = UIColor.yagiHighlightLight
+            
+            item.tintColor = item.tintColor == unbookmarkedState ? bookmarkedState : unbookmarkedState
+            self.view.layoutIfNeeded()
+            
+            var bookmarkedContents = self.book.bookmarkedContents ?? []
+            
+            switch item.tintColor {
+            case bookmarkedState:
+                self.content.bookmark = true
+                bookmarkedContents.append(self.content)
+            case unbookmarkedState:
+                self.content.bookmark = false
+                if let bookmarkedIndex = bookmarkedContents.firstIndex (where: {$0.contentIndex == self.content.contentIndex}) {
+                    bookmarkedContents.remove(at: bookmarkedIndex)
+                }
+            case .none:
+                break
+            case .some(_):
+                break
+            }
+            
+            self.book.contents?[self.content.contentIndex] = self.content
+            self.book.bookmarkedContents = bookmarkedContents
+            guard var books = UserDefaultsManager.books else { return }
+            let indexOfCurrentBook: Int = 0
+            books[indexOfCurrentBook] = self.book
+            UserDefaultsManager.books = books
         }
         
         item.primaryAction = action
         item.image = UIImage(systemName: "bookmark.fill")
-        item.tintColor = .yagiHighlight
         
         return item
     }()
@@ -123,11 +148,13 @@ class ContentDetailViewController: UIViewController {
 //MARK: - Configure
 private extension ContentDetailViewController {
     func configureData(){
+        //글 수정 후 dismiss할 때 데이터 연결을 위한 코드
         guard let books = UserDefaultsManager.books,
-              let book = books.first,
-              let contents = book.contents else { return }
-        let content = contents[self.contentIndex]
+              let contents = books[0].contents
+        else { return }
+        let content = contents[self.content.contentIndex]
         
+        self.bookmarkBarItem.tintColor = content.bookmark ? .yagiHighlight : .yagiHighlightLight
         self.contentTitle.text = content.contentTitle
         self.contentTextView.text = content.contentText
     }
@@ -174,7 +201,7 @@ private extension ContentDetailViewController {
         viewController.thrMenuButtonTitle = "삭제하기"
         
         viewController.firMenuButtonAction = {
-            let contentWriteViewController = WritingViewController(book: self.book, content: self.content, contentIndex: self.contentIndex, isEditMode: true)
+            let contentWriteViewController = WritingViewController(book: self.book, content: self.content, isEditMode: true)
             contentWriteViewController.modalPresentationStyle = .fullScreen
             
             self.dismiss(animated: true) {
@@ -207,7 +234,7 @@ private extension ContentDetailViewController {
             self.dismiss(animated: true) {
                 let removeAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
                     guard var contents = self.book.contents else { return }
-                    contents.remove(at: self.contentIndex)
+                    contents.remove(at: self.content.contentIndex)
                     self.book.contents = contents
                     UserDefaultsManager.books = [self.book]
                     

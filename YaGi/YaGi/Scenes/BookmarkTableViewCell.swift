@@ -17,6 +17,7 @@ class BookmarkTableViewCell: UITableViewCell {
         configuration.automaticallyUpdateForSelection = true
         
         let action = UIAction { _ in
+            // TODO: - Unbookmark A Selected Content
             print("Unbookmark A Selected Content")
         }
         
@@ -68,8 +69,14 @@ class BookmarkTableViewCell: UITableViewCell {
 }
 
 //MARK: - Configure
-private extension BookmarkTableViewCell {
-    func configureCell() {
+extension BookmarkTableViewCell {
+    func configureData(_ content: ContentModel){
+        self.contentTitle.text = content.contentTitle
+        self.contentDate.text = content.ContentDate
+        self.contentText.text = content.contentText
+    }
+    
+    private func configureCell() {
         
         [
             bookmarkButton,
@@ -83,19 +90,18 @@ private extension BookmarkTableViewCell {
             make.top.equalToSuperview().inset(15)
             make.leading.equalToSuperview().inset(10)
         }
-                
-
+        
         contentTitle.snp.makeConstraints { make in
             make.top.equalTo(bookmarkButton.snp.top)
             make.leading.equalToSuperview().inset(60)
             make.trailing.equalToSuperview().inset(15)
         }
-
+        
         contentDate.snp.makeConstraints { make in
             make.top.equalTo(contentTitle.snp.bottom).offset(10)
             make.leading.equalTo(contentTitle)
         }
-
+        
         contentText.snp.makeConstraints { make in
             make.top.equalTo(contentDate.snp.bottom).offset(10)
             make.leading.equalTo(contentTitle)
