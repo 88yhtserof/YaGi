@@ -8,6 +8,7 @@
 import Foundation
 
 struct BookModel: Codable {
+    let date: String
     let title: String
     var contents: [ContentModel]?
     var bookmarkedContents: [ContentModel]?

@@ -10,14 +10,14 @@ import UIKit
 class ContentsViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var book: BookModel = BookModel(title: String())
+    private var book: BookModel = BookModel(date: Date().debugDescription, title: String())
     private var contents: [ContentModel] = []
     
     //MARK: - View
     private lazy var menuBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem()
         let action = UIAction {_ in 
-            let menuViewController = MenuViewController()
+            let menuViewController = SettingViewController()
             self.navigationController?.pushViewController(menuViewController, animated: true)
         }
         
