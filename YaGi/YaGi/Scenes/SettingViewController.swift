@@ -30,8 +30,7 @@ class SettingViewController: UIViewController {
         let label = UILabel()
         
         guard let book = self.book else { return UILabel() }
-        
-        let text = "해리포터와 불의 잔"
+        let text = book.title
         
         label.text = text
         label.textColor = .yagiGrayDeep
