@@ -105,17 +105,6 @@ class SettingViewController: UIViewController {
         return button
     }()
     
-    private lazy var appInfoStackView: UIStackView = {
-        let stackView = UIStackView()
-        
-        stackView.axis = .horizontal
-        stackView.spacing = 15
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        
-        return stackView
-    }()
-    
     private lazy var settingButtonStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
