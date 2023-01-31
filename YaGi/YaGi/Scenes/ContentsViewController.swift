@@ -17,7 +17,7 @@ class ContentsViewController: UIViewController {
     private lazy var menuBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem()
         let action = UIAction {_ in 
-            let menuViewController = MenuViewController()
+            let menuViewController = SettingViewController()
             self.navigationController?.pushViewController(menuViewController, animated: true)
         }
         
