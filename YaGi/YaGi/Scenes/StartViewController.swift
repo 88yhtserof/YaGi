@@ -73,7 +73,14 @@ class StartViewController: UIViewController {
         
         let action = UIAction {  _ in
             guard let title = self.titleTextField.text else { return }
-            UserDefaultsManager.books = [ BookModel(title: title) ]
+            
+            let dateFormatter = DateFormatter()
+            let localeID = Locale.preferredLanguages.first ?? "en-US"
+            dateFormatter.dateFormat = "yyyy.MM.dd E"
+            dateFormatter.locale = Locale(identifier: localeID)
+            
+            let date = dateFormatter.string(from: Date())
+            UserDefaultsManager.books = [ BookModel(date: date, title: title) ]
             
             let mainTapBarController = MainTabBarController()
             SceneDelegate.shared.updateRootViewController(mainTapBarController)
