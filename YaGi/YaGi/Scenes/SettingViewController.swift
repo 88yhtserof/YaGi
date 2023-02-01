@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingViewController: UIViewController {
     let book = UserDefaultsManager.books?.first
@@ -98,7 +99,29 @@ class SettingViewController: UIViewController {
         configuration.image = UIImage(systemName: "envelope")
         configuration.imagePadding = 10.0
         
+        let action = UIAction { _ in
+            if !MFMailComposeViewController.canSendMail() {
+                let alert = UIAlertController(title: "메일을 보낼 수 없습니다", message: "기기에 email이 등록되어 있는지 확인바랍니다.", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+                alert.addAction(cancelAction)
+                
+                self.present(alert, animated: true)
+                return
+            }
+            
+            var mailComposeVC = MFMailComposeViewController()
+            mailComposeVC.delegate = self
+            mailComposeVC.mailComposeDelegate = self
+            
+            mailComposeVC.setSubject("[야기] 문의드립니다.")
+            // TODO: - 이메일 번들에서 가져오기
+            mailComposeVC.setToRecipients([""])
+            
+            self.present(mailComposeVC, animated: true)
+        }
+        
         let button = UIButton(configuration: configuration)
+        button.addAction(action, for: .touchUpInside)
         return button
     }()
     
@@ -179,5 +202,12 @@ private extension SettingViewController {
             make.top.equalTo(lineView.snp.bottom).offset(40)
             make.leading.equalToSuperview().inset(20)
         }
+    }
+}
+
+//MARK: - MFMailComposeViewController Delegate
+extension SettingViewController: UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
