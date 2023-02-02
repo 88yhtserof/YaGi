@@ -113,10 +113,13 @@ class SettingViewController: UIViewController {
             mailComposeVC.delegate = self
             mailComposeVC.mailComposeDelegate = self
             
-            mailComposeVC.setSubject("[야기] 문의드립니다.")
-            // TODO: - 이메일 번들에서 가져오기
-            mailComposeVC.setToRecipients([""])
+            guard let privacyInfoList = Bundle.main
+                .object(forInfoDictionaryKey: "Privacy Info list") as? [String:String],
+               let developerEmail = privacyInfoList["Developer email"]
+            else { return }
             
+            mailComposeVC.setToRecipients([developerEmail])
+            mailComposeVC.setSubject("[야기] 문의드립니다.")
             self.present(mailComposeVC, animated: true)
         }
         
