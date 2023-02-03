@@ -113,6 +113,11 @@ class WritingViewController: UIViewController {
             dateFormatter.locale = Locale(identifier: languge)
             
             self.contentDate = dateFormatter.string(from: date)
+            
+            if self.contentTitle != "제목을 입력하세요",
+               self.contentText != "내용을 입력하세요" {
+                self.saveButton.isEnabled = true
+            }
         }
         datePicker.addAction(action, for: .valueChanged)
         
