@@ -51,6 +51,8 @@ class SettingViewController: UIViewController {
         label.font = .maruburi(ofSize: 25, weight: .bold)
         label.numberOfLines = 4
         label.lineBreakStrategy = .hangulWordPriority
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()
