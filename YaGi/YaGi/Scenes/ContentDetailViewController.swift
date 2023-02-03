@@ -154,6 +154,7 @@ private extension ContentDetailViewController {
         else { return }
         let content = contents[self.content.contentIndex]
         
+        self.content = content
         self.bookmarkBarItem.tintColor = content.bookmark ? .yagiHighlight : .yagiHighlightLight
         self.contentTitle.text = content.contentTitle
         self.contentTextView.text = content.contentText

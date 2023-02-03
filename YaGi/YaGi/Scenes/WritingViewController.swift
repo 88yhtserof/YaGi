@@ -113,6 +113,11 @@ class WritingViewController: UIViewController {
             dateFormatter.locale = Locale(identifier: languge)
             
             self.contentDate = dateFormatter.string(from: date)
+            
+            if self.contentTitle != "제목을 입력하세요",
+               self.contentText != "내용을 입력하세요" {
+                self.saveButton.isEnabled = true
+            }
         }
         datePicker.addAction(action, for: .valueChanged)
         
@@ -236,15 +241,17 @@ class WritingViewController: UIViewController {
             }
             book.contents?.append(content)
         case true:
+            //content 목록 데이터 업데이트
             guard var contents = book.contents else { return }
             contents[self.contentIndex] = content
             book.contents = contents
             
-            guard var bookmarkedContents = book.bookmarkedContents,
-                  let bookmarkedIndex = bookmarkedContents.firstIndex(where: { $0.contentIndex ==  self.contentIndex })
-            else { return }
-            bookmarkedContents[bookmarkedIndex] = content
-            book.bookmarkedContents = bookmarkedContents
+            //책갈피된 content 목록 데이터 업데이트
+            if var bookmarkedContents = book.bookmarkedContents,
+               let bookmarkedIndex = bookmarkedContents.firstIndex(where: { $0.contentIndex ==  self.contentIndex }) {
+                bookmarkedContents[bookmarkedIndex] = content
+                book.bookmarkedContents = bookmarkedContents
+            }
         }
         
         books[indexOfCurrentBook] = book
