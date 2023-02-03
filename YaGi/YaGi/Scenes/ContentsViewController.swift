@@ -39,7 +39,7 @@ class ContentsViewController: UIViewController {
         let attributeTitle = NSAttributedString(string: "제목", attributes: attributes)
         
         label.attributedText = attributeTitle
-        label.font = .maruburi(ofSize: 35, weight: .bold)
+        label.font = .maruburi(ofSize: 30, weight: .bold)
         label.textColor = UIColor.yagiGrayDeep
         label.numberOfLines = 2
         label.lineBreakMode = NSLineBreakMode.byTruncatingTail
