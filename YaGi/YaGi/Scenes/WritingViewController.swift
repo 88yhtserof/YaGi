@@ -293,7 +293,7 @@ private extension WritingViewController {
         ]
             .forEach { contentView.addSubview($0) }
         
-        let inset: Int = 25
+        let inset: Int = 20
         let offset: Int = 20
         
         scrollView.snp.makeConstraints { make in
