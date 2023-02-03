@@ -39,6 +39,9 @@ class ContentDetailViewController: UIViewController {
         label.text = self.content.contentTitle
         label.font = .maruburi(ofSize: 25, weight: .bold)
         label.textColor = .yagiGrayDeep
+        label.minimumScaleFactor = 0.9
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 4
         
         return label
     }()
@@ -177,12 +180,12 @@ private extension ContentDetailViewController {
         
         contentTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
-            make.leading.equalToSuperview().inset(30)
+            make.leading.equalToSuperview().inset(20)
             make.width.equalTo(300)
         }
         
         contentView.snp.makeConstraints { make in
-            make.top.equalTo(contentTitle.snp.bottom).offset(40)
+            make.top.equalTo(contentTitle.snp.bottom).offset(30)
             make.bottom.equalToSuperview().inset(40)
             make.leading.trailing.equalToSuperview()
             make.width.equalTo(scrollView.snp.width)
@@ -190,7 +193,7 @@ private extension ContentDetailViewController {
         
         contentTextView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(30)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
     }
     
