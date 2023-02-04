@@ -40,7 +40,7 @@ class ShareActivityItemSource:  NSObject, UIActivityItemSource {
         let metadata = LPLinkMetadata()
         metadata.title = title
         // TODO: - Change to AppIcon
-        metadata.iconProvider = NSItemProvider(object: UIImage(systemName: "text.bubble")!)
+        metadata.iconProvider = NSItemProvider(object: UIImage(named: "Yagi_logo_120") ?? UIImage())
         metadata.originalURL = URL(fileURLWithPath: placeholder )
         
         return metadata
