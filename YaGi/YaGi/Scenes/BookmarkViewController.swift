@@ -10,7 +10,7 @@ import UIKit
 class BookmarkViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var books = UserDefaultsManager.books
+    private var books: [BookModel]?
     private var bookmarkedContents: [ContentModel]?
     
     //MARK: -  View
@@ -89,9 +89,10 @@ class BookmarkViewController: UIViewController {
 //MARK: - Configure
 private extension BookmarkViewController {
     func configureData(){
-        guard let books = self.books,
+        guard let books = UserDefaultsManager.books,
               let contents = books[self.indexOfCurrentBook].contents
         else { return }
+        self.books = books
         
         self.bookmarkedContents = contents.filter{ content -> Bool in
             return content.bookmark
