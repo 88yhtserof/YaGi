@@ -150,6 +150,7 @@ private extension ContentDetailViewController {
         guard let books = UserDefaultsManager.books,
               let contents = books[self.indexOfCurrentBook].contents
         else { return }
+        self.books = books
         let content = contents[self.contentIndex]
         
         self.content = content

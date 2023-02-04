@@ -162,8 +162,8 @@
 			children = (
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
 				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
-				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
 				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
+				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
 				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
 				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
