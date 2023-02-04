@@ -12,7 +12,7 @@ class WritingViewController: UIViewController {
     
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var books: [BookModel]?
+    private var books = UserDefaultsManager.books
     private let contentIndex: Int?
     private var isBookmark = false
     
@@ -252,7 +252,7 @@ private extension WritingViewController {
     
     //글 수정 시에만 호출
     func configureData(){
-        guard let books = UserDefaultsManager.books,
+        guard let books = self.books,
               let contentIndex = self.contentIndex,
               let content = books[self.indexOfCurrentBook].contents?[contentIndex]
         else { return }
