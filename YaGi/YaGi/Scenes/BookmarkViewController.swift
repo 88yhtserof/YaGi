@@ -8,10 +8,12 @@
 import UIKit
 
 class BookmarkViewController: UIViewController {
+    //MARK: - Properties
+    private let indexOfCurrentBook: Int = 0
+    private var books = UserDefaultsManager.books
+    private var bookmarkedContents: [ContentModel]?
     
-    var book: BookModel?
-    var bookmarkedContents: [ContentModel]?
-    
+    //MARK: -  View
     private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
         var item = UIBarButtonItem()
         let action = UIAction { _ in
@@ -22,26 +24,24 @@ class BookmarkViewController: UIViewController {
             )
             let cancelAction = UIAlertAction(title: "취소", style: .cancel)
             let clearAction = UIAlertAction(title: "해제", style: .destructive) { _ in
-                guard var book = self.book,
-                      var contents = book.contents,
-                      var bookmarkedContents = self.bookmarkedContents
+                guard var books = self.books,
+                      var contents = books[self.indexOfCurrentBook].contents
                 else { return }
                 
                 let unbookmarkedContents = contents.map {
-                    if $0.bookmark {
-                        var content = $0
+                    var content = $0
+                    if content.bookmark {
                         content.bookmark = false
-                        return content
                     }
-                    return $0
+                    return content
                 }
                 
-                bookmarkedContents.removeAll()
-                book.contents = unbookmarkedContents
-                book.bookmarkedContents = bookmarkedContents
+                contents = unbookmarkedContents
+                books[self.indexOfCurrentBook].contents = contents
                 
-                UserDefaultsManager.books = [book]
-                self.bookmarkedContents = bookmarkedContents
+                UserDefaultsManager.books = books
+                
+                self.bookmarkedContents?.removeAll()
                 self.bookmarkTableView.reloadData()
             }
             
@@ -86,15 +86,16 @@ class BookmarkViewController: UIViewController {
     }
 }
 
+//MARK: - Configure
 private extension BookmarkViewController {
     func configureData(){
-        guard let books = UserDefaultsManager.books,
-              let book = books.first,
-              let bookmarkedContents = book.bookmarkedContents
+        guard let books = self.books,
+              let contents = books[self.indexOfCurrentBook].contents
         else { return }
         
-        self.book = book
-        self.bookmarkedContents = bookmarkedContents
+        self.bookmarkedContents = contents.filter{ content -> Bool in
+            return content.bookmark
+        }
         bookmarkTableView.reloadData()
     }
     
@@ -120,8 +121,7 @@ private extension BookmarkViewController {
 //MARK: - TableView DataSource
 extension BookmarkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let numberOfRow = bookmarkedContents?.count else { return 0 }
-        return numberOfRow
+        return bookmarkedContents?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -144,11 +144,7 @@ extension BookmarkViewController: UITableViewDataSource {
 //MARK: - TableView Delegate
 extension BookmarkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let book = self.book,
-              let bookmarkedContent = self.bookmarkedContents?[indexPath.row]
-        else { return }
-        
-        let contentDetailViewController = ContentDetailViewController(book: book, content: bookmarkedContent)
+        let contentDetailViewController = ContentDetailViewController(contentIndex: indexPath.row)
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
