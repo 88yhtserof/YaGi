@@ -13,7 +13,6 @@ class WritingViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
     private var books = UserDefaultsManager.books
-    private var content: ContentModel?
     private let contentIndex: Int?
     private var isBookmark = false
     
@@ -253,14 +252,15 @@ private extension WritingViewController {
     
     //글 수정 시에만 호출
     func configureData(){
-        guard let content = self.content else { return }
+        guard let books = self.books,
+              let contentIndex = self.contentIndex,
+              let content = books[self.indexOfCurrentBook].contents?[contentIndex]
+        else { return }
         self.contentTitle = content.contentTitle
         self.contentText = content.contentText
         self.contentDate = content.ContentDate
         self.isBookmark = content.bookmark
         
-        
-        // TODO: - 아래 view 설정 코드가 필요한지 확인하기
         self.contentTitleTextView.text = content.contentTitle
         self.contentTitleTextView.textColor = .yagiGrayDeep
         self.writingView.text = content.contentText
