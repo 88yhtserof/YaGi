@@ -10,7 +10,7 @@ import UIKit
 class ContentsViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var books = UserDefaultsManager.books
+    private var books: [BookModel]?
     private var contents: [ContentModel] = []
     
     //MARK: - View
@@ -110,7 +110,8 @@ class ContentsViewController: UIViewController {
 //MARK: -  Configure
 private extension ContentsViewController {
     func configureData(){
-        guard let book = books?[indexOfCurrentBook] as? BookModel else { return }
+        guard let books = UserDefaultsManager.books else { return }
+        let book = books[indexOfCurrentBook]
         self.titleLabel.text = book.title
         
         guard let contents = book.contents else { return }
