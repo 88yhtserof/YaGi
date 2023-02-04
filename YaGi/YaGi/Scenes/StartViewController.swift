@@ -72,15 +72,9 @@ class StartViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 30, bottom: 30, trailing: 30)
         
         let action = UIAction {  _ in
-            guard let title = self.titleTextField.text else { return }
             
-            let dateFormatter = DateFormatter()
-            let localeID = Locale.preferredLanguages.first ?? "en-US"
-            dateFormatter.dateFormat = "yyyy.MM.dd E"
-            dateFormatter.locale = Locale(identifier: localeID)
-            
-            let date = dateFormatter.string(from: Date())
-            UserDefaultsManager.books = [ BookModel(date: date, title: title) ]
+            let book = self.createBook()
+            UserDefaultsManager.books = [book]
             
             let mainTapBarController = MainTabBarController()
             SceneDelegate.shared.updateRootViewController(mainTapBarController)
@@ -98,6 +92,19 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
+    }
+    
+    //MARK: - Function
+    private func createBook() -> BookModel {
+        let title = self.titleTextField.text ?? String()
+        
+        let dateFormatter = DateFormatter()
+        let localeID = Locale.preferredLanguages.first ?? "en-US"
+        dateFormatter.dateFormat = "yyyy.MM.dd E"
+        dateFormatter.locale = Locale(identifier: localeID)
+        let date = dateFormatter.string(from: Date())
+        
+        return BookModel(date: date, title: title)
     }
 }
 
