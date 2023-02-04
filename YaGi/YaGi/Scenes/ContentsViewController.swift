@@ -10,7 +10,7 @@ import UIKit
 class ContentsViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var book: BookModel = BookModel(date: Date().debugDescription, title: String())
+    private var books = UserDefaultsManager.books
     private var contents: [ContentModel] = []
     
     //MARK: - View
@@ -66,7 +66,7 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 50)
         
         let action = UIAction { action  in
-            let writingViewController = WritingViewController(book: self.book, content: nil, isEditMode: false)
+            let writingViewController = WritingViewController(contentIndex: nil, isEditMode: false)
             writingViewController.modalPresentationStyle = .fullScreen
             
             self.present(writingViewController, animated: true)
@@ -110,8 +110,7 @@ class ContentsViewController: UIViewController {
 //MARK: -  Configure
 private extension ContentsViewController {
     func configureData(){
-        guard let book = UserDefaultsManager.books?[indexOfCurrentBook] as? BookModel else { return }
-        self.book = book
+        guard let book = books?[indexOfCurrentBook] as? BookModel else { return }
         self.titleLabel.text = book.title
         
         guard let contents = book.contents else { return }
@@ -172,9 +171,8 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     //Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let contents = self.book.contents else { return }
-        let index = indexPath.row
-        let contentDetailViewController = ContentDetailViewController(book: self.book, content: contents[index])
+        let selectedContentInde = indexPath.row
+        let contentDetailViewController = ContentDetailViewController(contentIndex: selectedContentIndex)
         
         contentDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
