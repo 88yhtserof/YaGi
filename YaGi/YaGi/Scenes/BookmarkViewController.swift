@@ -11,6 +11,7 @@ class BookmarkViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
     private var books: [BookModel]?
+    private var contents: [ContentModel]?
     private var bookmarkedContents: [ContentModel]?
     
     //MARK: -  View
@@ -93,6 +94,7 @@ private extension BookmarkViewController {
               let contents = books[self.indexOfCurrentBook].contents
         else { return }
         self.books = books
+        self.contents = contents
         
         self.bookmarkedContents = contents.filter{ content -> Bool in
             return content.bookmark
@@ -145,7 +147,19 @@ extension BookmarkViewController: UITableViewDataSource {
 //MARK: - TableView Delegate
 extension BookmarkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contentDetailViewController = ContentDetailViewController(contentIndex: indexPath.row)
+        guard let contents = self.contents,
+              let bookmarkedContents = self.bookmarkedContents
+        else { return }
+        let contentIndex = contents.firstIndex { content in
+            let bookmarkedContent = bookmarkedContents[indexPath.row]
+            return content.contentTitle == bookmarkedContent.contentTitle
+                && content.contentText == bookmarkedContent.contentText
+                && content.ContentDate == content.ContentDate
+                && content.bookmark == content.bookmark
+        }
+        guard let index = contentIndex else { return }
+        
+        let contentDetailViewController = ContentDetailViewController(contentIndex: index)
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
     }
 }
