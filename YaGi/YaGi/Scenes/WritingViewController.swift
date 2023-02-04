@@ -11,10 +11,11 @@ import SnapKit
 class WritingViewController: UIViewController {
     
     //MARK: - Properties
-    var book: BookModel
-    let content: ContentModel?
-    var contentIndex: Int = 0
-    var isBookmark = false
+    private let indexOfCurrentBook: Int = 0
+    private var books = UserDefaultsManager.books
+    private var content: ContentModel?
+    private let contentIndex: Int?
+    private var isBookmark = false
     
     var isEditMode: Bool = false
     let userDefault = UserDefaults.standard
@@ -29,9 +30,8 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
-    init(book: BookModel, content: ContentModel?, isEditMode: Bool) {
-        self.book = book
-        self.content = content  //수정 시에만 할당되는 매개변수
+    init(contentIndex: Int?, isEditMode: Bool) {
+        self.contentIndex = contentIndex //수정 시에만 할당
         self.isEditMode = isEditMode
         
         super.init(nibName: nil, bundle: nil)
@@ -209,10 +209,6 @@ class WritingViewController: UIViewController {
         
         if isEditMode {
             configureData()
-        } else {
-            if let numberOfContents = self.book.contents?.count {
-                self.contentIndex = numberOfContents
-            }
         }
     }
     
@@ -220,7 +216,6 @@ class WritingViewController: UIViewController {
     func createContent(title: String, text: String, isBookmark: Bool) -> ContentModel {
         
         let content = ContentModel(
-            contentIndex: self.contentIndex,
             contentTitle: title,
             ContentDate: self.contentDate,
             contentText: text,
@@ -231,10 +226,8 @@ class WritingViewController: UIViewController {
     }
     
     func saveContent(_ content: ContentModel) {
-        let indexOfCurrentBook: Int = 0
-        
-        guard var books = UserDefaultsManager.books else { return }
-        var book = books[indexOfCurrentBook] //현 시즌에서는 책은 한 권만 존재한다.
+        guard var books = self.books else { return }
+        var book = books[self.indexOfCurrentBook]
         
         switch isEditMode {
         case false:
@@ -243,17 +236,11 @@ class WritingViewController: UIViewController {
             }
             book.contents?.append(content)
         case true:
-            //content 목록 데이터 업데이트
-            guard var contents = book.contents else { return }
-            contents[self.contentIndex] = content
+            guard var contents = book.contents,
+                  let contentIndex = self.contentIndex
+            else { return }
+            contents[contentIndex] = content
             book.contents = contents
-            
-            //책갈피된 content 목록 데이터 업데이트
-            if var bookmarkedContents = book.bookmarkedContents,
-               let bookmarkedIndex = bookmarkedContents.firstIndex(where: { $0.contentIndex ==  self.contentIndex }) {
-                bookmarkedContents[bookmarkedIndex] = content
-                book.bookmarkedContents = bookmarkedContents
-            }
         }
         
         books[indexOfCurrentBook] = book
@@ -264,18 +251,20 @@ class WritingViewController: UIViewController {
 //MARK: - Configure
 private extension WritingViewController {
     
+    //글 수정 시에만 호출
     func configureData(){
         guard let content = self.content else { return }
         self.contentTitle = content.contentTitle
         self.contentText = content.contentText
         self.contentDate = content.ContentDate
+        self.isBookmark = content.bookmark
         
+        
+        // TODO: - 아래 view 설정 코드가 필요한지 확인하기
         self.contentTitleTextView.text = content.contentTitle
         self.contentTitleTextView.textColor = .yagiGrayDeep
         self.writingView.text = content.contentText
         self.writingView.textColor = .yagiGrayDeep
-        self.isBookmark = content.bookmark
-        self.contentIndex = content.contentIndex
         
         let dateFormatter: DateFormatter = {
             let dateFormatter = DateFormatter()
