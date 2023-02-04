@@ -11,7 +11,7 @@ class ContentDetailViewController: UIViewController {
     
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private var books = UserDefaultsManager.books
+    private var books: [BookModel]?
     private var content: ContentModel?
     private var contentIndex: Int
     
@@ -147,7 +147,7 @@ class ContentDetailViewController: UIViewController {
 //MARK: - Configure
 private extension ContentDetailViewController {
     func configureData(){
-        guard let books = self.books,
+        guard let books = UserDefaultsManager.books,
               let contents = books[self.indexOfCurrentBook].contents
         else { return }
         let content = contents[self.contentIndex]
