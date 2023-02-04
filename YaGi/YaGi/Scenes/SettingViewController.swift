@@ -165,12 +165,12 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureCell()
+        configureView()
     }
 }
 
 private extension SettingViewController {
-    func configureCell(){
+    func configureView(){
         self.view.backgroundColor = .yagiWhite
         
         [
