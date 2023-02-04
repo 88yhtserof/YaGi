@@ -113,6 +113,7 @@ private extension ContentsViewController {
         guard let books = UserDefaultsManager.books else { return }
         let book = books[indexOfCurrentBook]
         self.titleLabel.text = book.title
+        self.books = books
         
         guard let contents = book.contents else { return }
         self.contents = contents
