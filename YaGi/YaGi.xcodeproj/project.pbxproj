@@ -86,8 +86,7 @@
 		140BE4E628EEA5DB00052664 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				140BE4E728EEA5FF00052664 /* ContentModel.swift */,
-				148F5E8D296A800400A69B9C /* BookModel.swift */,
+				148BD052298F7D280045B7AE /* Model */,
 				14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */,
 				14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */,
 			);
@@ -117,7 +116,6 @@
 				14F49D1128D5E30F0027A4B3 /* Scenes */,
 				14F49D0928D5BB1F0027A4B3 /* Asset */,
 				1484BC4328CDEC9F00E9F241 /* Extension */,
-				1484BC3428CDE59E00E9F241 /* Font */,
 				146BB2D328CB6F930029F556 /* AppDelegate.swift */,
 				146BB2D528CB6F930029F556 /* SceneDelegate.swift */,
 				146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */,
@@ -148,9 +146,41 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		148BD052298F7D280045B7AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				140BE4E728EEA5FF00052664 /* ContentModel.swift */,
+				148F5E8D296A800400A69B9C /* BookModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		148BD053298F7D350045B7AE /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
+				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
+				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
+				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
+				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
+				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		148BD054298F7D4C0045B7AE /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */,
+				14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
 		14F49D0928D5BB1F0027A4B3 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				1484BC3428CDE59E00E9F241 /* Font */,
 				146BB2DC28CB6F960029F556 /* Assets.xcassets */,
 				14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */,
 			);
@@ -160,17 +190,11 @@
 		14F49D1128D5E30F0027A4B3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				148BD054298F7D4C0045B7AE /* Bookmark */,
+				148BD053298F7D350045B7AE /* Contents */,
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
-				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
-				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
-				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
-				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
 				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
-				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
-				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 				144F122D296D335700C34892 /* StartViewController.swift */,
-				14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */,
-				14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
