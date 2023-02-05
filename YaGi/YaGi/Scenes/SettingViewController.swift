@@ -9,8 +9,12 @@ import UIKit
 import MessageUI
 
 class SettingViewController: UIViewController {
-    let book = UserDefaultsManager.books?.first
+    //MARK: - Properties
+    private let indexOfCurrentBook: Int = 0
+    private let books = UserDefaultsManager.books
+    private var book: BookModel?
     
+    //MARK: - View
     private lazy var lineView: UIView = {
         let view = UIView()
         
@@ -162,15 +166,19 @@ class SettingViewController: UIViewController {
         return stackView
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureCell()
+        guard let books = self.books else { return }
+        self.book = books[self.indexOfCurrentBook]
+        configureView()
     }
 }
 
+//MARK: - Configure
 private extension SettingViewController {
-    func configureCell(){
+    func configureView(){
         self.view.backgroundColor = .yagiWhite
         
         [

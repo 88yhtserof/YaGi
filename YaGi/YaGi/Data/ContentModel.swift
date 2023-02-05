@@ -8,7 +8,6 @@
 import Foundation
 
 struct ContentModel: Codable {
-    let contentIndex: Int
     let contentTitle: String
     let ContentDate: String
     let contentText: String
