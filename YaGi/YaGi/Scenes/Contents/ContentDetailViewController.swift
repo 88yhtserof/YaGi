@@ -29,6 +29,7 @@ class ContentDetailViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         
+        scroll.backgroundColor = .yagiWhite
         scroll.delegate = self
         
         return scroll
