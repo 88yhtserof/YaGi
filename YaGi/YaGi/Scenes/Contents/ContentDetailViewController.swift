@@ -261,7 +261,20 @@ private extension ContentDetailViewController {
         }
         
         viewController.fthMenuButtonAction = {
-            print("Share Image")
+            guard let shareImage = self.view.snapShotFullScreen(scrollView: self.scrollView) else { return }
+            let activityItems = [ shareImage ]
+            
+            self.dismiss(animated: true) {
+                let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+                activityVC.completionWithItemsHandler = { activity, isSuccess, returnedItem, error in
+                    if isSuccess {
+                        print("Success")
+                    } else {
+                        print("Fail")
+                    }
+                }
+                self.present(activityVC, animated: true)
+            }
         }
         
         return viewController
