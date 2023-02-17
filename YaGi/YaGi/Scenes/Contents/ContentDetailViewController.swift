@@ -29,6 +29,7 @@ class ContentDetailViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         
+        scroll.backgroundColor = .yagiWhite
         scroll.delegate = self
         
         return scroll
@@ -194,11 +195,12 @@ private extension ContentDetailViewController {
     }
     
     func configureMenu(_ viewController: BottomMenuViewController) -> BottomMenuViewController {
-        viewController.numberOfButtons = .third
+        viewController.numberOfButtons = .fourth
         
         viewController.firMenuButtonTitle = "수정하기"
-        viewController.secMenuButtonTitle = "공유하기"
-        viewController.thrMenuButtonTitle = "삭제하기"
+        viewController.secMenuButtonTitle = "삭제하기"
+        viewController.thrMenuButtonTitle = "텍스트 공유하기"
+        viewController.fthMenuButtonTitle = "이미지 공유하기"
         
         viewController.firMenuButtonAction = {
             let contentWriteViewController = WritingViewController(contentIndex: self.contentIndex, isEditMode: true)
@@ -210,27 +212,6 @@ private extension ContentDetailViewController {
         }
         
         viewController.secMenuButtonAction = {
-            let title: String = self.contentTitle.text ?? ""
-            let text: String = self.contentTextView.text ?? ""
-            let content: String = title.appending("\n\n" + text)
-            let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
-            
-            self.dismiss(animated: true) {
-                print("Present ActivityView")
-                let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                activityViewController.completionWithItemsHandler = {(activity, isSuccess, returnedItems, error) in
-                    if isSuccess {
-                        print("Success")
-                    } else {
-                        print("Fail")
-                    }
-                }
-                
-                self.present(activityViewController, animated: true)
-            }
-        }
-        
-        viewController.thrMenuButtonAction = {
             self.dismiss(animated: true) {
                 let removeAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
                     guard var books = self.books,
@@ -255,6 +236,44 @@ private extension ContentDetailViewController {
                     .forEach { alert.addAction($0) }
                 
                 self.present(alert, animated: true)
+            }
+        }
+        
+        viewController.thrMenuButtonAction = {
+            let title: String = self.contentTitle.text ?? ""
+            let text: String = self.contentTextView.text ?? ""
+            let content: String = title.appending("\n\n" + text)
+            let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
+            
+            self.dismiss(animated: true) {
+                print("Present ActivityView")
+                let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+                activityViewController.completionWithItemsHandler = {(activity, isSuccess, returnedItems, error) in
+                    if isSuccess {
+                        print("Success")
+                    } else {
+                        print("Fail")
+                    }
+                }
+                
+                self.present(activityViewController, animated: true)
+            }
+        }
+        
+        viewController.fthMenuButtonAction = {
+            guard let shareImage = self.view.snapShotFullScreen(scrollView: self.scrollView) else { return }
+            let activityItems = [ shareImage ]
+            
+            self.dismiss(animated: true) {
+                let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+                activityVC.completionWithItemsHandler = { activity, isSuccess, returnedItem, error in
+                    if isSuccess {
+                        print("Success")
+                    } else {
+                        print("Fail")
+                    }
+                }
+                self.present(activityVC, animated: true)
             }
         }
         
