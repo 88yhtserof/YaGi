@@ -138,7 +138,7 @@ class SettingViewController: UIViewController {
         let attributes = AttributeContainer(
             [NSAttributedString.Key.font : UIFont(name: "MaruBuri-Regular", size: 20) ?? UIFont()]
         )
-        let attribitedTitle = AttributedString("앱 버전 1.0.0", attributes: attributes)
+        let attribitedTitle = AttributedString("앱 버전 1.1.0", attributes: attributes)
         var configuration = UIButton.Configuration.plain()
         configuration.attributedTitle = attribitedTitle
         configuration.baseForegroundColor = .yagiGrayDeep
