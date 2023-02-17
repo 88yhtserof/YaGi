@@ -38,11 +38,11 @@ extension UIView {
         let savedFrame = self.frame
         let savedScrollviewFrame = scrollView.frame
         let savedContentOffset = scrollView.contentOffset
-        let scrollFrame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
+        let scrollContentFrame = CGRect(x: 0, y: 0, width: scrollView.contentSize.width, height: scrollView.contentSize.height)
         
         scrollView.contentOffset = .zero
-        scrollView.frame = scrollFrame
-        self.frame = scrollFrame
+        scrollView.frame = scrollContentFrame
+        self.frame = scrollContentFrame
         
         //context 생성
         UIGraphicsBeginImageContextWithOptions(self.frame.size, true, 0.0)
