@@ -71,6 +71,36 @@ class BookshelfViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var bottomView: UIView = {
+        let view  = UIView()
+        
+        view.backgroundColor = .yagiHighlightLight
+        view.roundCorner(round: 50, [.topLeft, .topRight])
+        view.layer.shadowColor = UIColor.yagiWhihtDeep.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: -5)
+        view.layer.shadowOpacity = 0.2
+        
+        return view
+    }()
+    
+    private lazy var presentContentsButton: UIButton = {
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "book.closed.circle.fill")
+        
+        var imageConfiguration = UIImage.SymbolConfiguration(pointSize: 30.0)
+        configuration.preferredSymbolConfigurationForImage = imageConfiguration
+        configuration.baseForegroundColor = .yagiWhite
+        configuration.imagePadding = 20.0
+        
+        let acton = UIAction { _ in
+            print("Present Contents")
+        }
+        let button = UIButton(configuration: configuration, primaryAction: acton)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,7 +127,13 @@ private extension BookshelfViewController {
             .forEach{ bookcoverImageView.addSubview($0) }
         
         [
-            bookcoverImageView
+            presentContentsButton
+        ]
+            .forEach{ bottomView.addSubview($0) }
+        
+        [
+            bookcoverImageView,
+            bottomView
         ]
             .forEach{ view.addSubview($0) }
         
@@ -116,6 +152,18 @@ private extension BookshelfViewController {
             make.bottom.equalToSuperview().inset(3)
             make.top.equalTo(bookTitleLabel.snp.bottom)
             
+        }
+        
+        let bottomViewHeight = view.frame.height / 6
+        
+        bottomView.snp.makeConstraints{ make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(bottomViewHeight)
+        }
+        
+        presentContentsButton.snp.makeConstraints{ make in
+            make.top.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
         }
     }
 }
