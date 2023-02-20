@@ -40,10 +40,11 @@ class BookshelfViewController: UIViewController {
     private lazy var bookcoverImageView: UIImageView = {
         let imageView = UIImageView()
         
-        imageView.image = UIImage(named: "Yagi_bookshelf_480")
+        imageView.image = UIImage(named: "Yagi_bookshelf_medium_480")
         imageView.layer.shadowColor = UIColor.yagiGrayLight.cgColor
         imageView.layer.shadowOffset = CGSize(width: -13, height: 20)
         imageView.layer.shadowOpacity = 0.2
+        
         return imageView
     }()
     
@@ -62,8 +63,10 @@ class BookshelfViewController: UIViewController {
     private lazy var bookcoverDesignImageView: UIImageView = {
         let imageView = UIImageView()
         
-        // TODO: - 이미지 위치 확인용이므로 수정 필요
-        imageView.backgroundColor = .yagiGrayDeep
+        // TODO: - 이미지 확인용이므로 수정 필요
+        let image = UIImage(named: "Yagi_logo_120")
+        imageView.image = image
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         
         return imageView
     }()
@@ -109,7 +112,7 @@ private extension BookshelfViewController {
         }
         
         bookcoverDesignImageView.snp.makeConstraints{ make in
-            make.leading.trailing.equalToSuperview().inset(26)
+            make.leading.trailing.equalToSuperview().inset(26.8)
             make.bottom.equalToSuperview().inset(3)
             make.top.equalTo(bookTitleLabel.snp.bottom)
             
