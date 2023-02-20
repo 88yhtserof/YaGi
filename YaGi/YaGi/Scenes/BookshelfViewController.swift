@@ -23,6 +23,20 @@ class BookshelfViewController: UIViewController {
         return item
     }()
     
+    private lazy var editBookcoverBarItem: UIBarButtonItem = {
+        let item = UIBarButtonItem()
+        
+        let action = UIAction { _ in
+            print("Present ImagePicker")
+        }
+        
+        item.primaryAction = action
+        item.image = UIImage(systemName: "photo.on.rectangle.angled")
+        item.tintColor = .yagiGray
+        
+        return item
+    }()
+    
     private lazy var bookcoverImageView: UIImageView = {
         let imageView = UIImageView()
         
@@ -66,6 +80,7 @@ private extension BookshelfViewController {
     func configureNavigationBar() {
         self.navigationController?.navigationBar.tintColor = .yagiGray
         self.navigationItem.title = ""
+        self.navigationItem.leftBarButtonItem = editBookcoverBarItem
         self.navigationItem.rightBarButtonItem = settingBarItem
     }
     
