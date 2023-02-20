@@ -8,6 +8,21 @@
 import UIKit
 
 class BookshelfViewController: UIViewController {
+    private lazy var settingBarItem: UIBarButtonItem = {
+        let item = UIBarButtonItem()
+        
+        let action = UIAction {_ in
+            let menuViewController = SettingViewController()
+            self.navigationController?.pushViewController(menuViewController, animated: true)
+        }
+        
+        item.primaryAction = action
+        item.image = UIImage(systemName: "ellipsis")
+        item.tintColor = .yagiGray
+        
+        return item
+    }()
+    
     private lazy var bookcoverImageView: UIImageView = {
         let imageView = UIImageView()
         
@@ -42,11 +57,18 @@ class BookshelfViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
         configureView()
     }
 }
 
 private extension BookshelfViewController {
+    func configureNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .yagiGray
+        self.navigationItem.title = ""
+        self.navigationItem.rightBarButtonItem = settingBarItem
+    }
+    
     func configureView() {
         self.view.backgroundColor = .yagiWhite
         
