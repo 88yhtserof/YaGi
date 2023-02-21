@@ -17,8 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         var rootViewController: UIViewController
         
-        if UserDefaultsManager.books != nil {
-            rootViewController = MainTabBarController()
+        if UserDefaults.standard.hasValue(forKey: "YaGi_UserData") {
+            rootViewController = UINavigationController(rootViewController: BookshelfViewController())
         } else {
             rootViewController = StartViewController()
         }

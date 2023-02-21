@@ -76,8 +76,8 @@ class StartViewController: UIViewController {
             let book = self.createBook()
             UserDefaultsManager.books = [book]
             
-            let mainTapBarController = MainTabBarController()
-            SceneDelegate.shared.updateRootViewController(mainTapBarController)
+            let bookshelfController = UINavigationController(rootViewController: BookshelfViewController())
+            SceneDelegate.shared.updateRootViewController(bookshelfController)
         }
         
         button.configuration = configuration
