@@ -8,6 +8,10 @@
 import UIKit
 
 class BookshelfViewController: UIViewController {
+    //MARK: - Properties
+    private let indexOfCurrentBook: Int = 0
+    
+    //MARK: - View
     private lazy var settingBarItem: UIBarButtonItem = {
         let item = UIBarButtonItem()
         
@@ -107,15 +111,30 @@ class BookshelfViewController: UIViewController {
         return button
     }()
     
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureNavigationBar()
         configureView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
+    }
 }
 
+//MARK: - Configure
 private extension BookshelfViewController {
+    func configureData() {
+        guard let books = UserDefaultsManager.books else { return }
+        let title = books[indexOfCurrentBook].title
+        
+        self.bookTitleLabel.text = title
+    }
+    
     func configureNavigationBar() {
         self.navigationController?.navigationBar.tintColor = .yagiGray
         self.navigationItem.title = ""
