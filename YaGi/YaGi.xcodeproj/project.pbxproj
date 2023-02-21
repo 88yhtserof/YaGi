@@ -30,6 +30,7 @@
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
 		14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */; };
 		14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */; };
+		14D26F1729A32E9700798F99 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D26F1629A32E9700798F99 /* BookshelfViewController.swift */; };
 		14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A328F155D200E349B4 /* WritingViewController.swift */; };
 		14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */; };
 		14E5D9A828F15A1900E349B4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E5D9A728F15A1900E349B4 /* SettingViewController.swift */; };
@@ -63,6 +64,7 @@
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
 		14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
+		14D26F1629A32E9700798F99 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
 		14E5D9A328F155D200E349B4 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailViewController.swift; sourceTree = "<group>"; };
 		14E5D9A728F15A1900E349B4 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				148BD054298F7D4C0045B7AE /* Bookmark */,
 				148BD053298F7D350045B7AE /* Contents */,
+				14D26F1629A32E9700798F99 /* BookshelfViewController.swift */,
 				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
 				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
 				144F122D296D335700C34892 /* StartViewController.swift */,
@@ -284,6 +287,7 @@
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
+				14D26F1729A32E9700798F99 /* BookshelfViewController.swift in Sources */,
 				14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */,
 				140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
