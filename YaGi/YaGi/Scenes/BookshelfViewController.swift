@@ -164,9 +164,12 @@ private extension BookshelfViewController {
         ]
             .forEach{ view.addSubview($0) }
         
+        let bottomViewHeight = view.frame.height / 6
+        
         bookcoverImageView.snp.makeConstraints{ make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-50)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
+            make.bottom.equalToSuperview().inset(bottomViewHeight * 2).priority(.high)
+            make.leading.trailing.equalToSuperview().inset(40)
         }
         
         bookTitleLabel.snp.makeConstraints{ make in
@@ -176,17 +179,15 @@ private extension BookshelfViewController {
         }
         
         bookcoverDesignImageView.snp.makeConstraints{ make in
-            make.leading.trailing.equalToSuperview().inset(26.8)
-            make.bottom.equalToSuperview().inset(3)
+            make.leading.trailing.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview()
             make.top.equalTo(bookTitleLabel.snp.bottom)
             
         }
         
-        let bottomViewHeight = view.frame.height / 6
-        
         bottomView.snp.makeConstraints{ make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(bottomViewHeight)
+            make.height.equalTo(bottomViewHeight).priority(.high)
         }
         
         presentContentsButton.snp.makeConstraints{ make in
