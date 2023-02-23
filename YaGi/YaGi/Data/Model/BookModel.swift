@@ -10,5 +10,6 @@ import Foundation
 struct BookModel: Codable {
     let date: String
     let title: String
+    var bookcoverDesignImage: Data?
     var contents: [ContentModel]?
 }
