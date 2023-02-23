@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import PhotosUI
 
 class BookshelfViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
+    private var selection: PHPickerResult?
     
     //MARK: - View
     private lazy var settingBarItem: UIBarButtonItem = {
@@ -31,7 +33,7 @@ class BookshelfViewController: UIViewController {
         let item = UIBarButtonItem()
         
         let action = UIAction { _ in
-            print("Present ImagePicker")
+            self.presentPicker()
         }
         
         item.primaryAction = action
@@ -190,6 +192,74 @@ private extension BookshelfViewController {
         presentContentsButton.snp.makeConstraints{ make in
             make.top.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
+        }
+    }
+}
+
+//MARK: - PHPicker
+private extension BookshelfViewController {
+    func presentPicker() {
+        var configuaration = PHPickerConfiguration()
+        
+        configuaration.filter = PHPickerFilter.images
+        configuaration.preferredAssetRepresentationMode = .current
+        configuaration.selectionLimit = 1
+        
+        let pickerVC = PHPickerViewController(configuration: configuaration)
+        pickerVC.delegate = self
+        self.present(pickerVC, animated: true)
+    }
+    
+    func loadImage(){
+        guard let selection = self.selection else { return }
+        
+        let itemProvider = selection.itemProvider
+        if itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let image = image as? UIImage else { return }
+                DispatchQueue.main.async {
+                    self?.handleCompletion(object: image, error: error)
+                }
+            }
+        }
+    }
+    
+    func handleCompletion(object: UIImage?, error: Error? = nil){
+        if let image = object {
+            self.displayImage(image)
+        } else if let error = error {
+            print("Couldn't display the image with error \(error)")
+            displayErrorImage()
+        }
+    }
+    
+    func displayImage(_ image: UIImage?){
+        bookcoverDesignImageView.image = image
+        bookcoverDesignImageView.isHidden = image == nil
+    }
+    
+    func displayEmptyImage(){
+        displayImage(nil)
+    }
+    
+    func displayErrorImage(){
+        let errorImage = UIImage(systemName: "photo.circle")
+        errorImage?.withTintColor(.yagiGray)
+        
+        displayImage(errorImage)
+    }
+}
+
+extension BookshelfViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        
+        selection = results.first
+        
+        if selection == nil {
+            displayEmptyImage()
+        } else {
+            loadImage()
         }
     }
 }
