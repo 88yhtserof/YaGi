@@ -132,8 +132,14 @@ class BookshelfViewController: UIViewController {
 private extension BookshelfViewController {
     func configureData() {
         guard let books = UserDefaultsManager.books else { return }
-        let title = books[indexOfCurrentBook].title
         
+        if let image = UserDefaultsManager.bookcoverDesignImage {
+            displayImage(image)
+        } else {
+            displayEmptyImage()
+        }
+        
+        let title = books[indexOfCurrentBook].title
         self.bookTitleLabel.text = title
     }
     
@@ -236,7 +242,7 @@ private extension BookshelfViewController {
     
     func displayImage(_ image: UIImage?){
         bookcoverDesignImageView.image = image
-        bookcoverDesignImageView.isHidden = image == nil
+        UserDefaultsManager.bookcoverDesignImage = image
     }
     
     func displayEmptyImage(){
