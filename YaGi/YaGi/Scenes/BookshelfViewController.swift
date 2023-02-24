@@ -134,9 +134,9 @@ private extension BookshelfViewController {
         guard let books = UserDefaultsManager.books else { return }
         
         if let image = UserDefaultsManager.bookcoverDesignImage {
-            displayImage(image)
+            self.bookcoverDesignImageView.image = image
         } else {
-            displayEmptyImage()
+            self.bookcoverDesignImageView.image = nil
         }
         
         let title = books[indexOfCurrentBook].title
@@ -174,8 +174,8 @@ private extension BookshelfViewController {
         
         bookcoverImageView.snp.makeConstraints{ make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(40)
-            make.bottom.equalToSuperview().inset(bottomViewHeight * 2).priority(.high)
-            make.leading.trailing.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(bottomViewHeight * 2)
+            make.leading.trailing.equalToSuperview().inset(30)
         }
         
         bookTitleLabel.snp.makeConstraints{ make in
@@ -187,13 +187,12 @@ private extension BookshelfViewController {
         bookcoverDesignImageView.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview().inset(40)
             make.bottom.equalToSuperview()
-            make.top.equalTo(bookTitleLabel.snp.bottom)
-            
+            make.centerY.equalToSuperview().offset(50)
         }
         
         bottomView.snp.makeConstraints{ make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(bottomViewHeight).priority(.high)
+            make.height.equalTo(bottomViewHeight)
         }
         
         presentContentsButton.snp.makeConstraints{ make in
