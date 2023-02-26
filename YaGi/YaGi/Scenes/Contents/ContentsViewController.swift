@@ -9,6 +9,7 @@ import UIKit
 
 class ContentsViewController: UIViewController {
     //MARK: - Properties
+    // TODO: - 데이터 연결에 따른 프로퍼티 정리
     private let indexOfCurrentBook: Int = 0
     private var books: [BookModel]?
     private var contents: [ContentModel] = []
@@ -120,6 +121,7 @@ private extension ContentsViewController {
         guard let contents = book.contents else { return }
         self.contents = contents
         
+        // TODO: - 데이터 연결
         self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .draft, items: contents))
         self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .contents, items: contents))
         
@@ -174,13 +176,14 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
         case .draft:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DraftCollectionViewCell", for: indexPath) as? DraftCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.configureCellData(draftTitle: "")
+            cell.configureCellData(draftTitle: "임시 데이터 적용")
             return cell
             
         case .contents:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
             else { return UICollectionViewCell() }
             
+            // TODO: - 데이터 연결 후 content 프로퍼티 contentsCollectionItems로 변경
             let content = contents[indexPath.row]
             cell.configureCell(title: content.contentTitle, date: content.ContentDate)
             return cell
