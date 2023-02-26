@@ -39,6 +39,7 @@
 		14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */; };
 		14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */; };
 		14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5EE0529AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift */; };
+		14F5EE0A29AB388000DFBEA9 /* DraftCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5EE0929AB388000DFBEA9 /* DraftCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
 		14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
 		14F5EE0529AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionItemModel.swift; sourceTree = "<group>"; };
+		14F5EE0929AB388000DFBEA9 /* DraftCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
 				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
 				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
+				14F5EE0929AB388000DFBEA9 /* DraftCollectionViewCell.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F5EE0A29AB388000DFBEA9 /* DraftCollectionViewCell.swift in Sources */,
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
