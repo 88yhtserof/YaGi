@@ -13,7 +13,7 @@ class DraftCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         
         imageView.image = UIImage(systemName: "doc.text.fill")
-        imageView.tintColor = .yagiHighlight.withAlphaComponent(0.7)
+        imageView.tintColor = .yagiHighlight.withAlphaComponent(0.6)
         
         return imageView
     }()
