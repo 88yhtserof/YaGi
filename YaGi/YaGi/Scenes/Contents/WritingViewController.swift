@@ -71,6 +71,23 @@ class WritingViewController: UIViewController {
         return button
     }()
     
+    private lazy var saveDraftButton: UIButton = {
+        var button = UIButton()
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(systemName: "doc.text.fill")
+        configuration.baseForegroundColor = .yagiHighlight
+        
+        let action = UIAction { _ in
+            print("Save Draft")
+        }
+        
+        button.configuration = configuration
+        button.addAction(action, for: .touchUpInside)
+        button.isEnabled = false
+        
+        return button
+    }()
+    
     private lazy var saveButton: UIButton = {
         var button = UIButton()
         var configuration = UIButton.Configuration.plain()
@@ -286,6 +303,7 @@ private extension WritingViewController {
         
         [
             cancelButton,
+            saveDraftButton,
             saveButton,
             datePicker,
             contentTitleTextView,
@@ -307,6 +325,11 @@ private extension WritingViewController {
         
         cancelButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().inset(offset)
+        }
+        
+        saveDraftButton.snp.makeConstraints { make in
+            make.top.equalTo(saveButton)
+            make.trailing.equalTo(saveButton.snp.leading)
         }
         
         saveButton.snp.makeConstraints { make in
