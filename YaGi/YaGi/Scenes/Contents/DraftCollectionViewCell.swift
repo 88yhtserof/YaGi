@@ -52,6 +52,7 @@ private extension DraftCollectionViewCell {
         draftImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(15)
+            make.width.equalTo(draftImageView.snp.height)
         }
         
         draftTitleLabel.snp.makeConstraints { make in
