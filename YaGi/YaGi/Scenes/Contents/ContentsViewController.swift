@@ -172,11 +172,11 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch contentsCollectionItems[indexPath.section].sectionType {
         case .draft:
-            // TODO: - Cell 구성
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DraftCollectionViewCell", for: indexPath) as? DraftCollectionViewCell else { return UICollectionViewCell() }
-            cell.test(indexPath.row)
             
+            cell.configureCellData(draftTitle: "")
             return cell
+            
         case .contents:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
             else { return UICollectionViewCell() }
