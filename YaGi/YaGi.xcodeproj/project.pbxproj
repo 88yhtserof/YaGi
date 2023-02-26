@@ -38,6 +38,7 @@
 		14F49D0B28D5BB980027A4B3 /* ColorAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */; };
 		14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */; };
 		14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */; };
+		14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F5EE0529AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		14F49D0A28D5BB980027A4B3 /* ColorAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ColorAssets.xcassets; sourceTree = "<group>"; };
 		14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIColor.swift; sourceTree = "<group>"; };
 		14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsViewController.swift; sourceTree = "<group>"; };
+		14F5EE0529AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			children = (
 				140BE4E728EEA5FF00052664 /* ContentModel.swift */,
 				148F5E8D296A800400A69B9C /* BookModel.swift */,
+				14F5EE0529AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
+				14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */,
 				14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */,
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
 				14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */,
