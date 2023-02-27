@@ -78,7 +78,15 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            print("Save Draft")
+            let content = self.createContent(
+                title: self.contentTitle,
+                text: self.contentText,
+                isBookmark: false
+            )
+            
+            self.saveDraftContent(content)
+            
+            self.dismiss(animated: true)
         }
         
         button.configuration = configuration
@@ -260,6 +268,24 @@ class WritingViewController: UIViewController {
         }
         
         books[indexOfCurrentBook] = book
+        UserDefaultsManager.books = books
+    }
+    
+    func saveDraftContent(_ draftCotent: ContentModel){
+        guard var books = self.books else { return }
+        var book = books[self.indexOfCurrentBook]
+        
+        if isEditMode {
+            guard var drafts = book.drafts,
+                  let contentIndex = self.contentIndex else { return }
+            drafts[contentIndex] = draftCotent
+            book.drafts = drafts
+        } else {
+            if book.drafts == nil { book.drafts = Array<ContentModel>() }
+            book.drafts?.append(draftCotent)
+        }
+        
+        books[self.indexOfCurrentBook] = book
         UserDefaultsManager.books = books
     }
 }
