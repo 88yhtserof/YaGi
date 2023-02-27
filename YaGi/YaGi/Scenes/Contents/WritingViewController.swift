@@ -371,6 +371,7 @@ extension WritingViewController: UITextViewDelegate {
             textView.text = textView == self.contentTitleTextView ? "제목을 입력하세요" : "내용을 입력하세요"
             textView.textColor = .placeholderText
             self.saveButton.isEnabled = false
+            self.saveDraftButton.isEnabled = false
             
             return
         }
@@ -380,6 +381,7 @@ extension WritingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty {
             self.saveButton.isEnabled = false
+            self.saveDraftButton.isEnabled = false
             return
         }
         
@@ -393,6 +395,7 @@ extension WritingViewController: UITextViewDelegate {
         }
         
         self.saveButton.isEnabled = true
+        self.saveDraftButton.isEnabled = true
     }
 }
 
