@@ -12,7 +12,6 @@ class ContentsViewController: UIViewController {
     // TODO: - 데이터 연결에 따른 프로퍼티 정리
     private let indexOfCurrentBook: Int = 0
     private var books: [BookModel]?
-    private var contents: [ContentModel] = []
     private var contentsCollectionItems: [ContentsCollectionItemModel] = []
     
     //MARK: - View
@@ -118,12 +117,14 @@ private extension ContentsViewController {
         self.titleLabel.text = book.title
         self.books = books
         
-        guard let contents = book.contents else { return }
-        self.contents = contents
+        //contentsCollectionItemModel 데이터 연결
+        let drafts = book.drafts
+        let draftItems = ContentsCollectionItemModel(sectionType: .draft, items: drafts)
         
-        // TODO: - 데이터 연결
-        self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .draft, items: contents))
-        self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .contents, items: contents))
+        let contens = book.contents
+        let contentItems = ContentsCollectionItemModel(sectionType: .contents  , items: contens)
+    
+        self.contentsCollectionItems = [draftItems, contentItems]
         
         self.contentsCollectionView.reloadData()
     }
@@ -176,14 +177,17 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
         case .draft:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DraftCollectionViewCell", for: indexPath) as? DraftCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.configureCellData(draftTitle: "임시 데이터 적용")
+            guard let drafts = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
+            let draft = drafts[indexPath.row]
+            
+            cell.configureCellData(draftTitle: draft.contentTitle)
             return cell
             
         case .contents:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
             else { return UICollectionViewCell() }
             
-            // TODO: - 데이터 연결 후 content 프로퍼티 contentsCollectionItems로 변경
+            guard let contents = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
             let content = contents[indexPath.row]
             cell.configureCell(title: content.contentTitle, date: content.ContentDate)
             return cell
