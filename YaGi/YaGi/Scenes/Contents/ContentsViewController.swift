@@ -211,14 +211,25 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
         return UIContextMenuConfiguration(actionProvider: { suggestedAction in
-            return UIMenu(children: [
-                UIAction(title: "공유하기", handler: { _ in
-                    print("Share")
-                }),
-                UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
-                    print("Delete")
-                })
-            ])
+            if let index = indexPaths.first {
+                return UIMenu(children: [
+                    UIAction(title: "공유하기", handler: { _ in
+                        print("Share")
+                    }),
+                    UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
+                        guard var drafts = self.contentsCollectionItems[index.section].items as? [ContentModel],
+                              var books = self.books else { return }
+                        drafts.remove(at: indexPaths.first!.row)
+                        self.contentsCollectionItems[index.section].items = drafts
+                        books[self.indexOfCurrentBook].drafts = drafts
+                        UserDefaultsManager.books = books
+                        
+                        collectionView.deleteItems(at: [index])
+                        
+                    })
+                ])
+            }
+            return UIMenu()
         })
     }
 }
