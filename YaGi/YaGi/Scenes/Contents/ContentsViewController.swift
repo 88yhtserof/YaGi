@@ -210,26 +210,30 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(actionProvider: { suggestedAction in
-            if let index = indexPaths.first {
+        guard let indexPath = indexPaths.first else { return nil }
+        let sectionType = contentsCollectionItems[indexPath.section].sectionType
+        
+        if sectionType == .draft {
+            return UIContextMenuConfiguration(actionProvider: { suggestedAction in
                 return UIMenu(children: [
                     // TODO: - 임시저장 글 공유하기
                     
                     UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
-                        guard var drafts = self.contentsCollectionItems[index.section].items as? [ContentModel],
+                        guard var drafts = self.contentsCollectionItems[indexPath.section].items as? [ContentModel],
                               var books = self.books else { return }
                         drafts.remove(at: indexPaths.first!.row)
-                        self.contentsCollectionItems[index.section].items = drafts
+                        self.contentsCollectionItems[indexPath.section].items = drafts
                         books[self.indexOfCurrentBook].drafts = drafts
                         UserDefaultsManager.books = books
                         
-                        collectionView.deleteItems(at: [index])
-                        
+                        collectionView.deleteItems(at: [indexPath])
                     })
                 ])
-            }
-            return UIMenu()
-        })
+            })
+        }
+        else {
+            return nil
+        }
     }
 }
 
