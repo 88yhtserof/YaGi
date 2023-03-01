@@ -208,6 +208,19 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
             self.navigationController?.pushViewController(contentDetailViewController, animated: true)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        return UIContextMenuConfiguration(actionProvider: { suggestedAction in
+            return UIMenu(children: [
+                UIAction(title: "공유하기", handler: { _ in
+                    print("Share")
+                }),
+                UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
+                    print("Delete")
+                })
+            ])
+        })
+    }
 }
 
 //MARK: - Collection Layout
