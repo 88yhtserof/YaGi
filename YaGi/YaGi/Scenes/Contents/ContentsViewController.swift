@@ -213,9 +213,8 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
         return UIContextMenuConfiguration(actionProvider: { suggestedAction in
             if let index = indexPaths.first {
                 return UIMenu(children: [
-                    UIAction(title: "공유하기", handler: { _ in
-                        print("Share")
-                    }),
+                    // TODO: - 임시저장 글 공유하기
+                    
                     UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
                         guard var drafts = self.contentsCollectionItems[index.section].items as? [ContentModel],
                               var books = self.books else { return }
