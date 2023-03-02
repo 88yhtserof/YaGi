@@ -263,6 +263,13 @@ class WritingViewController: UIViewController {
             book.contents = contents
         }
         else {
+            if sectionType == .draft {
+                guard var drafts = book.drafts,
+                      let contentIndex = self.contentIndex else { return }
+                drafts.remove(at: contentIndex)
+                book.drafts = drafts
+            }
+            
             if book.contents == nil {
                 book.contents = Array<ContentModel>()
             }
