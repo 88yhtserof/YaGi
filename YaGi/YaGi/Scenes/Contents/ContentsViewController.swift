@@ -223,7 +223,7 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
                     UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
                         guard var drafts = self.contentsCollectionItems[indexPath.section].items as? [ContentModel],
                               var books = self.books else { return }
-                        drafts.remove(at: indexPaths.first!.row)
+                        drafts.remove(at: indexPath.row)
                         self.contentsCollectionItems[indexPath.section].items = drafts
                         books[self.indexOfCurrentBook].drafts = drafts
                         UserDefaultsManager.books = books
