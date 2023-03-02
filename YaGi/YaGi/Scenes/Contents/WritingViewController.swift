@@ -14,6 +14,7 @@ class WritingViewController: UIViewController {
     private let indexOfCurrentBook: Int = 0
     private var books = UserDefaultsManager.books
     private let contentIndex: Int?
+    private let sectionType: ContentsCollectionItemModel.SectionType
     private var isBookmark = false
     
     var isEditMode: Bool = false
@@ -29,7 +30,8 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
-    init(contentIndex: Int?, isEditMode: Bool) {
+    init(sectionType: ContentsCollectionItemModel.SectionType, contentIndex: Int?, isEditMode: Bool) {
+        self.sectionType = sectionType
         self.contentIndex = contentIndex //수정 시에만 할당
         self.isEditMode = isEditMode
         
@@ -296,10 +298,16 @@ private extension WritingViewController {
     //글 수정 시에만 호출
     func configureData(){
         guard let books = self.books,
-              let contentIndex = self.contentIndex,
-              let content = books[self.indexOfCurrentBook].contents?[contentIndex]
-        else { return }
+              let contentIndex = self.contentIndex else { return }
         
+        var contents: [ContentModel]?
+        switch sectionType {
+        case .draft:
+            contents = books[indexOfCurrentBook].drafts
+        case .contents:
+            contents = books[indexOfCurrentBook].contents
+        }
+        guard let content = contents?[contentIndex] else { return }
         self.books = books
         self.contentTitle = content.contentTitle
         self.contentText = content.contentText

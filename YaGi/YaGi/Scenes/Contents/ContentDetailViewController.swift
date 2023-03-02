@@ -203,7 +203,7 @@ private extension ContentDetailViewController {
         viewController.fthMenuButtonTitle = "이미지 공유하기"
         
         viewController.firMenuButtonAction = {
-            let contentWriteViewController = WritingViewController(contentIndex: self.contentIndex, isEditMode: true)
+            let contentWriteViewController = WritingViewController(sectionType: .contents, contentIndex: self.contentIndex, isEditMode: true)
             contentWriteViewController.modalPresentationStyle = .fullScreen
             
             self.dismiss(animated: true) {

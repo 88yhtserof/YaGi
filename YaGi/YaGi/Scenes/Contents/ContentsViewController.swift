@@ -67,7 +67,7 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 50)
         
         let action = UIAction { action  in
-            let writingViewController = WritingViewController(contentIndex: nil, isEditMode: false)
+            let writingViewController = WritingViewController(sectionType: .contents,contentIndex: nil, isEditMode: false)
             writingViewController.modalPresentationStyle = .fullScreen
             
             self.present(writingViewController, animated: true)
@@ -198,8 +198,10 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch contentsCollectionItems[indexPath.section].sectionType {
         case .draft:
-            // TODO: - did select item in draft session
-            print("Did Select Draft")
+            let writingVC = WritingViewController(sectionType: .draft, contentIndex: indexPath.row, isEditMode: true)
+            writingVC.modalPresentationStyle = .fullScreen
+            
+            self.present(writingVC, animated: true)
         case .contents:
             let selectedContentIndex = indexPath.row
             let contentDetailViewController = ContentDetailViewController(contentIndex: selectedContentIndex)
