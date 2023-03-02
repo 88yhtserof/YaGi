@@ -255,18 +255,18 @@ class WritingViewController: UIViewController {
         guard var books = self.books else { return }
         var book = books[self.indexOfCurrentBook]
         
-        switch isEditMode {
-        case false:
+        if sectionType == .contents
+            && isEditMode {
+            guard var contents = book.contents,
+                  let contentIndex = self.contentIndex else { return }
+            contents[contentIndex] = content
+            book.contents = contents
+        }
+        else {
             if book.contents == nil {
                 book.contents = Array<ContentModel>()
             }
             book.contents?.append(content)
-        case true:
-            guard var contents = book.contents,
-                  let contentIndex = self.contentIndex
-            else { return }
-            contents[contentIndex] = content
-            book.contents = contents
         }
         
         books[indexOfCurrentBook] = book
