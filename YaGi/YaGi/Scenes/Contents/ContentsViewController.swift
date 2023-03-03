@@ -12,7 +12,6 @@ class ContentsViewController: UIViewController {
     // TODO: - 데이터 연결에 따른 프로퍼티 정리
     private let indexOfCurrentBook: Int = 0
     private var books: [BookModel]?
-    private var contents: [ContentModel] = []
     private var contentsCollectionItems: [ContentsCollectionItemModel] = []
     
     //MARK: - View
@@ -68,7 +67,7 @@ class ContentsViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 50)
         
         let action = UIAction { action  in
-            let writingViewController = WritingViewController(contentIndex: nil, isEditMode: false)
+            let writingViewController = WritingViewController(sectionType: .contents,contentIndex: nil, isEditMode: false)
             writingViewController.modalPresentationStyle = .fullScreen
             
             self.present(writingViewController, animated: true)
@@ -118,12 +117,14 @@ private extension ContentsViewController {
         self.titleLabel.text = book.title
         self.books = books
         
-        guard let contents = book.contents else { return }
-        self.contents = contents
+        //contentsCollectionItemModel 데이터 연결
+        let drafts = book.drafts
+        let draftItems = ContentsCollectionItemModel(sectionType: .draft, items: drafts)
         
-        // TODO: - 데이터 연결
-        self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .draft, items: contents))
-        self.contentsCollectionItems.append(ContentsCollectionItemModel(sectionType: .contents, items: contents))
+        let contens = book.contents
+        let contentItems = ContentsCollectionItemModel(sectionType: .contents  , items: contens)
+    
+        self.contentsCollectionItems = [draftItems, contentItems]
         
         self.contentsCollectionView.reloadData()
     }
@@ -176,14 +177,17 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
         case .draft:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DraftCollectionViewCell", for: indexPath) as? DraftCollectionViewCell else { return UICollectionViewCell() }
             
-            cell.configureCellData(draftTitle: "임시 데이터 적용")
+            guard let drafts = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
+            let draft = drafts[indexPath.row]
+            
+            cell.configureCellData(draftTitle: draft.contentTitle)
             return cell
             
         case .contents:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
             else { return UICollectionViewCell() }
             
-            // TODO: - 데이터 연결 후 content 프로퍼티 contentsCollectionItems로 변경
+            guard let contents = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
             let content = contents[indexPath.row]
             cell.configureCell(title: content.contentTitle, date: content.ContentDate)
             return cell
@@ -194,14 +198,43 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch contentsCollectionItems[indexPath.section].sectionType {
         case .draft:
-            // TODO: - did select item in draft session
-            print("Did Select Draft")
+            let writingVC = WritingViewController(sectionType: .draft, contentIndex: indexPath.row, isEditMode: true)
+            writingVC.modalPresentationStyle = .fullScreen
+            
+            self.present(writingVC, animated: true)
         case .contents:
             let selectedContentIndex = indexPath.row
             let contentDetailViewController = ContentDetailViewController(contentIndex: selectedContentIndex)
             
             contentDetailViewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(contentDetailViewController, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
+        guard let indexPath = indexPaths.first else { return nil }
+        let sectionType = contentsCollectionItems[indexPath.section].sectionType
+        
+        if sectionType == .draft {
+            return UIContextMenuConfiguration(actionProvider: { suggestedAction in
+                return UIMenu(children: [
+                    // TODO: - 임시저장 글 공유하기
+                    
+                    UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
+                        guard var drafts = self.contentsCollectionItems[indexPath.section].items as? [ContentModel],
+                              var books = self.books else { return }
+                        drafts.remove(at: indexPath.row)
+                        self.contentsCollectionItems[indexPath.section].items = drafts
+                        books[self.indexOfCurrentBook].drafts = drafts
+                        UserDefaultsManager.books = books
+                        
+                        collectionView.deleteItems(at: [indexPath])
+                    })
+                ])
+            })
+        }
+        else {
+            return nil
         }
     }
 }

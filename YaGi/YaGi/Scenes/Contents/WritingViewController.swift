@@ -14,6 +14,7 @@ class WritingViewController: UIViewController {
     private let indexOfCurrentBook: Int = 0
     private var books = UserDefaultsManager.books
     private let contentIndex: Int?
+    private let sectionType: ContentsCollectionItemModel.SectionType
     private var isBookmark = false
     
     var isEditMode: Bool = false
@@ -29,7 +30,8 @@ class WritingViewController: UIViewController {
         return dateFormatter.string(from: Date())
     }()
     
-    init(contentIndex: Int?, isEditMode: Bool) {
+    init(sectionType: ContentsCollectionItemModel.SectionType, contentIndex: Int?, isEditMode: Bool) {
+        self.sectionType = sectionType
         self.contentIndex = contentIndex //수정 시에만 할당
         self.isEditMode = isEditMode
         
@@ -78,7 +80,15 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            print("Save Draft")
+            let content = self.createContent(
+                title: self.contentTitle,
+                text: self.contentText,
+                isBookmark: false
+            )
+            
+            self.saveDraftContent(content)
+            
+            self.dismiss(animated: true)
         }
         
         button.configuration = configuration
@@ -245,21 +255,46 @@ class WritingViewController: UIViewController {
         guard var books = self.books else { return }
         var book = books[self.indexOfCurrentBook]
         
-        switch isEditMode {
-        case false:
+        if sectionType == .contents
+            && isEditMode {
+            guard var contents = book.contents,
+                  let contentIndex = self.contentIndex else { return }
+            contents[contentIndex] = content
+            book.contents = contents
+        }
+        else {
+            if sectionType == .draft {
+                guard var drafts = book.drafts,
+                      let contentIndex = self.contentIndex else { return }
+                drafts.remove(at: contentIndex)
+                book.drafts = drafts
+            }
+            
             if book.contents == nil {
                 book.contents = Array<ContentModel>()
             }
             book.contents?.append(content)
-        case true:
-            guard var contents = book.contents,
-                  let contentIndex = self.contentIndex
-            else { return }
-            contents[contentIndex] = content
-            book.contents = contents
         }
         
         books[indexOfCurrentBook] = book
+        UserDefaultsManager.books = books
+    }
+    
+    func saveDraftContent(_ draftCotent: ContentModel){
+        guard var books = self.books else { return }
+        var book = books[self.indexOfCurrentBook]
+        
+        if isEditMode {
+            guard var drafts = book.drafts,
+                  let contentIndex = self.contentIndex else { return }
+            drafts[contentIndex] = draftCotent
+            book.drafts = drafts
+        } else {
+            if book.drafts == nil { book.drafts = Array<ContentModel>() }
+            book.drafts?.append(draftCotent)
+        }
+        
+        books[self.indexOfCurrentBook] = book
         UserDefaultsManager.books = books
     }
 }
@@ -270,10 +305,16 @@ private extension WritingViewController {
     //글 수정 시에만 호출
     func configureData(){
         guard let books = self.books,
-              let contentIndex = self.contentIndex,
-              let content = books[self.indexOfCurrentBook].contents?[contentIndex]
-        else { return }
+              let contentIndex = self.contentIndex else { return }
         
+        var contents: [ContentModel]?
+        switch sectionType {
+        case .draft:
+            contents = books[indexOfCurrentBook].drafts
+        case .contents:
+            contents = books[indexOfCurrentBook].contents
+        }
+        guard let content = contents?[contentIndex] else { return }
         self.books = books
         self.contentTitle = content.contentTitle
         self.contentText = content.contentText
@@ -371,6 +412,7 @@ extension WritingViewController: UITextViewDelegate {
             textView.text = textView == self.contentTitleTextView ? "제목을 입력하세요" : "내용을 입력하세요"
             textView.textColor = .placeholderText
             self.saveButton.isEnabled = false
+            self.saveDraftButton.isEnabled = false
             
             return
         }
@@ -380,6 +422,7 @@ extension WritingViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty {
             self.saveButton.isEnabled = false
+            self.saveDraftButton.isEnabled = false
             return
         }
         
@@ -393,6 +436,7 @@ extension WritingViewController: UITextViewDelegate {
         }
         
         self.saveButton.isEnabled = true
+        self.saveDraftButton.isEnabled = true
     }
 }
 
