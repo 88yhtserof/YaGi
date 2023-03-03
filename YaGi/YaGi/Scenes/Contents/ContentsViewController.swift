@@ -80,12 +80,11 @@ class ContentsViewController: UIViewController {
     }()
     
     private lazy var contentsCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = self.layout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.collectionViewLayout = self.layout()
         collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(DraftCollectionViewCell.self, forCellWithReuseIdentifier: "DraftCollectionViewCell")
@@ -247,7 +246,13 @@ private extension ContentsViewController {
             
             switch self.contentsCollectionItems[sectionNumber].sectionType {
             case .draft:
-                return self.createDraftSectionLayout()
+                let sectionIsEmpty = self.contentsCollectionItems[sectionNumber].items?.isEmpty ?? true
+                if sectionIsEmpty {
+                    return self.createEmptySectionLayout()
+                }
+                else {
+                    return self.createDraftSectionLayout()
+                }
             case.contents:
                 return self.createContentsSectionLayout()
             }
@@ -292,6 +297,22 @@ private extension ContentsViewController {
         //section
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: 0, leading: 10, bottom: 20, trailing: 10)
+        
+        return section
+    }
+
+    func createEmptySectionLayout() -> NSCollectionLayoutSection {
+        //size
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(0.0))
+        
+        //item
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        
+        //group
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitems: [item])
+        
+        //section
+        let section = NSCollectionLayoutSection(group: group)
         
         return section
     }
