@@ -14,6 +14,7 @@
 		1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */; };
 		14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1447427F293F369500823C72 /* ShareActivityItemSource.swift */; };
 		144F122E296D335700C34892 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144F122D296D335700C34892 /* StartViewController.swift */; };
+		146A8BDF29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BDD29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUserDefaults.swift; sourceTree = "<group>"; };
 		1447427F293F369500823C72 /* ShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareActivityItemSource.swift; sourceTree = "<group>"; };
 		144F122D296D335700C34892 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		146A8BDE29C6B4E0009D608E /* YaGiDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = YaGiDataModel.xcdatamodel; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				146BB2D528CB6F930029F556 /* SceneDelegate.swift */,
 				146BB2DE28CB6F960029F556 /* LaunchScreen.storyboard */,
 				147FCA6F298B914700E00E76 /* Info.plist */,
+				146A8BDD29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld */,
 			);
 			path = YaGi;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */,
 				140BE4E828EEA5FF00052664 /* ContentModel.swift in Sources */,
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
+				146A8BDF29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld in Sources */,
 				144F122E296D335700C34892 /* StartViewController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* SettingViewController.swift in Sources */,
 				14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */,
@@ -549,6 +553,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		146A8BDD29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				146A8BDE29C6B4E0009D608E /* YaGiDataModel.xcdatamodel */,
+			);
+			currentVersion = 146A8BDE29C6B4E0009D608E /* YaGiDataModel.xcdatamodel */;
+			path = YaGiDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 146BB2C828CB6F930029F556 /* Project object */;
 }
