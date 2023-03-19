@@ -1,2 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Book" representedClassName="Book" syncable="YES">
+        <attribute name="date" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="contents" inverseEntity="Chapter"/>
+        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="drafts" inverseEntity="Chapter"/>
+    </entity>
+    <entity name="Chapter" representedClassName="Chapter" syncable="YES">
+        <attribute name="bookmark" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="date" attributeType="String"/>
+        <attribute name="heading" attributeType="String"/>
+        <relationship name="contents" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="contents" inverseEntity="Book"/>
+        <relationship name="drafts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="drafts" inverseEntity="Book"/>
+    </entity>
+</model>
