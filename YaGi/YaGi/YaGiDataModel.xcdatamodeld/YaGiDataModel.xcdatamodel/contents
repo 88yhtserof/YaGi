@@ -3,15 +3,15 @@
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="date" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
-        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="contents" inverseEntity="Chapter"/>
-        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="drafts" inverseEntity="Chapter"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="contentsOfBook" inverseEntity="Chapter"/>
+        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="draftsOfBook" inverseEntity="Chapter"/>
     </entity>
     <entity name="Chapter" representedClassName="Chapter" syncable="YES">
         <attribute name="bookmark" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="content" attributeType="String"/>
         <attribute name="date" attributeType="String"/>
         <attribute name="heading" attributeType="String"/>
-        <relationship name="contents" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="contents" inverseEntity="Book"/>
-        <relationship name="drafts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="drafts" inverseEntity="Book"/>
+        <relationship name="contentsOfBook" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Book" inverseName="contents" inverseEntity="Book"/>
+        <relationship name="draftsOfBook" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Book" inverseName="drafts" inverseEntity="Book"/>
     </entity>
 </model>
