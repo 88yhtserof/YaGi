@@ -18,6 +18,7 @@
 		140C3EE729C96D7F00B4EF86 /* DraftStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE629C96D7F00B4EF86 /* DraftStore.swift */; };
 		140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE829C972B200B4EF86 /* DraftRepository.swift */; };
 		140C3EEC29C9779600B4EF86 /* BookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EEB29C9779600B4EF86 /* BookRepository.swift */; };
+		140C3EEE29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EED29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift */; };
 		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
 		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
 		1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */; };
@@ -67,6 +68,7 @@
 		140C3EE629C96D7F00B4EF86 /* DraftStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStore.swift; sourceTree = "<group>"; };
 		140C3EE829C972B200B4EF86 /* DraftRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRepository.swift; sourceTree = "<group>"; };
 		140C3EEB29C9779600B4EF86 /* BookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRepository.swift; sourceTree = "<group>"; };
+		140C3EED29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultStandardWrapper.swift; sourceTree = "<group>"; };
 		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
 		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
 		1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUserDefaults.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				146A8BEB29C6CB25009D608E /* CoreDataManager */,
 				148BD052298F7D280045B7AE /* Model */,
 				14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */,
+				140C3EED29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift */,
 				14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */,
 			);
 			path = Data;
@@ -392,6 +395,7 @@
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
 				140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */,
 				140C3EE129C96CDC00B4EF86 /* Chapter+CoreDataProperties.swift in Sources */,
+				140C3EEE29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift in Sources */,
 				14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
