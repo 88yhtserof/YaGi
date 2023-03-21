@@ -16,7 +16,6 @@ extension Draft {
         return NSFetchRequest<Draft>(entityName: "Draft")
     }
 
-    @NSManaged public var bookmark: Bool
     @NSManaged public var content: String?
     @NSManaged public var date: String?
     @NSManaged public var heading: String?
