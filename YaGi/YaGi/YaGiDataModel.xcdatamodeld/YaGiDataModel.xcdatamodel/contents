@@ -3,10 +3,10 @@
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="date" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
-        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChapterRepository" inverseName="contentsOfBook" inverseEntity="ChapterRepository"/>
-        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChapterRepository" inverseName="draftsOfBook" inverseEntity="ChapterRepository"/>
+        <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="contentsOfBook" inverseEntity="Chapter"/>
+        <relationship name="drafts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Chapter" inverseName="draftsOfBook" inverseEntity="Chapter"/>
     </entity>
-    <entity name="ChapterRepository" representedClassName="ChapterRepository" syncable="YES">
+    <entity name="Chapter" representedClassName="Chapter" syncable="YES">
         <attribute name="bookmark" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="content" attributeType="String"/>
         <attribute name="date" attributeType="String"/>
