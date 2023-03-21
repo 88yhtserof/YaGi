@@ -8,6 +8,7 @@
 import CoreData
 
 public protocol BookStore {
-    func fetch()
-    func create(_ book: Book)
+    func fetch(at: Int) -> Book?
+    func fetchAll() -> [Book]?
+    func create(title: String, date: String)
 }

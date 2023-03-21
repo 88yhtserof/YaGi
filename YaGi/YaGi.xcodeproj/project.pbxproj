@@ -17,6 +17,7 @@
 		140C3EE529C96CDC00B4EF86 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EDF29C96CDC00B4EF86 /* Book+CoreDataProperties.swift */; };
 		140C3EE729C96D7F00B4EF86 /* DraftStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE629C96D7F00B4EF86 /* DraftStore.swift */; };
 		140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE829C972B200B4EF86 /* DraftRepository.swift */; };
+		140C3EEC29C9779600B4EF86 /* BookRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EEB29C9779600B4EF86 /* BookRepository.swift */; };
 		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
 		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
 		1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */; };
@@ -65,6 +66,7 @@
 		140C3EDF29C96CDC00B4EF86 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		140C3EE629C96D7F00B4EF86 /* DraftStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStore.swift; sourceTree = "<group>"; };
 		140C3EE829C972B200B4EF86 /* DraftRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRepository.swift; sourceTree = "<group>"; };
+		140C3EEB29C9779600B4EF86 /* BookRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookRepository.swift; sourceTree = "<group>"; };
 		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
 		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
 		1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUserDefaults.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				140C3EEA29C9771700B4EF86 /* CoreDataStore */,
 				146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */,
 				140C3EE829C972B200B4EF86 /* DraftRepository.swift */,
+				140C3EEB29C9779600B4EF86 /* BookRepository.swift */,
 			);
 			path = CoreDataManager;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				14F49D1028D5E2FF0027A4B3 /* ContentsViewController.swift in Sources */,
 				141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */,
 				140C3EE029C96CDC00B4EF86 /* Chapter+CoreDataClass.swift in Sources */,
+				140C3EEC29C9779600B4EF86 /* BookRepository.swift in Sources */,
 				14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */,
 				14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
