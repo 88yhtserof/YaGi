@@ -15,6 +15,8 @@
 		140C3EE329C96CDC00B4EF86 /* Draft+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EDD29C96CDC00B4EF86 /* Draft+CoreDataProperties.swift */; };
 		140C3EE429C96CDC00B4EF86 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EDE29C96CDC00B4EF86 /* Book+CoreDataClass.swift */; };
 		140C3EE529C96CDC00B4EF86 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EDF29C96CDC00B4EF86 /* Book+CoreDataProperties.swift */; };
+		140C3EE729C96D7F00B4EF86 /* DraftStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE629C96D7F00B4EF86 /* DraftStore.swift */; };
+		140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140C3EE829C972B200B4EF86 /* DraftRepository.swift */; };
 		141D5AD9290A430600BFE3F7 /* BottomMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */; };
 		141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D5ADA290A553B00BFE3F7 /* ExUIView.swift */; };
 		1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */; };
@@ -61,6 +63,8 @@
 		140C3EDD29C96CDC00B4EF86 /* Draft+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Draft+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		140C3EDE29C96CDC00B4EF86 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
 		140C3EDF29C96CDC00B4EF86 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		140C3EE629C96D7F00B4EF86 /* DraftStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftStore.swift; sourceTree = "<group>"; };
+		140C3EE829C972B200B4EF86 /* DraftRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftRepository.swift; sourceTree = "<group>"; };
 		141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomMenuViewController.swift; sourceTree = "<group>"; };
 		141D5ADA290A553B00BFE3F7 /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
 		1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUserDefaults.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 				146A8BE929C6CB20009D608E /* ChapterStore.swift */,
 				146A8BEC29C6E050009D608E /* BookStore.swift */,
 				146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */,
+				140C3EE629C96D7F00B4EF86 /* DraftStore.swift */,
+				140C3EE829C972B200B4EF86 /* DraftRepository.swift */,
 			);
 			path = CoreDataManager;
 			sourceTree = "<group>";
@@ -370,7 +376,9 @@
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
 				14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */,
 				14F49D0D28D5C0280027A4B3 /* ExUIColor.swift in Sources */,
+				140C3EE729C96D7F00B4EF86 /* DraftStore.swift in Sources */,
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
+				140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */,
 				140C3EE129C96CDC00B4EF86 /* Chapter+CoreDataProperties.swift in Sources */,
 				14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */,
 			);
