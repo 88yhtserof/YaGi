@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ContentRepository: ChapterStore {
+class ChapterRepository: ChapterStore {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func fetch(at index: Int) -> Chapter? {

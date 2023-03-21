@@ -21,7 +21,7 @@
 		146A8BE729C6BF53009D608E /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BE329C6BF53009D608E /* Book+CoreDataProperties.swift */; };
 		146A8BEA29C6CB20009D608E /* ChapterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BE929C6CB20009D608E /* ChapterStore.swift */; };
 		146A8BED29C6E050009D608E /* BookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BEC29C6E050009D608E /* BookStore.swift */; };
-		146A8BEF29C6E0CE009D608E /* ContentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BEE29C6E0CE009D608E /* ContentRepository.swift */; };
+		146A8BEF29C6E0CE009D608E /* ChapterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */; };
 		146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D328CB6F930029F556 /* AppDelegate.swift */; };
 		146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146BB2D528CB6F930029F556 /* SceneDelegate.swift */; };
 		146BB2DD28CB6F960029F556 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 146BB2DC28CB6F960029F556 /* Assets.xcassets */; };
@@ -65,7 +65,7 @@
 		146A8BE329C6BF53009D608E /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		146A8BE929C6CB20009D608E /* ChapterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterStore.swift; sourceTree = "<group>"; };
 		146A8BEC29C6E050009D608E /* BookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookStore.swift; sourceTree = "<group>"; };
-		146A8BEE29C6E0CE009D608E /* ContentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentRepository.swift; sourceTree = "<group>"; };
+		146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterRepository.swift; sourceTree = "<group>"; };
 		146BB2D028CB6F930029F556 /* YaGi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaGi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		146BB2D328CB6F930029F556 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		146BB2D528CB6F930029F556 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 			children = (
 				146A8BE929C6CB20009D608E /* ChapterStore.swift */,
 				146A8BEC29C6E050009D608E /* BookStore.swift */,
-				146A8BEE29C6E0CE009D608E /* ContentRepository.swift */,
+				146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */,
 			);
 			path = CoreDataManager;
 			sourceTree = "<group>";
@@ -346,7 +346,7 @@
 				146BB2EA28CB80530029F556 /* MainTabBarController.swift in Sources */,
 				146A8BED29C6E050009D608E /* BookStore.swift in Sources */,
 				146A8BDF29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld in Sources */,
-				146A8BEF29C6E0CE009D608E /* ContentRepository.swift in Sources */,
+				146A8BEF29C6E0CE009D608E /* ChapterRepository.swift in Sources */,
 				144F122E296D335700C34892 /* StartViewController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* SettingViewController.swift in Sources */,
 				14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */,
