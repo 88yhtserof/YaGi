@@ -1,5 +1,5 @@
 //
-//  Chapter+CoreDataProperties.swift
+//  Draft+CoreDataProperties.swift
 //  YaGi
 //
 //  Created by 임윤휘 on 2023/03/21.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Chapter {
+extension Draft {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Chapter> {
-        return NSFetchRequest<Chapter>(entityName: "Chapter")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Draft> {
+        return NSFetchRequest<Draft>(entityName: "Draft")
     }
 
     @NSManaged public var bookmark: Bool
@@ -24,6 +24,6 @@ extension Chapter {
 
 }
 
-extension Chapter : Identifiable {
+extension Draft : Identifiable {
 
 }

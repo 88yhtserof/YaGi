@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  YaGi
 //
-//  Created by 임윤휘 on 2023/03/19.
+//  Created by 임윤휘 on 2023/03/21.
 //
 //
 
@@ -16,8 +16,8 @@ extension Book {
         return NSFetchRequest<Book>(entityName: "Book")
     }
 
-    @NSManaged public var title: String?
     @NSManaged public var date: String?
+    @NSManaged public var title: String?
     @NSManaged public var contents: NSOrderedSet?
     @NSManaged public var drafts: NSOrderedSet?
 
@@ -62,28 +62,28 @@ extension Book {
 extension Book {
 
     @objc(insertObject:inDraftsAtIndex:)
-    @NSManaged public func insertIntoDrafts(_ value: Chapter, at idx: Int)
+    @NSManaged public func insertIntoDrafts(_ value: Draft, at idx: Int)
 
     @objc(removeObjectFromDraftsAtIndex:)
     @NSManaged public func removeFromDrafts(at idx: Int)
 
     @objc(insertDrafts:atIndexes:)
-    @NSManaged public func insertIntoDrafts(_ values: [Chapter], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoDrafts(_ values: [Draft], at indexes: NSIndexSet)
 
     @objc(removeDraftsAtIndexes:)
     @NSManaged public func removeFromDrafts(at indexes: NSIndexSet)
 
     @objc(replaceObjectInDraftsAtIndex:withObject:)
-    @NSManaged public func replaceDrafts(at idx: Int, with value: Chapter)
+    @NSManaged public func replaceDrafts(at idx: Int, with value: Draft)
 
     @objc(replaceDraftsAtIndexes:withDrafts:)
-    @NSManaged public func replaceDrafts(at indexes: NSIndexSet, with values: [Chapter])
+    @NSManaged public func replaceDrafts(at indexes: NSIndexSet, with values: [Draft])
 
     @objc(addDraftsObject:)
-    @NSManaged public func addToDrafts(_ value: Chapter)
+    @NSManaged public func addToDrafts(_ value: Draft)
 
     @objc(removeDraftsObject:)
-    @NSManaged public func removeFromDrafts(_ value: Chapter)
+    @NSManaged public func removeFromDrafts(_ value: Draft)
 
     @objc(addDrafts:)
     @NSManaged public func addToDrafts(_ values: NSOrderedSet)
