@@ -64,7 +64,12 @@ class ChapterRepository: ChapterStore {
         }
     }
     
-    func update(_ newChapter: Chapter) {
+    func update(_ chapter: Chapter, heading: String, content: String, date: String, bookmark: Bool) {
+        
+        chapter.heading = heading
+        chapter.content = content
+        chapter.date = date
+        chapter.bookmark = bookmark
         
         do {
             try self.context.save()

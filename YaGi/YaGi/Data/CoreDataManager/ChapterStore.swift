@@ -12,5 +12,5 @@ public protocol ChapterStore {
     func fetchAll() -> [Chapter]?
     func create(heading: String, content: String, date: String, bookmark: Bool)
     func remove(_ chapter: Chapter)
-    func update(_ newChapter: Chapter)
+    func update(_ chapter: Chapter, heading: String, content: String, date: String, bookmark: Bool)
 }
