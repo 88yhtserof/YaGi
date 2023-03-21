@@ -79,4 +79,26 @@ class ChapterRepository: ChapterStore {
             print("Failed to update the chapter")
         }
     }
+    
+    func unbookmarkAll(){
+        
+        guard let chapters = fetchAll() else { return }
+        
+        let _ = chapters.map { chapter in
+            
+            if chapter.bookmark {
+                chapter.bookmark = false
+            }
+            return chapter
+        }
+        
+        do {
+            try self.context.save()
+        }
+        catch {
+            self.context.rollback()
+            print("Failed to unbookmark all chapters")
+        }
+        
+    }
 }
