@@ -37,7 +37,11 @@ class ContentRepository: ChapterStore {
     
     func create(heading: String, content: String, date: String, bookmark: Bool) {
         
-        let content = Chapter(context: self.context)
+        let chapter = Chapter(context: self.context)
+        chapter.heading = heading
+        chapter.content = content
+        chapter.date = date
+        chapter.bookmark = bookmark
         
         do {
             try self.context.save()
