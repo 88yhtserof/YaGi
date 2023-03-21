@@ -48,7 +48,7 @@ class ChapterRepository: ChapterStore {
         }
         catch {
             context.rollback()
-            print("Failed to create a content")
+            print("Failed to create a chapter")
         }
     }
     
@@ -60,7 +60,7 @@ class ChapterRepository: ChapterStore {
         }
         catch {
             context.rollback()
-            print("Failed to create a content")
+            print("Failed to remove the chapter")
         }
     }
     
@@ -76,7 +76,7 @@ class ChapterRepository: ChapterStore {
         }
         catch {
             context.rollback()
-            print("Failed to create a content")
+            print("Failed to update the chapter")
         }
     }
 }
