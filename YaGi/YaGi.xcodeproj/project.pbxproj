@@ -126,6 +126,16 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		140C3EEA29C9771700B4EF86 /* CoreDataStore */ = {
+			isa = PBXGroup;
+			children = (
+				146A8BE929C6CB20009D608E /* ChapterStore.swift */,
+				146A8BEC29C6E050009D608E /* BookStore.swift */,
+				140C3EE629C96D7F00B4EF86 /* DraftStore.swift */,
+			);
+			path = CoreDataStore;
+			sourceTree = "<group>";
+		};
 		146A8BE829C6BF9B009D608E /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,10 +152,8 @@
 		146A8BEB29C6CB25009D608E /* CoreDataManager */ = {
 			isa = PBXGroup;
 			children = (
-				146A8BE929C6CB20009D608E /* ChapterStore.swift */,
-				146A8BEC29C6E050009D608E /* BookStore.swift */,
+				140C3EEA29C9771700B4EF86 /* CoreDataStore */,
 				146A8BEE29C6E0CE009D608E /* ChapterRepository.swift */,
-				140C3EE629C96D7F00B4EF86 /* DraftStore.swift */,
 				140C3EE829C972B200B4EF86 /* DraftRepository.swift */,
 			);
 			path = CoreDataManager;
