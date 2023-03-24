@@ -9,7 +9,7 @@ import Foundation
 
 @propertyWrapper
 struct UserDefaultStandardWrapper<T> {
-    private let userDefaultKey: String = "Yagi_UserData"
+    private let userDefaultKey: String = "Yagi_Standard"
     private let dictionaryKey: String
     private let defaultValue: T?
     
