@@ -17,9 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         var rootViewController: UIViewController
         
-        if UserDefaults.standard.hasValue(forKey: "YaGi_UserData") {
+        //Core Data 여부 확인 후 데이터 이동
+        if !UserDefaults.standard.hasValue(forKey: "Yagi_Standard") {
+            BookRepository().moveDatafromUserDefaults()
+            
+            //기존 UserDefaults 데이터 삭제
+            UserDefaults.standard.removeObject(forKey: "YaGi_UserData")
+        }
+        
+        if BookRepository().hasValue() {
             rootViewController = MainTabBarController()
-        } else {
+        }
+        else {
             rootViewController = StartViewController()
         }
         
