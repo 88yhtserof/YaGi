@@ -12,7 +12,8 @@ class BookRepository: BookStore {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     func hasValue() -> Bool {
-        return nil != fetchAll()
+        guard let books = fetchAll() else { return false }
+        return !books.isEmpty
     }
     
     func fetch(at index: Int) -> Book? {
