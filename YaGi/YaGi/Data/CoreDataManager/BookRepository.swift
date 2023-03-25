@@ -63,28 +63,24 @@ class BookRepository: BookStore {
         book.date = userData.date
         
         if let contents = userData.contents {
-            let chapters = contents.map({ data in
-                let chapter = Chapter(context: self.context)
-                chapter.heading = data.contentTitle
-                chapter.content = data.contentText
-                chapter.date = data.ContentDate
-                chapter.bookmark = data.bookmark
-                
-                return chapter
-            })
-            book.insertIntoContents(chapters, at: NSIndexSet(index: 0))
+            for data in contents {
+                ChapterRepository().create(
+                    heading: data.contentTitle,
+                    content: data.contentText,
+                    date: data.ContentDate,
+                    bookmark: data.bookmark
+                )
+            }
         }
         
         if let drafts = userData.drafts {
-            let drafts = drafts.map { data in
-                let draft = Draft(context: self.context)
-                draft.heading = data.contentTitle
-                draft.content = data.contentText
-                draft.date = data.ContentDate
-                
-                return draft
+            for data in drafts {
+                DraftRepository().create(
+                    heading: data.contentTitle,
+                    content: data.contentText,
+                    date: data.ContentDate
+                )
             }
-            book.insertIntoDrafts(drafts, at: NSIndexSet(index: 0))
         }
         
         do {
