@@ -11,8 +11,6 @@ import MessageUI
 class SettingViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
-    private let books = UserDefaultsManager.books
-    private var book: BookModel?
     
     //MARK: - View
     private lazy var lineView: UIView = {
@@ -46,8 +44,7 @@ class SettingViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         
-        guard let book = self.book else { return UILabel() }
-        let text = book.title
+        let text = "제목"
         
         label.text = text
         label.textAlignment = .center
@@ -75,8 +72,7 @@ class SettingViewController: UIViewController {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         
-        guard let book = self.book else { return UILabel() }
-        label.text = book.date
+        label.text = "날짜"
         label.textColor = .yagiGrayDeep
         label.font = .maruburi(ofSize: 15, weight: .semiBold)
         
@@ -86,8 +82,7 @@ class SettingViewController: UIViewController {
     private lazy var numberOfChapterLabel: UILabel = {
         let label = UILabel()
         
-        guard let contents = self.book?.contents else { return UILabel() }
-        label.text = contents.count.description + "장"
+        label.text = "장"
         label.textColor = .yagiGrayDeep
         label.font = .maruburi(ofSize: 15, weight: .semiBold)
         
@@ -170,14 +165,28 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let books = self.books else { return }
-        self.book = books[self.indexOfCurrentBook]
         configureView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureData()
     }
 }
 
 //MARK: - Configure
 private extension SettingViewController {
+    func configureData() {
+        guard let book = BookRepository().fetch(at: self.indexOfCurrentBook) else { return }
+        
+        self.titleLabel.text = book.title
+        self.dateLabel.text = book.date
+        
+        let numberOfChapter = book.contents?.count.description ?? "0"
+        self.numberOfChapterLabel.text = numberOfChapter + "장"
+    }
+    
     func configureView(){
         self.view.backgroundColor = .yagiWhite
         
