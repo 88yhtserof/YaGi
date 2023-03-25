@@ -11,8 +11,7 @@ import SnapKit
 class WritingViewController: UIViewController {
     
     //MARK: - Properties
-    private let indexOfCurrentBook: Int = 0
-    private var books = UserDefaultsManager.books
+    private var data: Any?
     private let contentIndex: Int?
     private let sectionType: ContentsCollectionItemModel.SectionType
     private var isBookmark = false
@@ -80,14 +79,11 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            let content = self.createContent(
+            self.saveDraftContent(
                 title: self.contentTitle,
                 text: self.contentText,
-                isBookmark: false
+                isBookmark: self.isBookmark
             )
-            
-            self.saveDraftContent(content)
-            
             self.dismiss(animated: true)
         }
         
@@ -105,13 +101,11 @@ class WritingViewController: UIViewController {
         configuration.baseForegroundColor = .yagiHighlight
         
         let action = UIAction { _ in
-            let content = self.createContent(
+            self.saveContent(
                 title: self.contentTitle,
                 text: self.contentText,
                 isBookmark: self.isBookmark
             )
-            self.saveContent(content)
-            
             self.dismiss(animated: true)
         }
         
@@ -239,63 +233,39 @@ class WritingViewController: UIViewController {
     }
     
     //MARK: - Function
-    func createContent(title: String, text: String, isBookmark: Bool) -> ContentModel {
+    func saveContent(title: String, text: String, isBookmark: Bool) {
+        let date = self.contentDate
         
-        let content = ContentModel(
-            contentTitle: title,
-            ContentDate: self.contentDate,
-            contentText: text,
-            bookmark: isBookmark
-        )
-        
-        return content
-    }
-    
-    func saveContent(_ content: ContentModel) {
-        guard var books = self.books else { return }
-        var book = books[self.indexOfCurrentBook]
-        
+        //Chapter 수정 여부 조건
         if sectionType == .contents
             && isEditMode {
-            guard var contents = book.contents,
-                  let contentIndex = self.contentIndex else { return }
-            contents[contentIndex] = content
-            book.contents = contents
+            guard let chapter = self.data as? Chapter else { return }
+            ChapterRepository().update(chapter, heading: title, content: text, date: date, bookmark: isBookmark)
         }
         else {
+            //Draft 또는 새 글로 새로운 Chapter 저장
             if sectionType == .draft {
-                guard var drafts = book.drafts,
-                      let contentIndex = self.contentIndex else { return }
-                drafts.remove(at: contentIndex)
-                book.drafts = drafts
+                guard let draft = self.data as? Draft else { return }
+                
+                DraftRepository().remove(draft)
             }
             
-            if book.contents == nil {
-                book.contents = Array<ContentModel>()
-            }
-            book.contents?.append(content)
+            ChapterRepository().create(heading: title, content: text, date: date, bookmark: isBookmark)
         }
-        
-        books[indexOfCurrentBook] = book
-        UserDefaultsManager.books = books
     }
     
-    func saveDraftContent(_ draftCotent: ContentModel){
-        guard var books = self.books else { return }
-        var book = books[self.indexOfCurrentBook]
+    func saveDraftContent(title: String, text: String, isBookmark: Bool){
+        let date = self.contentDate
         
         if isEditMode {
-            guard var drafts = book.drafts,
-                  let contentIndex = self.contentIndex else { return }
-            drafts[contentIndex] = draftCotent
-            book.drafts = drafts
+            print("!")
+            guard let draft = self.data as? Draft else { return }
+            print("2")
+            DraftRepository().update(draft, heading: title, content: text, date: date)
+            
         } else {
-            if book.drafts == nil { book.drafts = Array<ContentModel>() }
-            book.drafts?.append(draftCotent)
+            DraftRepository().create(heading: title, content: text, date: date)
         }
-        
-        books[self.indexOfCurrentBook] = book
-        UserDefaultsManager.books = books
     }
 }
 
@@ -304,26 +274,33 @@ private extension WritingViewController {
     
     //글 수정 시에만 호출
     func configureData(){
-        guard let books = self.books,
-              let contentIndex = self.contentIndex else { return }
+        guard let index = self.contentIndex else { return }
         
-        var contents: [ContentModel]?
+        //데이터 할당
         switch sectionType {
         case .draft:
-            contents = books[indexOfCurrentBook].drafts
+            guard let draft = DraftRepository().fetch(at: index) else { return }
+            
+            self.data = draft
+            self.contentTitle = draft.heading ?? ""
+            self.contentText = draft.content ?? ""
+            self.contentDate = draft.date ?? ""
+            
         case .contents:
-            contents = books[indexOfCurrentBook].contents
+            guard let chapter = ChapterRepository().fetch(at: index) else { return }
+            
+            self.data = chapter
+            self.contentTitle = chapter.heading ?? ""
+            self.contentText = chapter.content ?? ""
+            self.contentDate = chapter.date ?? ""
+            self.isBookmark = chapter.bookmark
         }
-        guard let content = contents?[contentIndex] else { return }
-        self.books = books
-        self.contentTitle = content.contentTitle
-        self.contentText = content.contentText
-        self.contentDate = content.ContentDate
-        self.isBookmark = content.bookmark
         
-        self.contentTitleTextView.text = content.contentTitle
+        //view 데이터 반영
+        self.contentTitleTextView.text = self.contentTitle
         self.contentTitleTextView.textColor = .yagiGrayDeep
-        self.writingView.text = content.contentText
+        
+        self.writingView.text = self.contentText
         self.writingView.textColor = .yagiGrayDeep
         
         let dateFormatter: DateFormatter = {
@@ -333,7 +310,7 @@ private extension WritingViewController {
             dateFormatter.locale = Locale(identifier: languge)
             return dateFormatter
         }()
-        self.datePicker.setDate(dateFormatter.date(from: content.ContentDate) ?? Date(), animated: true)
+        self.datePicker.setDate(dateFormatter.date(from: self.contentDate) ?? Date(), animated: true)
     }
     
     func configureView() {
