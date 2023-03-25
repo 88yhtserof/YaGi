@@ -258,9 +258,7 @@ class WritingViewController: UIViewController {
         let date = self.contentDate
         
         if isEditMode {
-            print("!")
             guard let draft = self.data as? Draft else { return }
-            print("2")
             DraftRepository().update(draft, heading: title, content: text, date: date)
             
         } else {
