@@ -72,9 +72,7 @@ class StartViewController: UIViewController {
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 30, bottom: 30, trailing: 30)
         
         let action = UIAction {  _ in
-            
-            let book = self.createBook()
-            UserDefaultsManager.books = [book]
+            self.createBook()
             
             let mainTapBarController = MainTabBarController()
             SceneDelegate.shared.updateRootViewController(mainTapBarController)
@@ -95,7 +93,7 @@ class StartViewController: UIViewController {
     }
     
     //MARK: - Function
-    private func createBook() -> BookModel {
+    private func createBook(){
         let title = self.titleTextField.text ?? String()
         
         let dateFormatter = DateFormatter()
@@ -104,7 +102,7 @@ class StartViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: localeID)
         let date = dateFormatter.string(from: Date())
         
-        return BookModel(date: date, title: title)
+        BookRepository().create(title: title, date: date)
     }
 }
 
