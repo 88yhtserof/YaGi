@@ -183,8 +183,10 @@ private extension SettingViewController {
         self.titleLabel.text = book.title
         self.dateLabel.text = book.date
         
-        let numberOfChapter = book.contents?.count.description ?? "0"
+        let numberOfChapter = ChapterRepository().fetchAll()?.count.description ?? "0"
         self.numberOfChapterLabel.text = numberOfChapter + "장"
+        
+        self.loadViewIfNeeded()
     }
     
     func configureView(){
