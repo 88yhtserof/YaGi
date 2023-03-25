@@ -92,6 +92,12 @@ class BookRepository: BookStore {
         }
         catch {
             print("Failed to move the Data from UserDefaults")
+            return
         }
+        
+        //기존 UserDefaults 데이터 삭제
+        UserDefaults.standard.removeObject(forKey: "YaGi_UserData")
+        //데이터 이동 여부 저장
+        UserDefaultsManager.isImplovedData = true
     }
 }
