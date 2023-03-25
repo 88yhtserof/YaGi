@@ -411,7 +411,10 @@ extension WritingViewController: UITextViewDelegate {
         }
         
         self.saveButton.isEnabled = true
-        self.saveDraftButton.isEnabled = true
+        if sectionType == .contents && !isEditMode
+            || sectionType == .draft {
+            self.saveDraftButton.isEnabled = true
+        }
     }
 }
 
