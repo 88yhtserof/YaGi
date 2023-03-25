@@ -80,6 +80,19 @@ class ChapterRepository: ChapterStore {
         }
     }
     
+    func updateBookmark(_ chapter: Chapter, _ bookmark: Bool) {
+        
+        chapter.bookmark = bookmark
+        
+        do {
+            try self.context.save()
+        }
+        catch {
+            context.rollback()
+            print("Failed to update the bookmark of data")
+        }
+    }
+    
     func unbookmarkAll(){
         
         guard let chapters = fetchAll() else { return }
