@@ -10,4 +10,7 @@ import Foundation
 struct UserDefaultsManager {
     @UserDefaultWrapper(dictionaryKey: "Books", defaultValue: nil)
     static var books: [BookModel]?
+    
+    @UserDefaultStandardWrapper(dictionaryKey: "isImplovedData", defaultValue: false)
+    static var isImplovedData: Bool?
 }

@@ -11,7 +11,6 @@ class ContentsViewController: UIViewController {
     //MARK: - Properties
     // TODO: - 데이터 연결에 따른 프로퍼티 정리
     private let indexOfCurrentBook: Int = 0
-    private var books: [BookModel]?
     private var contentsCollectionItems: [ContentsCollectionItemModel] = []
     
     //MARK: - View
@@ -111,19 +110,18 @@ class ContentsViewController: UIViewController {
 //MARK: -  Configure
 private extension ContentsViewController {
     func configureData(){
-        guard let books = UserDefaultsManager.books else { return }
-        let book = books[indexOfCurrentBook]
+        guard let book = BookRepository().fetch(at: self.indexOfCurrentBook) else { return }
+        
         self.titleLabel.text = book.title
-        self.books = books
         
         //contentsCollectionItemModel 데이터 연결
-        let drafts = book.drafts
+        let drafts = DraftRepository().fetchAll()
         let draftItems = ContentsCollectionItemModel(sectionType: .draft, items: drafts)
         
-        let contens = book.contents
-        let contentItems = ContentsCollectionItemModel(sectionType: .contents  , items: contens)
+        let chapters = ChapterRepository().fetchAll()
+        let chapterItems = ContentsCollectionItemModel(sectionType: .contents  , items: chapters)
     
-        self.contentsCollectionItems = [draftItems, contentItems]
+        self.contentsCollectionItems = [draftItems, chapterItems]
         
         self.contentsCollectionView.reloadData()
     }
@@ -176,19 +174,19 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
         case .draft:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DraftCollectionViewCell", for: indexPath) as? DraftCollectionViewCell else { return UICollectionViewCell() }
             
-            guard let drafts = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
+            guard let drafts = contentsCollectionItems[indexPath.section].items as? [Draft] else { return UICollectionViewCell() }
             let draft = drafts[indexPath.row]
             
-            cell.configureCellData(draftTitle: draft.contentTitle)
+            cell.configureCellData(draftTitle: draft.heading ?? "")
             return cell
             
         case .contents:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContentsCollectionViewCell", for: indexPath) as? ContentsCollectionViewCell
             else { return UICollectionViewCell() }
             
-            guard let contents = contentsCollectionItems[indexPath.section].items as? [ContentModel] else { return UICollectionViewCell() }
-            let content = contents[indexPath.row]
-            cell.configureCell(title: content.contentTitle, date: content.ContentDate)
+            guard let chapters = contentsCollectionItems[indexPath.section].items as? [Chapter] else { return UICollectionViewCell() }
+            let chapter = chapters[indexPath.row]
+            cell.configureCell(title: chapter.heading ?? "", date: chapter.date ?? "")
             return cell
         }
     }
@@ -212,20 +210,22 @@ extension ContentsViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPaths: [IndexPath], point: CGPoint) -> UIContextMenuConfiguration? {
         guard let indexPath = indexPaths.first else { return nil }
-        let sectionType = contentsCollectionItems[indexPath.section].sectionType
+        let section = indexPath.section
+        let row = indexPath.row
+        let sectionType = contentsCollectionItems[section].sectionType
         
         if sectionType == .draft {
             return UIContextMenuConfiguration(actionProvider: { suggestedAction in
                 return UIMenu(children: [
                     // TODO: - 임시저장 글 공유하기
                     
+                    //Draft 삭제
                     UIAction(title: "삭제하기", attributes: .destructive, handler: { _ in
-                        guard var drafts = self.contentsCollectionItems[indexPath.section].items as? [ContentModel],
-                              var books = self.books else { return }
-                        drafts.remove(at: indexPath.row)
-                        self.contentsCollectionItems[indexPath.section].items = drafts
-                        books[self.indexOfCurrentBook].drafts = drafts
-                        UserDefaultsManager.books = books
+                        guard let draft = self.contentsCollectionItems[section].items?[row] as? Draft
+                        else { return }
+                        
+                        DraftRepository().remove(draft)
+                        self.contentsCollectionItems[section].items?.remove(at: row)
                         
                         collectionView.deleteItems(at: [indexPath])
                     })

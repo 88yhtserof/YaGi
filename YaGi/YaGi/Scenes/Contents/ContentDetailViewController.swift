@@ -12,7 +12,7 @@ class ContentDetailViewController: UIViewController {
     //MARK: - Properties
     private let indexOfCurrentBook: Int = 0
     private var books: [BookModel]?
-    private var content: ContentModel?
+    private var chapter: Chapter?
     private var contentIndex: Int
     
     init(contentIndex: Int) {
@@ -38,7 +38,7 @@ class ContentDetailViewController: UIViewController {
     private lazy var contentTitle: UILabel = {
         var label = UILabel()
         
-        label.text = self.content?.contentTitle ?? String()
+        label.text = ""
         label.font = .maruburi(ofSize: 25, weight: .bold)
         label.textColor = .yagiGrayDeep
         label.minimumScaleFactor = 0.9
@@ -57,7 +57,7 @@ class ContentDetailViewController: UIViewController {
     private lazy var contentTextView: UITextView = {
         var textView = UITextView()
         
-        var text = self.content?.contentText ?? String()
+        var text = ""
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
@@ -104,24 +104,21 @@ class ContentDetailViewController: UIViewController {
             item.tintColor = item.tintColor == unbookmarkedState ? bookmarkedState : unbookmarkedState
             self.view.layoutIfNeeded()
             
-            guard var content = self.content else { return }
+            var isBookmark = false
+            
             switch item.tintColor {
             case bookmarkedState:
-                content.bookmark = true
+                isBookmark = true
             case unbookmarkedState:
-                content.bookmark = false
+                isBookmark = false
             case .none:
                 break
             case .some(_):
                 break
             }
             
-            guard var books = self.books,
-                    var contents = books[self.indexOfCurrentBook].contents
-            else { return }
-            contents[self.contentIndex] = content
-            books[self.indexOfCurrentBook].contents = contents
-            UserDefaultsManager.books = books
+            guard var chapter = self.chapter else { return }
+            ChapterRepository().updateBookmark(chapter, isBookmark)
         }
         
         item.primaryAction = action
@@ -148,16 +145,12 @@ class ContentDetailViewController: UIViewController {
 //MARK: - Configure
 private extension ContentDetailViewController {
     func configureData(){
-        guard let books = UserDefaultsManager.books,
-              let contents = books[self.indexOfCurrentBook].contents
-        else { return }
-        self.books = books
-        let content = contents[self.contentIndex]
+        guard let chapter = ChapterRepository().fetch(at: self.contentIndex) else { return }
         
-        self.content = content
-        self.bookmarkBarItem.tintColor = content.bookmark ? .yagiHighlight : .yagiHighlightLight
-        self.contentTitle.text = content.contentTitle
-        self.contentTextView.text = content.contentText
+        self.chapter = chapter
+        self.bookmarkBarItem.tintColor = chapter.bookmark ? .yagiHighlight : .yagiHighlightLight
+        self.contentTitle.text = chapter.heading ?? ""
+        self.contentTextView.text = chapter.content ?? ""
     }
     
     func configureNavigationBar() {
@@ -202,6 +195,7 @@ private extension ContentDetailViewController {
         viewController.thrMenuButtonTitle = "텍스트 공유하기"
         viewController.fthMenuButtonTitle = "이미지 공유하기"
         
+        //수정하기
         viewController.firMenuButtonAction = {
             let contentWriteViewController = WritingViewController(sectionType: .contents, contentIndex: self.contentIndex, isEditMode: true)
             contentWriteViewController.modalPresentationStyle = .fullScreen
@@ -211,15 +205,12 @@ private extension ContentDetailViewController {
             }
         }
         
+        //삭제하기
         viewController.secMenuButtonAction = {
             self.dismiss(animated: true) {
                 let removeAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
-                    guard var books = self.books,
-                          var contents = books[self.indexOfCurrentBook].contents
-                    else { return }
-                    contents.remove(at: self.contentIndex)
-                    books[self.indexOfCurrentBook].contents = contents
-                    UserDefaultsManager.books = books
+                    guard let chapter = self.chapter else { return }
+                    ChapterRepository().remove(chapter)
                     
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -239,6 +230,7 @@ private extension ContentDetailViewController {
             }
         }
         
+        //텍스트 공유하기
         viewController.thrMenuButtonAction = {
             let title: String = self.contentTitle.text ?? ""
             let text: String = self.contentTextView.text ?? ""
@@ -260,6 +252,7 @@ private extension ContentDetailViewController {
             }
         }
         
+        //이미지 공유하기
         viewController.fthMenuButtonAction = {
             guard let shareImage = self.view.snapShotFullScreen(scrollView: self.scrollView) else { return }
             let activityItems = [ shareImage ]
