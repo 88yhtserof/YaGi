@@ -80,9 +80,9 @@ class ChapterRepository: ChapterStore {
         }
     }
     
-    func updateBookmark(_ chapter: Chapter, _ bookmark: Bool) {
+    func updateBookmark(_ chapter: Chapter, _ isBookmark: Bool) {
         
-        chapter.bookmark = bookmark
+        chapter.bookmark = isBookmark
         
         do {
             try self.context.save()
