@@ -93,16 +93,10 @@ class ChapterRepository: ChapterStore {
         }
     }
     
-    func unbookmarkAll(){
+    func unbookmarkAll(_ chapters: [Chapter]){
         
-        guard let chapters = fetchAll() else { return }
-        
-        let _ = chapters.map { chapter in
-            
-            if chapter.bookmark {
-                chapter.bookmark = false
-            }
-            return chapter
+        for chapter in chapters {
+            chapter.bookmark = false
         }
         
         do {
