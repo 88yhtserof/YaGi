@@ -70,10 +70,10 @@ class BookmarkTableViewCell: UITableViewCell {
 
 //MARK: - Configure
 extension BookmarkTableViewCell {
-    func configureData(_ content: ContentModel){
-        self.contentTitle.text = content.contentTitle
-        self.contentDate.text = content.ContentDate
-        self.contentText.text = content.contentText
+    func configureData(_ chapter: Chapter){
+        self.contentTitle.text = chapter.heading
+        self.contentDate.text = chapter.date
+        self.contentText.text = chapter.content
     }
     
     private func configureCell() {

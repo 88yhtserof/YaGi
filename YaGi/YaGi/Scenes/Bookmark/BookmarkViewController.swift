@@ -9,10 +9,8 @@ import UIKit
 
 class BookmarkViewController: UIViewController {
     //MARK: - Properties
-    private let indexOfCurrentBook: Int = 0
-    private var books: [BookModel]?
-    private var contents: [ContentModel]?
-    private var bookmarkedContents: [ContentModel]?
+    private var chapters: [Chapter]?
+    private var bookmarkedChapters: [Chapter]?
     
     //MARK: -  View
     private lazy var unbookmarkAllBarButton: UIBarButtonItem = {
@@ -25,24 +23,12 @@ class BookmarkViewController: UIViewController {
             )
             let cancelAction = UIAlertAction(title: "취소", style: .cancel)
             let clearAction = UIAlertAction(title: "해제", style: .destructive) { _ in
-                guard var books = self.books,
-                      var contents = books[self.indexOfCurrentBook].contents
-                else { return }
                 
-                let unbookmarkedContents = contents.map {
-                    var content = $0
-                    if content.bookmark {
-                        content.bookmark = false
-                    }
-                    return content
-                }
+                guard let bookmarkedChapters = self.bookmarkedChapters else { return }
                 
-                contents = unbookmarkedContents
-                books[self.indexOfCurrentBook].contents = contents
+                ChapterRepository().unbookmarkAll(bookmarkedChapters)
                 
-                UserDefaultsManager.books = books
-                
-                self.bookmarkedContents?.removeAll()
+                self.bookmarkedChapters?.removeAll()
                 self.bookmarkTableView.reloadData()
             }
             
@@ -90,15 +76,13 @@ class BookmarkViewController: UIViewController {
 //MARK: - Configure
 private extension BookmarkViewController {
     func configureData(){
-        guard let books = UserDefaultsManager.books,
-              let contents = books[self.indexOfCurrentBook].contents
-        else { return }
-        self.books = books
-        self.contents = contents
+        guard let chapters = ChapterRepository().fetchAll() else { return }
+        self.chapters = chapters
         
-        self.bookmarkedContents = contents.filter{ content -> Bool in
-            return content.bookmark
+        self.bookmarkedChapters = chapters.filter{ chapter -> Bool in
+            return chapter.bookmark
         }
+        
         bookmarkTableView.reloadData()
     }
     
@@ -124,12 +108,12 @@ private extension BookmarkViewController {
 //MARK: - TableView DataSource
 extension BookmarkViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookmarkedContents?.count ?? 0
+        return bookmarkedChapters?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let bookmarkedContents = self.bookmarkedContents,
+        guard let bookmarkedChapters = self.bookmarkedChapters,
               let cell = tableView.dequeueReusableCell(withIdentifier: "BookmarkTableViewCell", for: indexPath) as? BookmarkTableViewCell
         else { return UITableViewCell() }
         
@@ -137,8 +121,8 @@ extension BookmarkViewController: UITableViewDataSource {
         backgroundView.backgroundColor = .yagiWhihtDeep
         cell.selectedBackgroundView = backgroundView
         
-        let content = bookmarkedContents[indexPath.row]
-        cell.configureData(content)
+        let chapter = bookmarkedChapters[indexPath.row]
+        cell.configureData(chapter)
         
         return cell
     }
@@ -147,17 +131,14 @@ extension BookmarkViewController: UITableViewDataSource {
 //MARK: - TableView Delegate
 extension BookmarkViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let contents = self.contents,
-              let bookmarkedContents = self.bookmarkedContents
-        else { return }
-        let contentIndex = contents.firstIndex { content in
-            let bookmarkedContent = bookmarkedContents[indexPath.row]
-            return content.contentTitle == bookmarkedContent.contentTitle
-                && content.contentText == bookmarkedContent.contentText
-                && content.ContentDate == content.ContentDate
-                && content.bookmark == content.bookmark
+        guard let chapters = self.chapters,
+              let bookmarkedChapters = self.bookmarkedChapters else { return }
+        
+        let chapterIndex = chapters.firstIndex { chapter in
+            let bookmarkedChapter = bookmarkedChapters[indexPath.row]
+            return chapter == bookmarkedChapter
         }
-        guard let index = contentIndex else { return }
+        guard let index = chapterIndex else { return }
         
         let contentDetailViewController = ContentDetailViewController(contentIndex: index)
         self.navigationController?.pushViewController(contentDetailViewController, animated: true)
