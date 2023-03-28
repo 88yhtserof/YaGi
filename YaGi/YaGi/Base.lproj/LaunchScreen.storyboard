@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagi_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-Pg-Yn4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yagi_logo_120" translatesAutoresizingMaskIntoConstraints="NO" id="Pgn-Pg-Yn4">
                                 <rect key="frame" x="136.66666666666666" y="366" width="119.99999999999997" height="120"/>
                             </imageView>
                         </subviews>
@@ -34,7 +34,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Yagi_logo" width="120" height="120"/>
+        <image name="Yagi_logo_120" width="120" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
