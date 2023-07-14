@@ -1,4 +1,8 @@
-#for mac
+# for mac
 .DS_Store
+
+# for Xcode
+*.xcuserstate
+
 YaGi/YaGi/Info.plist
 
