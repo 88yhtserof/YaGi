@@ -37,13 +37,21 @@ class ContentDetailViewController: UIViewController {
     
     private lazy var contentTitle: UILabel = {
         var label = UILabel()
+        var text = "제목"
         
-        label.text = ""
-        label.font = .maruburi(ofSize: 25, weight: .bold)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 10
+        paragraphStyle.lineBreakStrategy = .hangulWordPriority
+        
+        let attributes = [ NSAttributedString.Key.paragraphStyle : paragraphStyle ]
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        
+        label.attributedText = attributedString
+        label.font = .maruburi(ofSize: 20, weight: .bold)
         label.textColor = .yagiGrayDeep
         label.minimumScaleFactor = 0.9
         label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 4
+        label.numberOfLines = 0
         
         return label
     }()
