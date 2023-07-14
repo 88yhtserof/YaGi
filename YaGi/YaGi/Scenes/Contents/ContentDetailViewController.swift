@@ -54,25 +54,23 @@ class ContentDetailViewController: UIViewController {
         return view
     }()
     
-    private lazy var contentTextView: UITextView = {
-        var textView = UITextView()
-        
-        var text = ""
+    private lazy var contentLabel: UILabel = {
+        var label = UILabel()
+        var text = "내용"
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10
         paragraphStyle.lineBreakStrategy = .hangulWordPriority
         
-        let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
-        let attributedText = NSAttributedString(string:text, attributes: attributes)
+        let attributes = [ NSAttributedString.Key.paragraphStyle : paragraphStyle ]
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
         
-        textView.attributedText = attributedText
-        textView.isEditable = false
-        textView.isScrollEnabled = false
-        textView.textColor = .yagiGrayDeep
-        textView.font = .maruburi(ofSize: 20, weight: .regular)
+        label.attributedText = attributedString
+        label.font = .maruburi(ofSize: 20, weight: .regular)
+        label.textColor = .yagiGrayDeep
+        label.numberOfLines = 0
         
-        return textView
+        return label
     }()
     
     private lazy var menuBarItem: UIBarButtonItem = {
@@ -150,7 +148,7 @@ private extension ContentDetailViewController {
         self.chapter = chapter
         self.bookmarkBarItem.tintColor = chapter.bookmark ? .yagiHighlight : .yagiHighlightLight
         self.contentTitle.text = chapter.heading ?? ""
-        self.contentTextView.text = chapter.content ?? ""
+        self.contentLabel.text = chapter.content ?? ""
     }
     
     func configureNavigationBar() {
@@ -162,7 +160,7 @@ private extension ContentDetailViewController {
         
         [scrollView].forEach { self.view.addSubview($0) }
         [contentTitle, contentView].forEach { scrollView.addSubview($0) }
-        [contentTextView].forEach { contentView.addSubview($0) }
+        [contentLabel].forEach { contentView.addSubview($0) }
         
         scrollView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
@@ -181,7 +179,7 @@ private extension ContentDetailViewController {
             make.width.equalTo(scrollView.snp.width)
         }
         
-        contentTextView.snp.makeConstraints { make in
+        contentLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
         }
@@ -233,7 +231,7 @@ private extension ContentDetailViewController {
         //텍스트 공유하기
         viewController.thrMenuButtonAction = {
             let title: String = self.contentTitle.text ?? ""
-            let text: String = self.contentTextView.text ?? ""
+            let text: String = self.contentLabel.text ?? ""
             let content: String = title.appending("\n\n" + text)
             let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
             
