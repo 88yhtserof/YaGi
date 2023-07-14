@@ -182,7 +182,7 @@ class WritingViewController: UIViewController {
         textView.isScrollEnabled = false
         textView.textColor = .placeholderText
         textView.tintColor = .yagiHighlight
-        textView.font = .maruburi(ofSize: 25, weight: .bold)
+        textView.font = .maruburi(ofSize: 20, weight: .bold)
         textView.inputAccessoryView = keyboardToolBar
         
         textView.delegate = self
