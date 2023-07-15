@@ -43,6 +43,7 @@
 		148F5E8E296A800400A69B9C /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F5E8D296A800400A69B9C /* BookModel.swift */; };
 		14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */; };
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
+		14ACAAFB2A6271C600CF4043 /* CSSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */; };
 		14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */; };
 		14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */; };
 		14D26F1729A32E9700798F99 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D26F1629A32E9700798F99 /* BookshelfViewController.swift */; };
@@ -94,6 +95,7 @@
 		148F5E8D296A800400A69B9C /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultsManager.swift; sourceTree = "<group>"; };
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
+		14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSSymbolButton.swift; sourceTree = "<group>"; };
 		14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		14D26F1629A32E9700798F99 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			children = (
 				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
+				14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
 				140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */,
 				140C3EE129C96CDC00B4EF86 /* Chapter+CoreDataProperties.swift in Sources */,
+				14ACAAFB2A6271C600CF4043 /* CSSymbolButton.swift in Sources */,
 				140C3EEE29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift in Sources */,
 				14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */,
 			);
