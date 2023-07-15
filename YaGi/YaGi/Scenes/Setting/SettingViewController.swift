@@ -89,18 +89,8 @@ class SettingViewController: UIViewController {
         return label
     }()
     
-    private lazy var sendEmailButton: UIButton = {
-        let attributes = AttributeContainer(
-            [NSAttributedString.Key.font : UIFont(name: "MaruBuri-Regular", size: 20) ?? UIFont()]
-        )
-        let attribitedTitle = AttributedString("문의하기", attributes: attributes)
-        var configuration = UIButton.Configuration.plain()
-        configuration.attributedTitle = attribitedTitle
-        configuration.baseForegroundColor = .yagiGrayDeep
-        configuration.image = UIImage(systemName: "envelope")
-        configuration.imagePadding = 10.0
-        
-        let action = UIAction { _ in
+    private lazy var sendEmailButton = CSSymbolButton(title: "문의하기", symbol: "envelope") {
+        return UIAction { _ in
             if !MFMailComposeViewController.canSendMail() {
                 let alert = UIAlertController(title: "메일을 보낼 수 없습니다", message: "기기에 email이 등록되어 있는지 확인바랍니다.", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "취소", style: .cancel)
@@ -123,27 +113,9 @@ class SettingViewController: UIViewController {
             mailComposeVC.setSubject("[야기] 문의드립니다.")
             self.present(mailComposeVC, animated: true)
         }
-        
-        let button = UIButton(configuration: configuration)
-        button.addAction(action, for: .touchUpInside)
-        return button
-    }()
+    }
     
-    private lazy var appVersionButton: UIButton = {
-        let attributes = AttributeContainer(
-            [NSAttributedString.Key.font : UIFont(name: "MaruBuri-Regular", size: 20) ?? UIFont()]
-        )
-        let attribitedTitle = AttributedString("앱 버전 1.3.0", attributes: attributes)
-        var configuration = UIButton.Configuration.plain()
-        configuration.attributedTitle = attribitedTitle
-        configuration.baseForegroundColor = .yagiGrayDeep
-        configuration.image = UIImage(systemName: "info.circle")
-        configuration.imagePadding = 10.0
-        
-        let button = UIButton(configuration: configuration)
-        button.isUserInteractionEnabled = false
-        return button
-    }()
+    private lazy var appVersionButton = CSSymbolButton(title: "앱 버전 1.3.0", symbol: "info.circle")
     
     private lazy var settingButtonStackView: UIStackView = {
         let stackView = UIStackView()
