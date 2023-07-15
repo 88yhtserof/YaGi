@@ -89,6 +89,12 @@ class SettingViewController: UIViewController {
         return label
     }()
     
+    private lazy var setLayoutButton = CSSymbolButton(title: "레이아웃 설정", symbol: "paintbrush") {
+        return UIAction { _ in
+            print("Present BottomMenu")
+        }
+    }
+    
     private lazy var sendEmailButton = CSSymbolButton(title: "문의하기", symbol: "envelope") {
         return UIAction { _ in
             if !MFMailComposeViewController.canSendMail() {
@@ -125,6 +131,7 @@ class SettingViewController: UIViewController {
         stackView.alignment = .leading
         
         [
+            setLayoutButton,
             sendEmailButton,
             appVersionButton
         ]
