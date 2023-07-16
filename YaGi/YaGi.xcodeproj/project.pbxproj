@@ -42,6 +42,7 @@
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
 		148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */; };
 		148ED33E2A64027E00A4F1CD /* CSStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33D2A64027E00A4F1CD /* CSStepper.swift */; };
+		148ED3422A64149A00A4F1CD /* CSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED3412A64149A00A4F1CD /* CSDetailView.swift */; };
 		148F5E8E296A800400A69B9C /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F5E8D296A800400A69B9C /* BookModel.swift */; };
 		14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */; };
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
@@ -96,6 +97,7 @@
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
 		148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextSizeViewController.swift; sourceTree = "<group>"; };
 		148ED33D2A64027E00A4F1CD /* CSStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSStepper.swift; sourceTree = "<group>"; };
+		148ED3412A64149A00A4F1CD /* CSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDetailView.swift; sourceTree = "<group>"; };
 		148F5E8D296A800400A69B9C /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultsManager.swift; sourceTree = "<group>"; };
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
 				14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */,
 				148ED33D2A64027E00A4F1CD /* CSStepper.swift */,
+				148ED3412A64149A00A4F1CD /* CSDetailView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */,
 				14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
+				148ED3422A64149A00A4F1CD /* CSDetailView.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
 				14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */,
