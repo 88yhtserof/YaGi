@@ -31,6 +31,11 @@ class SettingTextSizeViewController: UIViewController {
         detailView.contentTitle.font = detailView.contentTitle.font.withSize(size)
         detailView.contentLabel.font = detailView.contentLabel.font.withSize(size)
     }
+    
+    @objc func didTapDoneButton() {
+        print("Set TextSize")
+        self.dismiss(animated: true)
+    }
 }
 
 //MARK: - Configure
