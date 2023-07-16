@@ -26,60 +26,7 @@ class ContentDetailViewController: UIViewController {
     }
     
     //MARK: - View
-    private lazy var scrollView: UIScrollView = {
-        let scroll = UIScrollView()
-        
-        scroll.backgroundColor = .yagiWhite
-        scroll.delegate = self
-        
-        return scroll
-    }()
-    
-    private lazy var contentTitle: UILabel = {
-        var label = UILabel()
-        var text = "제목"
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
-        paragraphStyle.lineBreakStrategy = .hangulWordPriority
-        
-        let attributes = [ NSAttributedString.Key.paragraphStyle : paragraphStyle ]
-        let attributedString = NSAttributedString(string: text, attributes: attributes)
-        
-        label.attributedText = attributedString
-        label.font = .maruburi(ofSize: 20, weight: .bold)
-        label.textColor = .yagiGrayDeep
-        label.minimumScaleFactor = 0.9
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
-        
-        return label
-    }()
-    
-    private lazy var contentView: UIView = {
-        let view = UIView()
-        
-        return view
-    }()
-    
-    private lazy var contentLabel: UILabel = {
-        var label = UILabel()
-        var text = "내용"
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 10
-        paragraphStyle.lineBreakStrategy = .hangulWordPriority
-        
-        let attributes = [ NSAttributedString.Key.paragraphStyle : paragraphStyle ]
-        let attributedString = NSAttributedString(string: text, attributes: attributes)
-        
-        label.attributedText = attributedString
-        label.font = .maruburi(ofSize: 20, weight: .regular)
-        label.textColor = .yagiGrayDeep
-        label.numberOfLines = 0
-        
-        return label
-    }()
+    private var detailView = CSDetailView()
     
     private lazy var menuBarItem: UIBarButtonItem = {
         var item = UIBarButtonItem()
@@ -155,8 +102,8 @@ private extension ContentDetailViewController {
         
         self.chapter = chapter
         self.bookmarkBarItem.tintColor = chapter.bookmark ? .yagiHighlight : .yagiHighlightLight
-        self.contentTitle.text = chapter.heading ?? ""
-        self.contentLabel.text = chapter.content ?? ""
+        self.detailView.contentTitle.text = chapter.heading ?? ""
+        self.detailView.contentLabel.text = chapter.content ?? ""
     }
     
     func configureNavigationBar() {
@@ -165,31 +112,11 @@ private extension ContentDetailViewController {
     
     func configureView() {
         self.view.backgroundColor = .yagiWhite
+  
+        [detailView].forEach { self.view.addSubview($0) }
         
-        [scrollView].forEach { self.view.addSubview($0) }
-        [contentTitle, contentView].forEach { scrollView.addSubview($0) }
-        [contentLabel].forEach { contentView.addSubview($0) }
-        
-        scrollView.snp.makeConstraints { make in
+        detailView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        contentTitle.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
-            make.leading.equalToSuperview().inset(20)
-            make.width.equalTo(300)
-        }
-        
-        contentView.snp.makeConstraints { make in
-            make.top.equalTo(contentTitle.snp.bottom).offset(30)
-            make.bottom.equalToSuperview().inset(40)
-            make.leading.trailing.equalToSuperview()
-            make.width.equalTo(scrollView.snp.width)
-        }
-        
-        contentLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(20)
         }
     }
     
@@ -238,8 +165,8 @@ private extension ContentDetailViewController {
         
         //텍스트 공유하기
         viewController.thrMenuButtonAction = {
-            let title: String = self.contentTitle.text ?? ""
-            let text: String = self.contentLabel.text ?? ""
+            let title: String = self.detailView.contentTitle.text ?? ""
+            let text: String = self.detailView.contentLabel.text ?? ""
             let content: String = title.appending("\n\n" + text)
             let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
             
@@ -260,7 +187,7 @@ private extension ContentDetailViewController {
         
         //이미지 공유하기
         viewController.fthMenuButtonAction = {
-            guard let shareImage = self.view.snapShotFullScreen(scrollView: self.scrollView) else { return }
+            guard let shareImage = self.view.snapShotFullScreen(scrollView: self.detailView.scrollView) else { return }
             let activityItems = [ shareImage ]
             
             self.dismiss(animated: true) {
