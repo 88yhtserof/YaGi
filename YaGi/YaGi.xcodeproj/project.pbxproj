@@ -40,6 +40,7 @@
 		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
 		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
+		148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */; };
 		148F5E8E296A800400A69B9C /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F5E8D296A800400A69B9C /* BookModel.swift */; };
 		14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */; };
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
@@ -92,6 +93,7 @@
 		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
 		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
+		148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextSizeViewController.swift; sourceTree = "<group>"; };
 		148F5E8D296A800400A69B9C /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultsManager.swift; sourceTree = "<group>"; };
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
@@ -253,9 +255,18 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
+		148ED33A2A63E51D00A4F1CD /* SettingLayout */ = {
+			isa = PBXGroup;
+			children = (
+				148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */,
+			);
+			path = SettingLayout;
+			sourceTree = "<group>";
+		};
 		14ACAAF32A626F7D00CF4043 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				148ED33A2A63E51D00A4F1CD /* SettingLayout */,
 				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
 			);
 			path = Setting;
@@ -413,6 +424,7 @@
 				140C3EE529C96CDC00B4EF86 /* Book+CoreDataProperties.swift in Sources */,
 				14F5EE0A29AB388000DFBEA9 /* DraftCollectionViewCell.swift in Sources */,
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
+				148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
 				1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */,

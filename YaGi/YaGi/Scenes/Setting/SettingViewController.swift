@@ -90,8 +90,20 @@ class SettingViewController: UIViewController {
     }()
     
     private lazy var setLayoutButton = CSSymbolButton(title: "레이아웃 설정", symbol: "paintbrush") {
-        return UIAction { _ in
-            print("Present BottomMenu")
+        return UIAction { [weak self] _ in
+            let bottomMenuVC = BottomMenuViewController()
+            bottomMenuVC.numberOfButtons = .first
+            bottomMenuVC.firMenuButtonTitle = "글자 크기 조정"
+            bottomMenuVC.firMenuButtonAction = {
+                self?.dismiss(animated: false) {
+                    let settingTextSizeVC = SettingTextSizeViewController()
+                    self?.navigationController?.pushViewController(settingTextSizeVC, animated: false)
+                }
+            }
+            
+            bottomMenuVC.modalPresentationStyle = .overFullScreen
+            bottomMenuVC.modalTransitionStyle = .crossDissolve
+            self?.present(bottomMenuVC, animated: true)
         }
     }
     
