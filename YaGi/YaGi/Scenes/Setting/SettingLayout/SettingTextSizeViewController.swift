@@ -14,7 +14,7 @@ class SettingTextSizeViewController: UIViewController {
     //MARK: - View
     private var stepper = CSStepper()
     private var detailView = CSDetailView()
-    private var doneBarItem = UIBarButtonItem()
+    private var doneButton = UIButton()
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -37,6 +37,9 @@ class SettingTextSizeViewController: UIViewController {
 private extension SettingTextSizeViewController {
     
     func configureView() {
+        
+        self.view.backgroundColor = .yagiWhite
+        
         detailView.contentTitle.text = "야기"
         detailView.contentLabel.text =
 """
@@ -47,9 +50,8 @@ private extension SettingTextSizeViewController {
 글자 크기 조정을 통해
 조금 더 편하게 글을 작성해 보세요.
 """
-        doneBarItem.tintColor = .yagiHighlight
-        doneBarItem.image = UIImage(systemName: "checkmark")
-        navigationItem.rightBarButtonItem = doneBarItem
+        doneButton.tintColor = .yagiHighlight
+        doneButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
         
         stepper.addTarget(self, action: #selector(changeTextSize), for: .valueChanged)
         
@@ -58,13 +60,20 @@ private extension SettingTextSizeViewController {
     func layout() {
         
         [
+            doneButton,
             detailView,
             stepper
         ]
             .forEach { self.view.addSubview($0) }
         
+        doneButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.trailing.equalToSuperview().inset(20)
+        }
+        
         detailView.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(doneButton).offset(30)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(stepper)
         }
         

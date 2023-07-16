@@ -97,7 +97,8 @@ class SettingViewController: UIViewController {
             bottomMenuVC.firMenuButtonAction = {
                 self?.dismiss(animated: false) {
                     let settingTextSizeVC = SettingTextSizeViewController()
-                    self?.navigationController?.pushViewController(settingTextSizeVC, animated: false)
+                    settingTextSizeVC.modalPresentationStyle = .overFullScreen
+                    self?.present(settingTextSizeVC, animated: true)
                 }
             }
             
