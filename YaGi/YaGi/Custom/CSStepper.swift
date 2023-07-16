@@ -12,7 +12,7 @@ import SnapKit
 class CSStepper: UIControl {
     
     //MARK: - Properties
-    private var value:Int = 20 {
+    var value:Int = 20 {
         didSet {
             self.resultLabel.text = value.description
             self.sendActions(for: .valueChanged)
