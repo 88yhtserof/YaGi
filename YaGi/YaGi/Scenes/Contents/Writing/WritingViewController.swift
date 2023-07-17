@@ -177,12 +177,14 @@ class WritingViewController: UIViewController {
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
         let attributedText = NSAttributedString(string:text, attributes: attributes)
         
+        let layout = UserDefaultsManager.layout
+        let textSize = CGFloat(layout?.textSize ?? 20)
         textView.attributedText = attributedText
         textView.isEditable = true
         textView.isScrollEnabled = false
         textView.textColor = .placeholderText
         textView.tintColor = .yagiHighlight
-        textView.font = .maruburi(ofSize: 20, weight: .bold)
+        textView.font = .maruburi(ofSize: textSize, weight: .bold)
         textView.inputAccessoryView = keyboardToolBar
         
         textView.delegate = self
@@ -202,13 +204,15 @@ class WritingViewController: UIViewController {
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.paragraphStyle : paragraphStyle]
         let attributedText = NSAttributedString(string:text, attributes: attributes)
         
+        let layout = UserDefaultsManager.layout
+        let textSize = CGFloat(layout?.textSize ?? 20)
         textView.attributedText = attributedText
         textView.isEditable = true
         textView.text = text
         textView.isScrollEnabled = false
         textView.textColor = .placeholderText
         textView.tintColor = .yagiHighlight
-        textView.font = .maruburi(ofSize: 20, weight: .regular)
+        textView.font = .maruburi(ofSize: textSize, weight: .regular)
         textView.inputAccessoryView = keyboardToolBar
         
         textView.delegate = self

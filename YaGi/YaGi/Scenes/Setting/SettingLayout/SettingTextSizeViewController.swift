@@ -12,7 +12,7 @@ import SnapKit
 class SettingTextSizeViewController: UIViewController {
     
     //MARK: - View
-    private var stepper = CSStepper()
+    private var stepper = CSStepper(value: UserDefaultsManager.layout?.textSize ?? 20)
     private var detailView = CSDetailView()
     private var doneButton = UIButton()
     
@@ -33,7 +33,8 @@ class SettingTextSizeViewController: UIViewController {
     }
     
     @objc func didTapDoneButton() {
-        print("Set TextSize")
+        let layout = SettingLayoutModel(textSize: stepper.value)
+        UserDefaultsManager.layout = layout
         self.dismiss(animated: true)
     }
 }
@@ -57,6 +58,7 @@ private extension SettingTextSizeViewController {
 """
         doneButton.tintColor = .yagiHighlight
         doneButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
         
         stepper.addTarget(self, action: #selector(changeTextSize), for: .valueChanged)
         

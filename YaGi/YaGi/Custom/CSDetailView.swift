@@ -44,15 +44,17 @@ private extension CSDetailView {
     func configure() {
         scrollView.backgroundColor = .yagiWhite
         
+        let layout = UserDefaultsManager.layout
+        let textSize = CGFloat(layout?.textSize ?? 20)
         contentTitle.attributedText = configureString()
-        contentTitle.font = .maruburi(ofSize: 20, weight: .bold)
+        contentTitle.font = .maruburi(ofSize: textSize, weight: .bold)
         contentTitle.textColor = .yagiGrayDeep
         contentTitle.minimumScaleFactor = 0.9
         contentTitle.adjustsFontSizeToFitWidth = true
         contentTitle.numberOfLines = 0
         
         contentLabel.attributedText = configureString()
-        contentLabel.font = .maruburi(ofSize: 20, weight: .regular)
+        contentLabel.font = .maruburi(ofSize: textSize, weight: .regular)
         contentLabel.textColor = .yagiGrayDeep
         contentLabel.numberOfLines = 0
         
