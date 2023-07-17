@@ -134,7 +134,7 @@ class SettingViewController: UIViewController {
         }
     }
     
-    private lazy var appVersionButton = CSSymbolButton(title: "앱 버전 1.3.0", symbol: "info.circle")
+    private lazy var appVersionButton = CSSymbolButton(title: "앱 버전 1.4.0", symbol: "info.circle")
     
     private lazy var settingButtonStackView: UIStackView = {
         let stackView = UIStackView()

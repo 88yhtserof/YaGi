@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "AppIcon_120.png",
+      "filename" : "Yagi_20230717@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "AppIcon_120@2x.png",
+      "filename" : "Yagi_20230717@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "AppIcon_120@3x.png",
+      "filename" : "Yagi_20230717@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
