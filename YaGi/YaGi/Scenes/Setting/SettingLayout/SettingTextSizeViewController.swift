@@ -33,7 +33,8 @@ class SettingTextSizeViewController: UIViewController {
     }
     
     @objc func didTapDoneButton() {
-        print("Set TextSize")
+        let layout = SettingLayoutModel(textSize: stepper.value)
+        UserDefaultsManager.layout = layout
         self.dismiss(animated: true)
     }
 }
