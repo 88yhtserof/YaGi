@@ -36,8 +36,10 @@ class CSStepper: UIControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
+    init(value: Int) {
         super.init(frame: .zero)
+        
+        self.value = value
         configure()
         layout()
     }
