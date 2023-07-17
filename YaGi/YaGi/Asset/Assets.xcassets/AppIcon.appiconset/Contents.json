@@ -13,6 +13,12 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Yagi_20230717_29@1x 1.png",
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "size" : "29x29"
+    },
+    {
       "filename" : "Yagi_20230717_29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
@@ -49,7 +55,7 @@
       "size" : "60x60"
     },
     {
-      "filename" : "Yagi_20230717_20@1x 1.png",
+      "filename" : "Yagi_20230717_20@1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
