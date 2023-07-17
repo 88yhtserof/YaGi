@@ -91,13 +91,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "Yagi_20230717_76@1x 1.png",
+      "filename" : "Yagi_20230717_76@1x.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "Yagi_20230717_76@2x 1.png",
+      "filename" : "Yagi_20230717_76@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
@@ -109,7 +109,7 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "Yagi_20230717@1x.png",
+      "filename" : "Yagi_20230717_1024@1x.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
