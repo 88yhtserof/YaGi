@@ -40,9 +40,13 @@
 		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
 		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
+		148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */; };
+		148ED33E2A64027E00A4F1CD /* CSStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33D2A64027E00A4F1CD /* CSStepper.swift */; };
+		148ED3422A64149A00A4F1CD /* CSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED3412A64149A00A4F1CD /* CSDetailView.swift */; };
 		148F5E8E296A800400A69B9C /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148F5E8D296A800400A69B9C /* BookModel.swift */; };
 		14994C00296FCE4C00FD41F7 /* UserDafaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */; };
 		14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */; };
+		14ACAAFB2A6271C600CF4043 /* CSSymbolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */; };
 		14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */; };
 		14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */; };
 		14D26F1729A32E9700798F99 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D26F1629A32E9700798F99 /* BookshelfViewController.swift */; };
@@ -91,9 +95,13 @@
 		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
 		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
+		148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextSizeViewController.swift; sourceTree = "<group>"; };
+		148ED33D2A64027E00A4F1CD /* CSStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSStepper.swift; sourceTree = "<group>"; };
+		148ED3412A64149A00A4F1CD /* CSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDetailView.swift; sourceTree = "<group>"; };
 		148F5E8D296A800400A69B9C /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		14994BFF296FCE4C00FD41F7 /* UserDafaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDafaultsManager.swift; sourceTree = "<group>"; };
 		14994C01296FCE8F00FD41F7 /* UserDefaultWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultWrapper.swift; sourceTree = "<group>"; };
+		14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSSymbolButton.swift; sourceTree = "<group>"; };
 		14BACB55297F8D9F0021BE5E /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		14D26F1629A32E9700798F99 /* BookshelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +195,7 @@
 				140BE4E628EEA5DB00052664 /* Data */,
 				14F49D1128D5E30F0027A4B3 /* Scenes */,
 				14F49D0928D5BB1F0027A4B3 /* Asset */,
+				14ACAAF72A626FCD00CF4043 /* Custom */,
 				1484BC4328CDEC9F00E9F241 /* Extension */,
 				146BB2D328CB6F930029F556 /* AppDelegate.swift */,
 				146BB2D528CB6F930029F556 /* SceneDelegate.swift */,
@@ -234,13 +243,9 @@
 		148BD053298F7D350045B7AE /* Contents */ = {
 			isa = PBXGroup;
 			children = (
-				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
-				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
-				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
-				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
-				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
-				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
-				14F5EE0929AB388000DFBEA9 /* DraftCollectionViewCell.swift */,
+				14ACAAF92A62701800CF4043 /* Main */,
+				14ACAAF62A626FB800CF4043 /* Detail */,
+				14ACAAF52A626FAA00CF4043 /* Writing */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -252,6 +257,69 @@
 				14BACB57297F912C0021BE5E /* BookmarkTableViewCell.swift */,
 			);
 			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		148ED33A2A63E51D00A4F1CD /* SettingLayout */ = {
+			isa = PBXGroup;
+			children = (
+				148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */,
+			);
+			path = SettingLayout;
+			sourceTree = "<group>";
+		};
+		14ACAAF32A626F7D00CF4043 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				148ED33A2A63E51D00A4F1CD /* SettingLayout */,
+				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		14ACAAF42A626F9A00CF4043 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				144F122D296D335700C34892 /* StartViewController.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		14ACAAF52A626FAA00CF4043 /* Writing */ = {
+			isa = PBXGroup;
+			children = (
+				14E5D9A328F155D200E349B4 /* WritingViewController.swift */,
+			);
+			path = Writing;
+			sourceTree = "<group>";
+		};
+		14ACAAF62A626FB800CF4043 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				14E5D9A528F1583500E349B4 /* ContentDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		14ACAAF72A626FCD00CF4043 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				1447427F293F369500823C72 /* ShareActivityItemSource.swift */,
+				141D5AD8290A430600BFE3F7 /* BottomMenuViewController.swift */,
+				14ACAAFA2A6271C600CF4043 /* CSSymbolButton.swift */,
+				148ED33D2A64027E00A4F1CD /* CSStepper.swift */,
+				148ED3412A64149A00A4F1CD /* CSDetailView.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		14ACAAF92A62701800CF4043 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				14F49D0F28D5E2FF0027A4B3 /* ContentsViewController.swift */,
+				140BE4E428EE981900052664 /* ContentsCollectionViewCell.swift */,
+				14F5EE0929AB388000DFBEA9 /* DraftCollectionViewCell.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		14F49D0928D5BB1F0027A4B3 /* Asset */ = {
@@ -267,12 +335,12 @@
 		14F49D1128D5E30F0027A4B3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
+				14D26F1629A32E9700798F99 /* BookshelfViewController.swift */,
+				14ACAAF42A626F9A00CF4043 /* Start */,
+				14ACAAF32A626F7D00CF4043 /* Setting */,
 				148BD054298F7D4C0045B7AE /* Bookmark */,
 				148BD053298F7D350045B7AE /* Contents */,
-				14D26F1629A32E9700798F99 /* BookshelfViewController.swift */,
-				146BB2E928CB80530029F556 /* MainTabBarController.swift */,
-				14E5D9A728F15A1900E349B4 /* SettingViewController.swift */,
-				144F122D296D335700C34892 /* StartViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -362,6 +430,7 @@
 				140C3EE529C96CDC00B4EF86 /* Book+CoreDataProperties.swift in Sources */,
 				14F5EE0A29AB388000DFBEA9 /* DraftCollectionViewCell.swift in Sources */,
 				141D5ADB290A553B00BFE3F7 /* ExUIView.swift in Sources */,
+				148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */,
 				146BB2D428CB6F930029F556 /* AppDelegate.swift in Sources */,
 				14E5D9A428F155D200E349B4 /* WritingViewController.swift in Sources */,
 				1443B0FB29A887A8006CDB88 /* ExUserDefaults.swift in Sources */,
@@ -387,6 +456,7 @@
 				14474280293F369500823C72 /* ShareActivityItemSource.swift in Sources */,
 				14994C02296FCE8F00FD41F7 /* UserDefaultWrapper.swift in Sources */,
 				140BE4E528EE981900052664 /* ContentsCollectionViewCell.swift in Sources */,
+				148ED3422A64149A00A4F1CD /* CSDetailView.swift in Sources */,
 				146BB2D628CB6F930029F556 /* SceneDelegate.swift in Sources */,
 				14E5D9A628F1583500E349B4 /* ContentDetailViewController.swift in Sources */,
 				14F5EE0629AB0B1E00DFBEA9 /* ContentsCollectionItemModel.swift in Sources */,
@@ -395,8 +465,10 @@
 				1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */,
 				140C3EE929C972B200B4EF86 /* DraftRepository.swift in Sources */,
 				140C3EE129C96CDC00B4EF86 /* Chapter+CoreDataProperties.swift in Sources */,
+				14ACAAFB2A6271C600CF4043 /* CSSymbolButton.swift in Sources */,
 				140C3EEE29C98B8400B4EF86 /* UserDafaultStandardWrapper.swift in Sources */,
 				14BACB58297F912C0021BE5E /* BookmarkTableViewCell.swift in Sources */,
+				148ED33E2A64027E00A4F1CD /* CSStepper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
