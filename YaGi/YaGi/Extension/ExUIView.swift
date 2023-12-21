@@ -34,6 +34,8 @@ extension UIView {
         self.layer.maskedCorners = cornerMasks
     }
     
+    /// Render a Image from view to get a full screen snap shot.
+    /// Return UIImage, or nil.
     func snapShotFullScreen(scrollView: UIScrollView) -> UIImage? {
         let savedFrame = self.frame
         let savedScrollviewFrame = scrollView.frame
@@ -44,22 +46,16 @@ extension UIView {
         scrollView.frame = scrollContentFrame
         self.frame = scrollContentFrame
         
-        //context 생성
-        UIGraphicsBeginImageContextWithOptions(self.frame.size, true, 0.0)
+        // Render Image
+        let renderer = UIGraphicsImageRenderer(size: self.frame.size)
+        let image = renderer.image { context in
+            self.layer.render(in: context.cgContext)
+        }
         
-        //context에 해당 view 모습 렌더링(이미지화)
-        self.layer.render(in: UIGraphicsGetCurrentContext()!)
-
-        //이미지가 그려진 context에서 이미지 가져오기
-        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
-        
-        //view와 scrollView 원상복구
+        // Initialize the set value
         scrollView.contentOffset = savedContentOffset
         scrollView.frame = savedScrollviewFrame
         self.frame = savedFrame
-
-        //context pop
-        UIGraphicsEndImageContext()
 
         return image
     }
