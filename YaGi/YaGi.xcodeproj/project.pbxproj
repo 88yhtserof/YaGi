@@ -40,6 +40,7 @@
 		1484BC3E28CDE7CE00E9F241 /* MaruBuri-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC3928CDE7BF00E9F241 /* MaruBuri-SemiBold.ttf */; };
 		1484BC4128CDEA0100E9F241 /* MaruBuri-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */; };
 		1484BC4628CDED2700E9F241 /* ExUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1484BC4528CDED2700E9F241 /* ExUIFont.swift */; };
+		1488A00E2B3ECA8E0030479C /* ExUIActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1488A00D2B3ECA8E0030479C /* ExUIActivityViewController.swift */; };
 		148ED33C2A63E53C00A4F1CD /* SettingTextSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */; };
 		148ED33E2A64027E00A4F1CD /* CSStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED33D2A64027E00A4F1CD /* CSStepper.swift */; };
 		148ED3422A64149A00A4F1CD /* CSDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 148ED3412A64149A00A4F1CD /* CSDetailView.swift */; };
@@ -96,6 +97,7 @@
 		1484BC3A28CDE7BF00E9F241 /* MaruBuri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.ttf"; sourceTree = "<group>"; };
 		1484BC4028CDE9F900E9F241 /* MaruBuri-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-ExtraLight.ttf"; sourceTree = "<group>"; };
 		1484BC4528CDED2700E9F241 /* ExUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIFont.swift; sourceTree = "<group>"; };
+		1488A00D2B3ECA8E0030479C /* ExUIActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIActivityViewController.swift; sourceTree = "<group>"; };
 		148ED33B2A63E53C00A4F1CD /* SettingTextSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextSizeViewController.swift; sourceTree = "<group>"; };
 		148ED33D2A64027E00A4F1CD /* CSStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSStepper.swift; sourceTree = "<group>"; };
 		148ED3412A64149A00A4F1CD /* CSDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDetailView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				14F49D0C28D5C0280027A4B3 /* ExUIColor.swift */,
 				141D5ADA290A553B00BFE3F7 /* ExUIView.swift */,
 				1443B0FA29A887A8006CDB88 /* ExUserDefaults.swift */,
+				1488A00D2B3ECA8E0030479C /* ExUIActivityViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				146A8BED29C6E050009D608E /* BookStore.swift in Sources */,
 				146A8BDF29C6B4E0009D608E /* YaGiDataModel.xcdatamodeld in Sources */,
 				146A8BEF29C6E0CE009D608E /* ChapterRepository.swift in Sources */,
+				1488A00E2B3ECA8E0030479C /* ExUIActivityViewController.swift in Sources */,
 				144F122E296D335700C34892 /* StartViewController.swift in Sources */,
 				14E5D9A828F15A1900E349B4 /* SettingViewController.swift in Sources */,
 				14BACB56297F8D9F0021BE5E /* BookmarkViewController.swift in Sources */,
