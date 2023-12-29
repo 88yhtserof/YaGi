@@ -170,18 +170,18 @@ private extension ContentDetailViewController {
             let content: String = title.appending("\n\n" + text)
             let activityItems = [ShareActivityItemSource(title: title, content: content, placeholder: text)]
             
-            self.dismiss(animated: true) {
-                print("Present ActivityView")
-                let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                activityViewController.completionWithItemsHandler = {(activity, isSuccess, returnedItems, error) in
-                    if isSuccess {
-                        print("Success")
-                    } else {
-                        print("Fail")
-                    }
+            let activityVC = UIActivityViewController(self, activityItems: activityItems, applicationActivities: nil)
+            
+            activityVC.completionWithItemsHandler = {(activity, isSuccess, returnedItems, error) in
+                if isSuccess {
+                    print("Success")
+                } else {
+                    print("Fail")
                 }
-                
-                self.present(activityViewController, animated: true)
+            }
+            
+            self.dismiss(animated: true) {
+                self.present(activityVC, animated: true)
             }
         }
         
@@ -190,15 +190,17 @@ private extension ContentDetailViewController {
             guard let shareImage = self.view.snapShotFullScreen(scrollView: self.detailView.scrollView) else { return }
             let activityItems = [ shareImage ]
             
-            self.dismiss(animated: true) {
-                let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-                activityVC.completionWithItemsHandler = { activity, isSuccess, returnedItem, error in
-                    if isSuccess {
-                        print("Success")
-                    } else {
-                        print("Fail")
-                    }
+            let activityVC = UIActivityViewController(self, activityItems: activityItems, applicationActivities: nil)
+            
+            activityVC.completionWithItemsHandler = { activity, isSuccess, returnedItem, error in
+                if isSuccess {
+                    print("Success")
+                } else {
+                    print("Fail")
                 }
+            }
+            
+            self.dismiss(animated: true) {
                 self.present(activityVC, animated: true)
             }
         }
